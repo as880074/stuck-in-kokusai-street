@@ -1,0 +1,834 @@
+/* Home Page CSS - 首頁專用樣式 */
+
+/* ========== Hero Section - Hand Drawn Style ========== */
+
+.hero {
+    position: relative;
+    height: 400px;
+    background: var(--bg-secondary);
+    background-image: url('../images/hero/okinawa-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: var(--border-width-stroke) solid var(--border-strong);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(44, 62, 80, 0.75), rgba(231, 76, 60, 0.65));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: var(--white);
+    padding: var(--spacing-md);
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-6xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-4);
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease;
+}
+
+.hero-subtitle {
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-regular);
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 767px) {
+    .hero {
+        height: 280px;
+    }
+
+    .hero-title {
+        font-size: var(--font-size-4xl);
+    }
+
+    .hero-subtitle {
+        font-size: var(--font-size-lg);
+    }
+}
+
+/* ========== 進度顯示區 - Hand Drawn Style ========== */
+
+.progress-section {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-6);
+    color: var(--text-dark);
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--brand-accent);
+    transform: rotate(-0.5deg);
+    opacity: 0.3;
+}
+
+.progress-wrapper {
+    background-color: var(--bg-primary);
+    padding: var(--spacing-lg);
+    border: var(--border-width-stroke) solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sketch-md);
+    position: relative;
+}
+
+.progress-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    opacity: 0.15;
+    transform: rotate(0.3deg);
+}
+
+.progress {
+    width: 100%;
+    height: 36px;
+    background-color: var(--bg-secondary);
+    border: var(--border-width-stroke) solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: var(--spacing-4);
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--ink-green);
+    border-radius: var(--radius-md);
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 8px,
+        rgba(255, 255, 255, 0.1) 8px,
+        rgba(255, 255, 255, 0.1) 10px
+    );
+}
+
+.progress-stats {
+    text-align: center;
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-medium);
+}
+
+/* 分類完成度一覽 - Hand Drawn Style */
+.category-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-4);
+    margin-top: var(--spacing-6);
+}
+
+.category-overview-item {
+    background-color: var(--bg-primary);
+    padding: var(--spacing-4);
+    border: var(--border-width-stroke) solid var(--border-strong);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sketch);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    transition: var(--transition-transform);
+    cursor: pointer;
+    position: relative;
+}
+
+.category-overview-item::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    opacity: 0.15;
+    transform: rotate(0.5deg);
+}
+
+.category-overview-item:hover {
+    transform: translateY(-2px) rotate(-0.3deg);
+    box-shadow: var(--shadow-sketch-md);
+}
+
+.category-overview-icon {
+    font-size: var(--font-size-3xl);
+}
+
+.category-overview-info {
+    flex: 1;
+}
+
+.category-overview-name {
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-1);
+}
+
+.category-overview-count {
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.category-overview-count.complete {
+    color: var(--ink-green);
+    font-weight: var(--font-weight-semibold);
+}
+
+@media (max-width: 767px) {
+    .category-overview {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========== 功能按鈕列 ========== */
+
+.function-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.button-group-left,
+.button-group-right {
+    display: flex;
+    gap: var(--spacing-2);
+    flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+    .function-buttons {
+        flex-direction: column;
+    }
+
+    .button-group-left,
+    .button-group-right {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .function-buttons .btn {
+        flex: 1;
+        min-width: 100px;
+    }
+}
+
+/* ========== 清單內容區 ========== */
+
+.checklist-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+}
+
+/* 分類卡片 - Hand Drawn Style */
+.checklist-category {
+    background-color: var(--bg-primary);
+    border: var(--border-width-stroke) solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sketch-md);
+    overflow: hidden;
+    transition: var(--transition-transform);
+    position: relative;
+}
+
+.checklist-category::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    opacity: 0.15;
+    transform: rotate(0.3deg);
+    pointer-events: none;
+}
+
+.checklist-category:hover {
+    transform: translateY(-2px) rotate(-0.2deg);
+    box-shadow: var(--shadow-sketch-lg);
+}
+
+/* 分類標題列 - Hand Drawn Style */
+.category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md) var(--spacing-6);
+    background-color: var(--bg-secondary);
+    cursor: pointer;
+    transition: var(--transition-all);
+    user-select: none;
+    border-bottom: var(--border-width-stroke) solid var(--border-light);
+}
+
+.category-header:hover {
+    background-color: rgba(44, 62, 80, 0.05);
+}
+
+.category-header.complete {
+    background-color: rgba(72, 187, 120, 0.1);
+}
+
+.category-header.complete:hover {
+    background-color: rgba(72, 187, 120, 0.15);
+}
+
+.category-header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    flex: 1;
+}
+
+.category-icon {
+    font-size: var(--font-size-3xl);
+}
+
+.category-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-dark);
+}
+
+.category-count {
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    margin-left: var(--spacing-2);
+}
+
+.toggle-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 18px 16px 17px 15px;
+    background-color: var(--bg-primary);
+    border: 2px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-lg);
+    transition: var(--transition-transform);
+    box-shadow: var(--shadow-sketch);
+}
+
+.toggle-btn.collapsed {
+    transform: rotate(-90deg);
+}
+
+/* 分類內容區 */
+.category-content {
+    max-height: 2000px;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.category-content.collapsed {
+    max-height: 0;
+}
+
+.checklist-items {
+    padding: var(--spacing-md) var(--spacing-6);
+}
+
+/* 清單項目 */
+.checklist-item {
+    padding: var(--spacing-3) 0;
+    border-bottom: 1px solid var(--gray-100);
+    transition: var(--transition-all);
+}
+
+.checklist-item:last-child {
+    border-bottom: none;
+}
+
+.checklist-item:hover {
+    background-color: var(--bg-light);
+}
+
+.checklist-item label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: var(--spacing-2);
+    border-radius: var(--radius-sm);
+}
+
+/* 隱藏原生 checkbox */
+.checklist-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* 自訂 checkbox - Hand Drawn Style */
+.checkbox-custom {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    border: var(--border-width-stroke) solid var(--border-strong);
+    border-radius: 4px 6px 5px 7px;
+    background-color: var(--bg-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-3);
+    transition: var(--transition-all);
+    transform: rotate(-1deg);
+    position: relative;
+}
+
+.checklist-item input[type="checkbox"]:checked + label .checkbox-custom {
+    background-color: var(--ink-primary);
+    border-color: var(--ink-primary);
+    animation: checkBounce 0.3s ease;
+}
+
+.checklist-item input[type="checkbox"]:checked + label .checkbox-custom::after {
+    content: '✓';
+    color: var(--white);
+    font-size: 16px;
+    font-weight: var(--font-weight-bold);
+    transform: rotate(5deg);
+}
+
+@keyframes checkBounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* 項目文字 - Hand Drawn Style */
+.item-text {
+    flex: 1;
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-dark);
+    transition: var(--transition-all);
+}
+
+.checklist-item input[type="checkbox"]:checked + label .item-text {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+@media (max-width: 767px) {
+    .category-header {
+        padding: var(--spacing-3) var(--spacing-4);
+    }
+
+    .category-title {
+        font-size: var(--font-size-lg);
+    }
+
+    .checklist-items {
+        padding: var(--spacing-3) var(--spacing-4);
+    }
+
+    .item-text {
+        font-size: var(--font-size-sm);
+    }
+}
+
+/* ========== 自訂項目區 - Hand Drawn Style ========== */
+
+.custom-items-section {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    background-color: var(--bg-primary);
+    padding: var(--spacing-lg);
+    border: var(--border-width-stroke) solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sketch-md);
+    position: relative;
+}
+
+.custom-items-section::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    opacity: 0.15;
+    transform: rotate(0.3deg);
+}
+
+.add-item-form {
+    display: flex;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-6);
+}
+
+.custom-item-input {
+    flex: 1;
+    padding: 12px 16px;
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-base);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border: var(--border-width-stroke) solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    transition: var(--transition-all);
+}
+
+.custom-item-input:focus {
+    outline: none;
+    border-color: var(--border-strong);
+    box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+}
+
+.custom-item-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+.custom-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+}
+
+.custom-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-3);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    transition: var(--transition-all);
+}
+
+.custom-item:hover {
+    background-color: rgba(44, 62, 80, 0.05);
+    transform: translateX(2px);
+}
+
+.custom-item label {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    cursor: pointer;
+}
+
+.delete-custom-btn {
+    padding: var(--spacing-2) var(--spacing-3);
+    font-family: var(--font-handwritten);
+    color: var(--brand-accent);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    border-radius: var(--radius-sm);
+    transition: var(--transition-all);
+}
+
+.delete-custom-btn:hover {
+    background-color: rgba(231, 76, 60, 0.1);
+    transform: scale(1.05);
+}
+
+@media (max-width: 767px) {
+    .add-item-form {
+        flex-direction: column;
+    }
+
+    .add-item-form .btn {
+        width: 100%;
+    }
+}
+
+/* ========== 實用提醒區 - Hand Drawn Style ========== */
+
+.tips-section {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.tips-content {
+    background-color: rgba(236, 201, 75, 0.1);
+    border: var(--border-width-medium) solid var(--warning-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    position: relative;
+}
+
+.tip-block {
+    margin-bottom: var(--spacing-lg);
+}
+
+.tip-block:last-child {
+    margin-bottom: 0;
+}
+
+.tip-block h3 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-3);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+}
+
+.tip-block ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.tip-block li {
+    position: relative;
+    padding-left: 32px;
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-3);
+}
+
+.tip-block li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--warning-color);
+    font-size: var(--font-size-xl);
+    transform: rotate(-5deg);
+}
+
+@media (max-width: 767px) {
+    .tips-content {
+        padding: var(--spacing-md);
+    }
+
+    .tip-block h3 {
+        font-size: var(--font-size-lg);
+    }
+
+    .tip-block li {
+        font-size: var(--font-size-sm);
+    }
+}
+
+/* ========== CTA Section - Hand Drawn Style ========== */
+
+.cta-section {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.cta-content {
+    background-color: var(--ink-primary);
+    color: var(--white);
+    text-align: center;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+    border: var(--border-width-stroke) solid var(--ink-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sketch-lg);
+    position: relative;
+}
+
+.cta-content::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 2px solid var(--ink-primary);
+    border-radius: var(--radius-lg);
+    opacity: 0.3;
+    transform: rotate(-0.3deg);
+}
+
+.cta-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-4);
+}
+
+.cta-text {
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-8);
+    opacity: 0.95;
+}
+
+.cta-btn {
+    background-color: var(--white);
+    color: var(--ink-primary);
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-lg);
+    padding: 12px 24px;
+    border: var(--border-width-medium) solid var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: 3px 3px 0 rgba(255, 255, 255, 0.3);
+    transition: var(--transition-transform);
+    position: relative;
+}
+
+.cta-btn::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 2px solid var(--white);
+    border-radius: var(--radius-md);
+    opacity: 0.2;
+    transform: rotate(-0.5deg);
+}
+
+.cta-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 767px) {
+    .cta-content {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .cta-title {
+        font-size: var(--font-size-3xl);
+    }
+
+    .cta-text {
+        font-size: var(--font-size-lg);
+    }
+}
+
+/* ========== 列印樣式 ========== */
+
+@media print {
+    /* 隱藏不必要的元素 */
+    .header,
+    .footer,
+    .function-buttons,
+    .cta-section,
+    #scrollToTop {
+        display: none !important;
+    }
+
+    /* 展開所有分類 */
+    .category-content {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    .toggle-btn {
+        display: none;
+    }
+
+    /* 調整顏色 */
+    body {
+        background: white;
+        color: black;
+    }
+
+    .hero {
+        height: 150px;
+        page-break-after: avoid;
+    }
+
+    /* 避免分頁中斷 */
+    .checklist-category {
+        page-break-inside: avoid;
+    }
+
+    .tip-block {
+        page-break-inside: avoid;
+    }
+
+    /* 已勾選項目的視覺標記 */
+    .checklist-item input[type="checkbox"]:checked + label::before {
+        content: '☑ ';
+        font-size: 18px;
+        margin-right: 8px;
+    }
+
+    .checkbox-custom {
+        display: none;
+    }
+}

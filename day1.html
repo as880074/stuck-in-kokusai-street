@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Day 1 - 抵達沖繩 + 國際通巡禮｜PARCO CITY 購物、國際通美食探索，開啟沖繩四天三夜精彩旅程">
+    <meta name="keywords" content="沖繩 Day 1, PARCO CITY, 國際通, 沖繩美食, 沖繩旅遊">
+
+    <title>Day 1 - 抵達沖繩 + 國際通巡禮 | 卡在國際通</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Google Fonts - Hand Drawn Style (S51) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Kalam:wght@300;400;700&family=Caveat:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/sketch.css">
+    <link rel="stylesheet" href="css/day.css">
+
+    <!-- Leaflet.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <div id="header"></div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="day-hero">
+            <div class="day-hero-overlay"></div>
+            <div class="day-hero-content">
+                <div class="day-number">DAY 1 · 3/30（六）</div>
+                <h1 class="day-hero-title">🛬 抵達沖繩 + 國際通巡禮</h1>
+                <p class="day-hero-subtitle">PARCO CITY 購物 · 飯店入住 · 國際通美食探索</p>
+            </div>
+        </section>
+
+        <!-- Container -->
+        <div class="container">
+            <!-- Day Info Cards -->
+            <section class="day-info-section">
+                <div class="day-info-grid">
+                    <div class="day-info-card">
+                        <div class="day-info-icon">🕐</div>
+                        <div class="day-info-label">活動時間</div>
+                        <div class="day-info-value">全日</div>
+                    </div>
+                    <div class="day-info-card">
+                        <div class="day-info-icon">💰</div>
+                        <div class="day-info-label">預算</div>
+                        <div class="day-info-value">¥21,600</div>
+                    </div>
+                    <div class="day-info-card">
+                        <div class="day-info-icon">📍</div>
+                        <div class="day-info-label">主要景點</div>
+                        <div class="day-info-value">3 個</div>
+                    </div>
+                    <div class="day-info-card">
+                        <div class="day-info-icon">🚌</div>
+                        <div class="day-info-label">主要交通</div>
+                        <div class="day-info-value">公車+計程車</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Map Section -->
+            <section class="map-section" style="margin-top: var(--spacing-xl); margin-bottom: var(--spacing-xl);">
+                <h2 class="section-title">🗺️ Day 1 路線地圖</h2>
+                <div class="card-sketch" style="padding: 0; overflow: hidden;">
+                    <div id="day1Map" style="height: 400px; width: 100%;"></div>
+                </div>
+                <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); color: var(--text-muted); text-align: center; margin-top: var(--spacing-3);">
+                    點擊地圖標記查看景點詳情 · 使用 OpenStreetMap 提供地圖服務
+                </p>
+            </section>
+
+            <!-- Timeline Section -->
+            <section class="timeline-section">
+                <h2 class="section-title">📋 詳細行程</h2>
+
+                <div class="timeline">
+                    <!-- 06:50 台北出發 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">06:50</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">✈️ 台北出發</h3>
+                            <p class="timeline-description">
+                                從台北出發前往沖繩那霸機場，飛行時間約 1.5 小時。建議提前 2 小時抵達機場辦理登機手續。
+                            </p>
+                            <div class="timeline-meta">
+                                <span class="timeline-meta-item">🛫 飛行時間：1.5 小時</span>
+                                <span class="timeline-meta-item">🎫 建議提前 2 小時到機場</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 09:20 抵達沖繩 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">09:20</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">🛬 抵達沖繩那霸機場</h3>
+                            <p class="timeline-description">
+                                抵達那霸機場後，前往入境大廳辦理入境手續、領取行李。建議在機場先兌換日幣或使用 ATM 提款。
+                            </p>
+                            <div class="timeline-meta">
+                                <span class="timeline-meta-item">💴 記得兌換日幣</span>
+                                <span class="timeline-meta-item">📱 確認網路連線</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 09:40 前往 PARCO CITY -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">09:40</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">🚌 前往 PARCO CITY</h3>
+                            <p class="timeline-description">
+                                搭乘 26 號公車（約 20 分鐘）直達 PARCO CITY。公車可在機場國內線航廈搭乘。
+                            </p>
+                            <div class="timeline-meta">
+                                <span class="timeline-meta-item">🚌 26 號公車</span>
+                                <span class="timeline-meta-item">⏱️ 約 20 分鐘</span>
+                                <span class="timeline-meta-item">💰 車資：¥600</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10:00-13:00 PARCO CITY -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">10:00 - 13:00</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">🏪 PARCO CITY 購物 + 用餐</h3>
+                            <p class="timeline-description">
+                                大型購物中心，靠海景觀絕佳。享用早午餐後，可以逛 GU、UNIQLO、無印良品等品牌，採購伴手禮和衣物。
+                            </p>
+                            <div class="timeline-meta">
+                                <span class="timeline-meta-item">🍽️ 早餐 + 午餐</span>
+                                <span class="timeline-meta-item">🛍️ 購物採買</span>
+                                <span class="timeline-meta-item">💰 預算：¥2,000-5,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 13:30 前往飯店 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">13:30</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">🚕 前往飯店</h3>
+                            <p class="timeline-description">
+                                搭乘計程車（約 22 分鐘）前往 Hotel Lantama。車資約 ¥2,500。
+                            </p>
+                            <div class="timeline-meta">
+                                <span class="timeline-meta-item">🚕 計程車</span>
+                                <span class="timeline-meta-item">⏱️ 約 22 分鐘</span>
+                                <span class="timeline-meta-item">💰 車資：¥2,500</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 14:00 飯店 Check-in -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">14:00</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">🏨 Hotel Lantama Check-in</h3>
+                            <p class="timeline-description">
+                                抵達飯店辦理入住手續，放置行李，稍作休息調整時差。飯店位置靠近國際通，步行即可抵達。
+                            </p>
+                            <div class="timeline-meta">
+                                <span class="timeline-meta-item">🏨 Hotel Lantama</span>
+                                <span class="timeline-meta-item">📍 鄰近國際通</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 16:00-22:00 國際通 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">16:00 - 22:00</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">🎉 國際通逛街</h3>
+                            <p class="timeline-description">
+                                沖繩最熱鬧的商店街！享用晚餐、品嚐在地美食（Blue Seal 冰淇淋、暖暮拉麵、Calbee+ 炸薯條），逛唐吉訶德採購藥妝、伴手禮。
+                            </p>
+                            <div class="timeline-meta">
+                                <span class="timeline-meta-item">🍜 晚餐美食</span>
+                                <span class="timeline-meta-item">🛍️ 購物採買</span>
+                                <span class="timeline-meta-item">💰 預算：¥15,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 22:00 回飯店 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">22:00</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">🌙 回飯店休息</h3>
+                            <p class="timeline-description">
+                                步行回到 Hotel Lantama，結束充實的第一天行程，好好休息準備隔天的旅程！
+                            </p>
+                            <div class="timeline-meta">
+                                <span class="timeline-meta-item">🚶 步行回飯店</span>
+                                <span class="timeline-meta-item">😴 早點休息</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Spots Section -->
+            <section class="spots-section">
+                <h2 class="section-title">🏝️ 重點景點介紹</h2>
+
+                <div class="spots-grid">
+                    <!-- PARCO CITY -->
+                    <div class="spot-card">
+                        <div class="spot-image">🏬</div>
+                        <div class="spot-content">
+                            <h3 class="spot-title">PARCO CITY</h3>
+                            <p class="spot-description">
+                                サンエー浦添西海岸 PARCO CITY，大型購物中心，靠海景觀絕佳，有 GU、UNIQLO、無印良品等品牌，樓上有美食街。
+                            </p>
+                            <ul class="spot-info-list">
+                                <li>📍 沖縄県浦添市西洲3-1-1</li>
+                                <li>🕐 營業時間：10:00 - 22:00</li>
+                                <li>⏱️ 建議停留：2-3 小時</li>
+                                <li>💰 預算：¥2,000 - ¥5,000</li>
+                            </ul>
+                            <div class="spot-tags">
+                                <span class="spot-tag">購物</span>
+                                <span class="spot-tag">美食</span>
+                                <span class="spot-tag">海景</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 國際通 -->
+                    <div class="spot-card">
+                        <div class="spot-image">🎊</div>
+                        <div class="spot-content">
+                            <h3 class="spot-title">國際通</h3>
+                            <p class="spot-description">
+                                沖繩最熱鬧的商店街，全長約 1.6 公里，兩旁滿是餐廳、伴手禮店、藥妝店。週日 12:00-18:00 為步行者天國。
+                            </p>
+                            <ul class="spot-info-list">
+                                <li>📍 沖縄県那覇市牧志</li>
+                                <li>📏 長度：約 1.6 公里</li>
+                                <li>⏱️ 建議停留：3-4 小時</li>
+                                <li>🚶 步行者天國：週日 12:00-18:00</li>
+                            </ul>
+                            <div class="spot-tags">
+                                <span class="spot-tag">美食</span>
+                                <span class="spot-tag">購物</span>
+                                <span class="spot-tag">必去</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 唐吉訶德 -->
+                    <div class="spot-card">
+                        <div class="spot-image">🛒</div>
+                        <div class="spot-content">
+                            <h3 class="spot-title">唐吉訶德 國際通店</h3>
+                            <p class="spot-description">
+                                ドン・キホーテ國際通店，深夜營業到凌晨 5 點！藥妝、零食、電器、伴手禮應有盡有，提供免稅服務，價格實惠。
+                            </p>
+                            <ul class="spot-info-list">
+                                <li>📍 國際通內</li>
+                                <li>🕐 營業時間：09:00 - 05:00</li>
+                                <li>💰 免稅服務</li>
+                                <li>🎁 必買：藥妝、零食、酒類</li>
+                            </ul>
+                            <div class="spot-tags">
+                                <span class="spot-tag">購物</span>
+                                <span class="spot-tag">藥妝</span>
+                                <span class="spot-tag">深夜營業</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Food Section -->
+            <section class="spots-section">
+                <h2 class="section-title">🍜 必吃美食推薦</h2>
+
+                <div class="spots-grid">
+                    <!-- Blue Seal -->
+                    <div class="spot-card">
+                        <div class="spot-image">🍦</div>
+                        <div class="spot-content">
+                            <h3 class="spot-title">Blue Seal 冰淇淋</h3>
+                            <p class="spot-description">
+                                沖繩在地品牌冰淇淋，獨特口味包含紫薯、紅芋、鹽味等，濃郁香甜，是國際通必吃甜點！
+                            </p>
+                            <ul class="spot-info-list">
+                                <li>📍 國際通內</li>
+                                <li>🕐 營業時間：11:00 - 22:00</li>
+                                <li>🍦 特色：紫薯、紅芋、鹽味</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 暖暮拉麵 -->
+                    <div class="spot-card">
+                        <div class="spot-image">🍜</div>
+                        <div class="spot-content">
+                            <h3 class="spot-title">暖暮拉麵</h3>
+                            <p class="spot-description">
+                                博多豚骨拉麵名店，湯頭濃厚香醇，麵條 Q 彈，CP 值極高，是國際通人氣拉麵店。
+                            </p>
+                            <ul class="spot-info-list">
+                                <li>📍 國際通內</li>
+                                <li>🕐 營業時間：11:00 - 02:00</li>
+                                <li>🍜 推薦：豚骨拉麵</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Calbee+ -->
+                    <div class="spot-card">
+                        <div class="spot-image">🍟</div>
+                        <div class="spot-content">
+                            <h3 class="spot-title">Calbee+ 炸薯條</h3>
+                            <p class="spot-description">
+                                現炸薯條、薯片專賣店，多種口味可選，外酥內軟，香氣十足，邊走邊吃超享受！
+                            </p>
+                            <ul class="spot-info-list">
+                                <li>📍 國際通內</li>
+                                <li>🕐 營業時間：10:00 - 20:00</li>
+                                <li>🍟 特色：現炸、多種口味</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 一蘭拉麵 -->
+                    <div class="spot-card">
+                        <div class="spot-image">🍥</div>
+                        <div class="spot-content">
+                            <h3 class="spot-title">一蘭拉麵</h3>
+                            <p class="spot-description">
+                                24 小時營業的拉麵名店，獨特的一人座位設計，讓你專心享受美味豚骨拉麵，深夜宵夜的好選擇！
+                            </p>
+                            <ul class="spot-info-list">
+                                <li>📍 國際通內</li>
+                                <li>🕐 營業時間：24 小時</li>
+                                <li>🍜 特色：一人座位、24H</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Budget Section -->
+            <section class="budget-section">
+                <h2 class="section-title">💰 當日預算明細</h2>
+
+                <div class="budget-table-wrapper">
+                    <table class="budget-table">
+                        <thead>
+                            <tr>
+                                <th>項目</th>
+                                <th>金額（JPY）</th>
+                                <th>金額（TWD）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>🚌 機場巴士（26 號）</td>
+                                <td>¥600</td>
+                                <td>≈ NT$150</td>
+                            </tr>
+                            <tr>
+                                <td>🍽️ PARCO CITY 午餐</td>
+                                <td>¥1,500</td>
+                                <td>≈ NT$375</td>
+                            </tr>
+                            <tr>
+                                <td>🚕 計程車（PARCO → 飯店）</td>
+                                <td>¥2,500</td>
+                                <td>≈ NT$625</td>
+                            </tr>
+                            <tr>
+                                <td>🍜 國際通晚餐</td>
+                                <td>¥2,000</td>
+                                <td>≈ NT$500</td>
+                            </tr>
+                            <tr>
+                                <td>🛍️ 國際通購物</td>
+                                <td>¥5,000</td>
+                                <td>≈ NT$1,250</td>
+                            </tr>
+                            <tr>
+                                <td>🛒 唐吉訶德採購</td>
+                                <td>¥10,000</td>
+                                <td>≈ NT$2,500</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>總計</td>
+                                <td>¥21,600</td>
+                                <td>≈ NT$5,400</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Tips Section -->
+            <section class="tips-section">
+                <h2 class="section-title">💡 實用提醒</h2>
+
+                <div class="tips-content">
+                    <ul class="tips-list">
+                        <li>抵達機場後先兌換日幣或使用 ATM 提款</li>
+                        <li>26 號公車可在機場國內線航廈搭乘</li>
+                        <li>Hotel Lantama 位置靠近國際通，步行即可抵達</li>
+                        <li>國際通週日 12:00-18:00 為步行者天國（禁止車輛通行）</li>
+                        <li>唐吉訶德深夜營業到凌晨 5 點，可以晚上慢慢逛</li>
+                        <li>記得攜帶護照辦理退稅</li>
+                        <li>建議下載 Google Maps 離線地圖</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Day Navigation -->
+            <section class="day-navigation">
+                <h2 class="section-title">📅 行程導覽</h2>
+
+                <div class="day-nav-grid">
+                    <a href="itinerary.html" class="day-nav-card">
+                        <div class="day-nav-label">返回</div>
+                        <div class="day-nav-title">📋 行程總覽</div>
+                    </a>
+                    <a href="day1.html" class="day-nav-card active">
+                        <div class="day-nav-label">Day 1</div>
+                        <div class="day-nav-title">🛬 抵達沖繩</div>
+                    </a>
+                    <a href="day2.html" class="day-nav-card">
+                        <div class="day-nav-label">Day 2</div>
+                        <div class="day-nav-title">🌊 一日行程</div>
+                    </a>
+                    <a href="day3.html" class="day-nav-card">
+                        <div class="day-nav-label">Day 3</div>
+                        <div class="day-nav-title">⛩️ 波上宮</div>
+                    </a>
+                    <a href="day4.html" class="day-nav-card">
+                        <div class="day-nav-label">Day 4</div>
+                        <div class="day-nav-title">🏝️ 瀨長島</div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- JavaScript -->
+    <script src="js/config.js"></script>
+    <script src="js/common.js"></script>
+
+    <!-- Leaflet.js -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+
+    <!-- Map -->
+    <script src="js/map.js"></script>
+</body>
+</html>

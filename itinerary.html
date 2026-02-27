@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="卡在國際通 - 沖繩四天三夜行程總覽，包含完整的景點、美食、交通資訊與預算規劃">
+    <meta name="keywords" content="沖繩旅遊, 行程規劃, 四天三夜, 國際通, 景點推薦">
+
+    <title>行程總覽 | 卡在國際通 - 沖繩四天三夜完美行程</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/itinerary.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Kalam:wght@300;400;700&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Leaflet.js CSS（免費開源地圖）-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+
+    <!-- Sketch CSS -->
+    <link rel="stylesheet" href="css/sketch.css">
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <div id="header"></div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">🗺️ 四天三夜行程總覽</h1>
+                <p class="hero-subtitle">完整規劃，輕鬆暢遊沖繩國際通</p>
+                <div class="trip-info">
+                    <span class="trip-info-item">📅 4 天 3 夜</span>
+                    <span class="trip-info-item">💰 預算約 NT$15,000-17,000</span>
+                    <span class="trip-info-item">🏨 那霸市區住宿</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Container -->
+        <div class="container">
+            <!-- 行程地圖 -->
+            <section class="map-section">
+                <h2 class="section-title">📍 行程地圖</h2>
+                <div class="map-container">
+                    <div id="itineraryMap" class="map-canvas" style="height: 500px;"></div>
+                    <div class="map-legend">
+                        <div class="legend-item">
+                            <span class="legend-marker day1">1</span>
+                            <span>Day 1</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-marker day2">2</span>
+                            <span>Day 2</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-marker day3">3</span>
+                            <span>Day 3</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-marker day4">4</span>
+                            <span>Day 4</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 時間軸總覽 -->
+            <section class="timeline-section">
+                <h2 class="section-title">📅 行程時間軸</h2>
+
+                <div class="timeline">
+                    <!-- Day 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <div class="timeline-dot day1">1</div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="day-card">
+                                <div class="day-header">
+                                    <h3 class="day-title">Day 1 - 3/30 (六)</h3>
+                                    <span class="day-badge">抵達日</span>
+                                </div>
+                                <h4 class="day-theme">抵達沖繩 + 國際通巡禮</h4>
+                                <div class="day-highlights">
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">✈️</span>
+                                        <span>06:50 台北出發</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">🏪</span>
+                                        <span>PARCO CITY 購物</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">🏨</span>
+                                        <span>Hotel Lantama Check-in</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">🛍️</span>
+                                        <span>國際通逛街</span>
+                                    </div>
+                                </div>
+                                <div class="day-info">
+                                    <span class="info-item">💰 預算：¥21,600</span>
+                                    <span class="info-item">🍜 美食：Blue Seal、暖暮拉麵</span>
+                                </div>
+                                <a href="day1.html" class="btn btn-primary btn-sm">查看詳細行程 →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <div class="timeline-dot day2">2</div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="day-card">
+                                <div class="day-header">
+                                    <h3 class="day-title">Day 2 - 3/31 (日)</h3>
+                                    <span class="day-badge">彈性日</span>
+                                </div>
+                                <h4 class="day-theme">一日行程（彈性安排）</h4>
+                                <div class="day-highlights">
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">🏖️</span>
+                                        <span>選項 A：美麗海水族館</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">🏯</span>
+                                        <span>選項 B：南部文化巡禮</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">🎡</span>
+                                        <span>選項 C：美國村購物</span>
+                                    </div>
+                                </div>
+                                <div class="day-info">
+                                    <span class="info-item">💰 預算：¥7,000-12,000</span>
+                                    <span class="info-item">⏰ 依選擇而定</span>
+                                </div>
+                                <a href="day2.html" class="btn btn-primary btn-sm">查看詳細行程 →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <div class="timeline-dot day3">3</div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="day-card">
+                                <div class="day-header">
+                                    <h3 class="day-title">Day 3 - 4/1 (一)</h3>
+                                    <span class="day-badge">在地體驗</span>
+                                </div>
+                                <h4 class="day-theme">波上宮 + 泊港漁市場</h4>
+                                <div class="day-highlights">
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">⛩️</span>
+                                        <span>波上宮參拜</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">🏖️</span>
+                                        <span>波之上海灘</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">🐟</span>
+                                        <span>泊港漁市場海鮮</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">🌆</span>
+                                        <span>國際通自由活動</span>
+                                    </div>
+                                </div>
+                                <div class="day-info">
+                                    <span class="info-item">💰 預算：¥10,800</span>
+                                    <span class="info-item">🦞 美食：新鮮海鮮丼飯</span>
+                                </div>
+                                <a href="day3.html" class="btn btn-primary btn-sm">查看詳細行程 →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <div class="timeline-dot day4">4</div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="day-card">
+                                <div class="day-header">
+                                    <h3 class="day-title">Day 4 - 4/2 (二)</h3>
+                                    <span class="day-badge">返台日</span>
+                                </div>
+                                <h4 class="day-theme">瀨長島 + 最後採購 + 返台</h4>
+                                <div class="day-highlights">
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">🏛️</span>
+                                        <span>第一牧志公設市場</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">🏝️</span>
+                                        <span>瀨長島 Umikaji Terrace</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">🛒</span>
+                                        <span>iias 豐崎最後採購</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">✈️</span>
+                                        <span>18:40 那霸機場</span>
+                                    </div>
+                                </div>
+                                <div class="day-info">
+                                    <span class="info-item">💰 預算：¥20,000</span>
+                                    <span class="info-item">🥞 美食：幸福鬆餅</span>
+                                </div>
+                                <a href="day4.html" class="btn btn-primary btn-sm">查看詳細行程 →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 預算總結 -->
+            <section class="budget-section">
+                <h2 class="section-title">💰 預算總結</h2>
+                <div class="budget-grid">
+                    <div class="budget-card">
+                        <div class="budget-icon">🛫</div>
+                        <h3>交通費用</h3>
+                        <div class="budget-amount">¥8,000</div>
+                        <div class="budget-detail">機場巴士、計程車、單軌電車</div>
+                    </div>
+
+                    <div class="budget-card">
+                        <div class="budget-icon">🍜</div>
+                        <h3>餐飲費用</h3>
+                        <div class="budget-amount">¥12,000</div>
+                        <div class="budget-detail">早餐、午餐、晚餐、點心</div>
+                    </div>
+
+                    <div class="budget-card">
+                        <div class="budget-icon">🎫</div>
+                        <h3>門票費用</h3>
+                        <div class="budget-amount">¥3,000</div>
+                        <div class="budget-detail">景點門票（依行程選擇）</div>
+                    </div>
+
+                    <div class="budget-card">
+                        <div class="budget-icon">🛍️</div>
+                        <h3>購物預算</h3>
+                        <div class="budget-amount">¥30,000+</div>
+                        <div class="budget-detail">伴手禮、藥妝、衣物等</div>
+                    </div>
+                </div>
+
+                <div class="budget-total">
+                    <div class="budget-total-content">
+                        <h3>四天總預算（不含住宿與機票）</h3>
+                        <div class="budget-total-amount">
+                            <span class="amount-jpy">¥59,400 - 64,400</span>
+                            <span class="amount-twd">≈ NT$14,850 - 16,100</span>
+                        </div>
+                        <p class="budget-note">* 匯率以 1 JPY = 4.5 TWD 計算，實際金額依當日匯率而定</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 交通資訊 -->
+            <section class="transport-section">
+                <h2 class="section-title">🚗 交通資訊</h2>
+                <div class="transport-grid">
+                    <div class="transport-card">
+                        <h3>🚌 機場巴士</h3>
+                        <ul>
+                            <li><strong>26 號公車</strong>：機場 → PARCO CITY（約 20 分）</li>
+                            <li><strong>票價</strong>：¥600</li>
+                            <li><strong>班次</strong>：約 15-20 分鐘一班</li>
+                        </ul>
+                    </div>
+
+                    <div class="transport-card">
+                        <h3>🚕 計程車</h3>
+                        <ul>
+                            <li><strong>起跳價</strong>：¥570（1.75 公里內）</li>
+                            <li><strong>每 372 公尺</strong>：加 ¥70</li>
+                            <li><strong>建議</strong>：2-4 人分攤較划算</li>
+                        </ul>
+                    </div>
+
+                    <div class="transport-card">
+                        <h3>🚝 單軌電車 (Yui Rail)</h3>
+                        <ul>
+                            <li><strong>路線</strong>：那霸機場 ↔ 首里城</li>
+                            <li><strong>票價</strong>：¥230-370（依距離）</li>
+                            <li><strong>一日券</strong>：¥800</li>
+                        </ul>
+                    </div>
+
+                    <div class="transport-card">
+                        <h3>🎫 交通票券</h3>
+                        <ul>
+                            <li><strong>IC 卡</strong>：Suica / PASMO 可使用</li>
+                            <li><strong>巴士一日券</strong>：¥660（市內巴士）</li>
+                            <li><strong>單軌一日券</strong>：¥800</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 實用建議 -->
+            <section class="tips-section">
+                <h2 class="section-title">💡 實用建議</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <h3>⏰ 時間安排</h3>
+                        <ul>
+                            <li>建議提早 2 小時到機場</li>
+                            <li>預留購物時間，不要排太滿</li>
+                            <li>用餐高峰時段可能需排隊</li>
+                            <li>景點建議停留時間請參考各日行程</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-card">
+                        <h3>💳 付款方式</h3>
+                        <ul>
+                            <li>建議準備日幣現金 ¥30,000-50,000</li>
+                            <li>大部分店家可刷卡</li>
+                            <li>市場、小店建議用現金</li>
+                            <li>部分店家可使用行動支付</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-card">
+                        <h3>📱 網路通訊</h3>
+                        <ul>
+                            <li>建議購買 eSIM 或 WiFi 分享器</li>
+                            <li>下載 Google Maps 離線地圖</li>
+                            <li>下載 Google 翻譯離線資料</li>
+                            <li>記得充好行動電源</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-card">
+                        <h3>🎒 行李規劃</h3>
+                        <ul>
+                            <li>去程行李不要裝太滿</li>
+                            <li>預留 3-5 公斤給伴手禮</li>
+                            <li>可考慮買摺疊行李袋</li>
+                            <li>託運行李記得上鎖</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="cta-content">
+                    <h2 class="cta-title">準備好開始你的沖繩之旅了嗎？</h2>
+                    <p class="cta-text">查看每日詳細行程，深入了解每個景點與美食推薦</p>
+                    <div class="cta-buttons">
+                        <a href="day1.html" class="btn btn-lg cta-btn">Day 1 行程 →</a>
+                        <a href="index.html" class="btn btn-lg btn-secondary">返回打包清單</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- JavaScript -->
+    <script src="js/config.js"></script>
+    <script src="js/common.js"></script>
+
+    <!-- Leaflet.js（免費開源地圖）-->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+
+    <!-- 地圖初始化 -->
+    <script src="js/map.js"></script>
+</body>
+</html>

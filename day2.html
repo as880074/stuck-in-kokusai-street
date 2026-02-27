@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Day 2 - 一日彈性行程｜美麗海水族館、南部文化巡禮、美國村購物，三種行程任你選">
+    <meta name="keywords" content="沖繩 Day 2, 美麗海水族館, 美國村, 首里城, 沖繩旅遊">
+
+    <title>Day 2 - 一日彈性行程 | 卡在國際通</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Google Fonts - Hand Drawn Style (S51) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Kalam:wght@300;400;700&family=Caveat:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/sketch.css">
+    <link rel="stylesheet" href="css/day.css">
+
+    <!-- Leaflet.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+
+    <style>
+        /* Option Cards Specific Styles */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .option-card {
+            background-color: var(--bg-primary);
+            border: var(--border-width-medium) solid var(--border-strong);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sketch-md);
+            transition: var(--transition-transform);
+            position: relative;
+        }
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 2px solid var(--border-strong);
+            border-radius: var(--radius-lg);
+            opacity: 0.2;
+            transform: rotate(0.5deg);
+        }
+
+        .option-card:hover {
+            transform: translateY(-4px) rotate(-0.3deg);
+            box-shadow: var(--shadow-sketch-lg);
+        }
+
+        .option-header {
+            background-color: var(--ink-primary);
+            color: var(--white);
+            padding: var(--spacing-lg);
+            text-align: center;
+            border-bottom: var(--border-width-stroke) solid var(--border-strong);
+        }
+
+        .option-icon {
+            font-size: 64px;
+            margin-bottom: var(--spacing-3);
+        }
+
+        .option-title {
+            font-family: var(--font-display);
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .option-subtitle {
+            font-family: var(--font-handwritten);
+            font-size: var(--font-size-base);
+            opacity: 0.9;
+        }
+
+        .option-content {
+            padding: var(--spacing-lg);
+        }
+
+        .option-description {
+            font-family: var(--font-handwritten);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-relaxed);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .option-highlights {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .option-highlights h4 {
+            font-family: var(--font-display);
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-3);
+        }
+
+        .option-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .option-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: var(--spacing-2);
+            font-family: var(--font-handwritten);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-relaxed);
+            color: var(--text-secondary);
+        }
+
+        .option-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--ink-green);
+            font-size: var(--font-size-lg);
+            font-weight: bold;
+        }
+
+        .option-budget {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            border: 2px dashed var(--border-subtle);
+            margin-top: var(--spacing-md);
+        }
+
+        .option-budget-label {
+            font-family: var(--font-handwritten);
+            font-size: var(--font-size-sm);
+            color: var(--text-muted);
+            margin-bottom: var(--spacing-1);
+        }
+
+        .option-budget-amount {
+            font-family: var(--font-display);
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--ink-blue);
+        }
+
+        @media (max-width: 767px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <div id="header"></div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="day-hero">
+            <div class="day-hero-overlay"></div>
+            <div class="day-hero-content">
+                <div class="day-number">DAY 2 · 3/31（日）</div>
+                <h1 class="day-hero-title">🌊 一日彈性行程</h1>
+                <p class="day-hero-subtitle">依天氣、體力、興趣選擇你的專屬路線</p>
+            </div>
+        </section>
+
+        <!-- Container -->
+        <div class="container">
+            <!-- Day Info Cards -->
+            <section class="day-info-section">
+                <div class="day-info-grid">
+                    <div class="day-info-card">
+                        <div class="day-info-icon">🎯</div>
+                        <div class="day-info-label">行程特色</div>
+                        <div class="day-info-value">彈性安排</div>
+                    </div>
+                    <div class="day-info-card">
+                        <div class="day-info-icon">💰</div>
+                        <div class="day-info-label">預算範圍</div>
+                        <div class="day-info-value">¥7K-12K</div>
+                    </div>
+                    <div class="day-info-card">
+                        <div class="day-info-icon">📍</div>
+                        <div class="day-info-label">行程選項</div>
+                        <div class="day-info-value">3 種</div>
+                    </div>
+                    <div class="day-info-card">
+                        <div class="day-info-icon">🚌</div>
+                        <div class="day-info-label">建議交通</div>
+                        <div class="day-info-value">依選擇而定</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Intro Section -->
+            <section class="timeline-section">
+                <h2 class="section-title">🗺️ 行程說明</h2>
+
+                <div class="card-sketch" style="padding: var(--spacing-xl);">
+                    <p style="font-family: var(--font-handwritten); font-size: var(--font-size-lg); line-height: var(--line-height-relaxed); color: var(--text-secondary); margin-bottom: var(--spacing-md);">
+                        Day 2 是完全彈性的一天！你可以根據當天的<strong style="color: var(--text-primary);">天氣狀況</strong>、<strong style="color: var(--text-primary);">體力狀態</strong>、<strong style="color: var(--text-primary);">興趣偏好</strong>來選擇最適合的行程。
+                    </p>
+                    <p style="font-family: var(--font-handwritten); font-size: var(--font-size-lg); line-height: var(--line-height-relaxed); color: var(--text-secondary);">
+                        我們為你準備了 <strong style="color: var(--ink-blue);">三種精選路線</strong>，從北部海岸線、南部文化遺產，到中部美式風情，每種路線都有獨特的魅力，讓你的沖繩之旅更加豐富多彩！
+                    </p>
+                </div>
+            </section>
+
+            <!-- Map Section with Option Selector -->
+            <section class="map-section" style="margin-top: var(--spacing-xl); margin-bottom: var(--spacing-xl);">
+                <h2 class="section-title">🗺️ Day 2 路線地圖</h2>
+
+                <!-- Map Option Buttons -->
+                <div style="display: flex; gap: var(--spacing-3); justify-content: center; margin-bottom: var(--spacing-md); flex-wrap: wrap;">
+                    <button class="btn-sketch btn-sketch-primary day2-option-btn active" data-option="A" style="font-size: var(--font-size-base);">
+                        🐠 選項 A - 美麗海水族館
+                    </button>
+                    <button class="btn-sketch day2-option-btn" data-option="B" style="font-size: var(--font-size-base);">
+                        ⛩️ 選項 B - 南部文化巡禮
+                    </button>
+                    <button class="btn-sketch day2-option-btn" data-option="C" style="font-size: var(--font-size-base);">
+                        🎡 選項 C - 美國村購物
+                    </button>
+                </div>
+
+                <div class="card-sketch" style="padding: 0; overflow: hidden;">
+                    <div id="day2Map" style="height: 400px; width: 100%;"></div>
+                </div>
+                <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); color: var(--text-muted); text-align: center; margin-top: var(--spacing-3);">
+                    點擊上方按鈕切換行程選項 · 點擊地圖標記查看景點詳情
+                </p>
+            </section>
+
+            <!-- Options Section -->
+            <section class="spots-section">
+                <h2 class="section-title">🎯 行程選項</h2>
+
+                <div class="options-grid">
+                    <!-- Option A: 美麗海水族館 -->
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-icon">🐠</div>
+                            <h3 class="option-title">選項 A</h3>
+                            <p class="option-subtitle">美麗海水族館 + 北部海岸線</p>
+                        </div>
+                        <div class="option-content">
+                            <p class="option-description">
+                                適合喜歡海洋生物、想要遠離都市喧囂的旅客。沖繩美麗海水族館是世界級的水族館，擁有巨大的黑潮之海水槽，可以近距離觀賞鯨鯊！
+                            </p>
+
+                            <div class="option-highlights">
+                                <h4>⭐ 行程亮點</h4>
+                                <ul class="option-list">
+                                    <li>08:00 飯店出發</li>
+                                    <li>搭乘高速巴士 117 或 120 號（約 2 小時）</li>
+                                    <li>美麗海水族館（3-4 小時）</li>
+                                    <li>海洋博公園散步</li>
+                                    <li>備瀨福木林道拍照</li>
+                                    <li>傍晚返回那霸</li>
+                                </ul>
+                            </div>
+
+                            <div class="option-highlights">
+                                <h4>🎫 門票資訊</h4>
+                                <ul class="option-list">
+                                    <li>美麗海水族館：¥2,180</li>
+                                    <li>海洋博公園：免費</li>
+                                </ul>
+                            </div>
+
+                            <div class="option-budget">
+                                <div class="option-budget-label">💰 預估預算</div>
+                                <div class="option-budget-amount">¥9,000 - ¥12,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Option B: 南部文化巡禮 -->
+                    <div class="option-card">
+                        <div class="option-header" style="background-color: var(--ink-blue);">
+                            <div class="option-icon">⛩️</div>
+                            <h3 class="option-title">選項 B</h3>
+                            <p class="option-subtitle">南部文化巡禮</p>
+                        </div>
+                        <div class="option-content">
+                            <p class="option-description">
+                                適合喜歡歷史文化、想要深度了解琉球王國的旅客。探訪世界文化遺產，感受沖繩獨特的文化底蘊。
+                            </p>
+
+                            <div class="option-highlights">
+                                <h4>⭐ 行程亮點</h4>
+                                <ul class="option-list">
+                                    <li>首里城公園（世界文化遺產）</li>
+                                    <li>識名園（琉球王家別苑）</li>
+                                    <li>齋場御嶽（神聖祈禱場所）</li>
+                                    <li>知念岬公園（絕美海景）</li>
+                                    <li>瀨長島 Umikaji Terrace（夕陽）</li>
+                                </ul>
+                            </div>
+
+                            <div class="option-highlights">
+                                <h4>🎫 門票資訊</h4>
+                                <ul class="option-list">
+                                    <li>首里城：¥400</li>
+                                    <li>識名園：¥400</li>
+                                    <li>齋場御嶽：¥300</li>
+                                </ul>
+                            </div>
+
+                            <div class="option-budget">
+                                <div class="option-budget-label">💰 預估預算</div>
+                                <div class="option-budget-amount">¥7,000 - ¥10,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Option C: 美國村購物 -->
+                    <div class="option-card">
+                        <div class="option-header" style="background-color: var(--ink-orange);">
+                            <div class="option-icon">🎡</div>
+                            <h3 class="option-title">選項 C</h3>
+                            <p class="option-subtitle">美國村 + 購物天堂</p>
+                        </div>
+                        <div class="option-content">
+                            <p class="option-description">
+                                適合喜歡購物、美式風情、想要輕鬆度過一天的旅客。美國村充滿異國風情，是拍照打卡的好地方！
+                            </p>
+
+                            <div class="option-highlights">
+                                <h4>⭐ 行程亮點</h4>
+                                <ul class="option-list">
+                                    <li>美國村（北谷町）逛街拍照</li>
+                                    <li>AEON Mall 永旺夢樂城購物</li>
+                                    <li>日落海灘散步</li>
+                                    <li>美式餐廳享用晚餐</li>
+                                    <li>Depot Island 摩天輪</li>
+                                </ul>
+                            </div>
+
+                            <div class="option-highlights">
+                                <h4>🛍️ 購物推薦</h4>
+                                <ul class="option-list">
+                                    <li>AEON Mall：各大品牌齊全</li>
+                                    <li>美國村小店：特色雜貨</li>
+                                    <li>American Depot：美式服飾</li>
+                                </ul>
+                            </div>
+
+                            <div class="option-budget">
+                                <div class="option-budget-label">💰 預估預算</div>
+                                <div class="option-budget-amount">¥8,000 - ¥12,000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tips Section -->
+            <section class="tips-section">
+                <h2 class="section-title">💡 選擇建議</h2>
+
+                <div class="tips-content">
+                    <ul class="tips-list">
+                        <li><strong>天氣晴朗</strong>：推薦選項 A（美麗海水族館）或選項 B（南部文化巡禮），可以欣賞美景</li>
+                        <li><strong>下雨天</strong>：推薦選項 C（美國村購物），大部分時間都在室內</li>
+                        <li><strong>體力充沛</strong>：推薦選項 A（美麗海水族館），車程較長但很值得</li>
+                        <li><strong>想要輕鬆</strong>：推薦選項 C（美國村），距離那霸較近，節省車程時間</li>
+                        <li><strong>喜歡文化</strong>：推薦選項 B（南部文化巡禮），深度了解琉球歷史</li>
+                        <li><strong>帶小孩</strong>：推薦選項 A（美麗海水族館）或選項 C（美國村），適合親子同遊</li>
+                        <li>預留購物時間，三個選項都可以安排購物行程</li>
+                        <li>建議提前查詢各景點營業時間和公休日</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Transportation Tips -->
+            <section class="spots-section">
+                <h2 class="section-title">🚌 交通資訊</h2>
+
+                <div class="spots-grid">
+                    <div class="spot-card">
+                        <div class="spot-image">🚌</div>
+                        <div class="spot-content">
+                            <h3 class="spot-title">選項 A - 美麗海水族館</h3>
+                            <ul class="spot-info-list">
+                                <li>高速巴士 117 或 120 號</li>
+                                <li>從那霸巴士總站出發</li>
+                                <li>車程約 2 小時</li>
+                                <li>單程約 ¥2,000</li>
+                                <li>建議購買一日券</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="spot-card">
+                        <div class="spot-image">🚕</div>
+                        <div class="spot-content">
+                            <h3 class="spot-title">選項 B - 南部巡禮</h3>
+                            <ul class="spot-info-list">
+                                <li>建議租車或包車</li>
+                                <li>景點較分散</li>
+                                <li>也可搭計程車分段移動</li>
+                                <li>預算較高但方便</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="spot-card">
+                        <div class="spot-image">🚇</div>
+                        <div class="spot-content">
+                            <h3 class="spot-title">選項 C - 美國村</h3>
+                            <ul class="spot-info-list">
+                                <li>搭乘路線巴士 20、28、29 號</li>
+                                <li>從那霸出發約 40-50 分鐘</li>
+                                <li>單程約 ¥700</li>
+                                <li>交通最方便的選項</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Day Navigation -->
+            <section class="day-navigation">
+                <h2 class="section-title">📅 行程導覽</h2>
+
+                <div class="day-nav-grid">
+                    <a href="itinerary.html" class="day-nav-card">
+                        <div class="day-nav-label">返回</div>
+                        <div class="day-nav-title">📋 行程總覽</div>
+                    </a>
+                    <a href="day1.html" class="day-nav-card">
+                        <div class="day-nav-label">Day 1</div>
+                        <div class="day-nav-title">🛬 抵達沖繩</div>
+                    </a>
+                    <a href="day2.html" class="day-nav-card active">
+                        <div class="day-nav-label">Day 2</div>
+                        <div class="day-nav-title">🌊 一日行程</div>
+                    </a>
+                    <a href="day3.html" class="day-nav-card">
+                        <div class="day-nav-label">Day 3</div>
+                        <div class="day-nav-title">⛩️ 波上宮</div>
+                    </a>
+                    <a href="day4.html" class="day-nav-card">
+                        <div class="day-nav-label">Day 4</div>
+                        <div class="day-nav-title">🏝️ 瀨長島</div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- JavaScript -->
+    <script src="js/config.js"></script>
+    <script src="js/common.js"></script>
+
+    <!-- Leaflet.js -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+
+    <!-- Map -->
+    <script src="js/map.js"></script>
+
+    <!-- Day 2 Option Switcher -->
+    <script>
+        // Day 2 地圖選項切換
+        document.addEventListener('DOMContentLoaded', function() {
+            const optionBtns = document.querySelectorAll('.day2-option-btn');
+            let currentMap = null;
+
+            optionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const option = this.dataset.option;
+
+                    // 更新按鈕樣式
+                    optionBtns.forEach(b => {
+                        b.classList.remove('btn-sketch-primary', 'active');
+                    });
+                    this.classList.add('btn-sketch-primary', 'active');
+
+                    // 移除舊地圖
+                    const mapContainer = document.getElementById('day2Map');
+                    mapContainer.innerHTML = '';
+
+                    // 重新初始化地圖
+                    currentMap = initDay2Map(option);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

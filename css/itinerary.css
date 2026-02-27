@@ -1,0 +1,770 @@
+/* Itinerary Page CSS - 行程總覽頁面樣式 */
+
+/* ========== Hero Section - Hand Drawn Style ========== */
+
+.hero {
+    position: relative;
+    height: 450px;
+    background: var(--bg-secondary);
+    background-image: url('../images/hero/itinerary-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: var(--border-width-stroke) solid var(--border-strong);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(44, 62, 80, 0.75), rgba(231, 76, 60, 0.65));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: var(--white);
+    padding: var(--spacing-md);
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-6xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-4);
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease;
+}
+
+.hero-subtitle {
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-6);
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.trip-info {
+    display: flex;
+    gap: var(--spacing-6);
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.8s ease 0.4s both;
+}
+
+.trip-info-item {
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    padding: var(--spacing-3) var(--spacing-6);
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-full);
+}
+
+@media (max-width: 767px) {
+    .hero {
+        height: 350px;
+    }
+
+    .hero-title {
+        font-size: var(--font-size-4xl);
+    }
+
+    .hero-subtitle {
+        font-size: var(--font-size-lg);
+    }
+
+    .trip-info {
+        flex-direction: column;
+        gap: var(--spacing-2);
+        align-items: center;
+    }
+
+    .trip-info-item {
+        font-size: var(--font-size-base);
+    }
+}
+
+/* ========== 地圖區塊 ========== */
+
+.map-section {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-6);
+    color: var(--text-primary);
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--brand-accent);
+    transform: rotate(-0.5deg);
+    opacity: 0.3;
+}
+
+.map-container {
+    position: relative;
+    background-color: var(--bg-primary);
+    border: var(--border-width-stroke) solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sketch-lg);
+    overflow: hidden;
+}
+
+.map-canvas {
+    width: 100%;
+    height: 500px;
+    background-color: var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-500);
+    font-size: var(--font-size-lg);
+}
+
+.map-legend {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    background-color: var(--white);
+    padding: var(--spacing-4);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    gap: var(--spacing-4);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.legend-marker {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+}
+
+.legend-marker.day1 { background-color: #FF6B6B; }
+.legend-marker.day2 { background-color: #4ECDC4; }
+.legend-marker.day3 { background-color: #FFD93D; }
+.legend-marker.day4 { background-color: #6BCF7F; }
+
+@media (max-width: 767px) {
+    .map-canvas {
+        height: 300px;
+    }
+
+    .map-legend {
+        position: static;
+        margin-top: var(--spacing-md);
+        flex-wrap: wrap;
+    }
+}
+
+/* ========== 時間軸 ========== */
+
+.timeline-section {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.timeline-item {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.timeline-dot {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    box-shadow: var(--shadow-md);
+    z-index: 1;
+}
+
+.timeline-dot.day1 { background-color: #FF6B6B; }
+.timeline-dot.day2 { background-color: #4ECDC4; }
+.timeline-dot.day3 { background-color: #FFD93D; color: var(--text-dark); }
+.timeline-dot.day4 { background-color: #6BCF7F; }
+
+.timeline-line {
+    width: 3px;
+    flex: 1;
+    background: linear-gradient(to bottom, var(--gray-300), transparent);
+    margin-top: var(--spacing-2);
+}
+
+.timeline-item:last-child .timeline-line {
+    display: none;
+}
+
+.timeline-content {
+    flex: 1;
+}
+
+/* Day Card - Hand Drawn Style */
+.day-card {
+    background-color: var(--bg-primary);
+    border: var(--border-width-stroke) solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sketch-md);
+    padding: var(--spacing-lg);
+    transition: var(--transition-transform);
+    position: relative;
+}
+
+.day-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    opacity: 0.15;
+    transform: rotate(0.3deg);
+}
+
+.day-card:hover {
+    transform: translateY(-2px) rotate(-0.2deg);
+    box-shadow: var(--shadow-sketch-lg);
+}
+
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-4);
+}
+
+.day-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+}
+
+.day-badge {
+    padding: var(--spacing-1) var(--spacing-3);
+    background-color: var(--primary-light);
+    color: var(--white);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+}
+
+.day-theme {
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-xl);
+    color: var(--ink-blue);
+    margin-bottom: var(--spacing-6);
+    font-weight: var(--font-weight-semibold);
+}
+
+.day-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-6);
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding: var(--spacing-2);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-sm);
+}
+
+.highlight-icon {
+    font-size: var(--font-size-lg);
+}
+
+.day-info {
+    display: flex;
+    gap: var(--spacing-6);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-6);
+    padding-top: var(--spacing-4);
+    border-top: 1px solid var(--gray-200);
+}
+
+.info-item {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+}
+
+@media (max-width: 767px) {
+    .timeline-item {
+        gap: var(--spacing-3);
+    }
+
+    .timeline-dot {
+        width: 36px;
+        height: 36px;
+        font-size: var(--font-size-lg);
+    }
+
+    .day-card {
+        padding: var(--spacing-md);
+    }
+
+    .day-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-2);
+    }
+
+    .day-title {
+        font-size: var(--font-size-xl);
+    }
+
+    .day-theme {
+        font-size: var(--font-size-lg);
+    }
+
+    .day-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .day-info {
+        flex-direction: column;
+        gap: var(--spacing-2);
+    }
+}
+
+/* ========== 預算區塊 ========== */
+
+.budget-section {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.budget-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.budget-card {
+    background-color: var(--bg-primary);
+    border: var(--border-width-stroke) solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sketch-md);
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition: var(--transition-transform);
+    position: relative;
+}
+
+.budget-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    opacity: 0.15;
+    transform: rotate(0.3deg);
+}
+
+.budget-card:hover {
+    transform: translateY(-2px) rotate(-0.2deg);
+    box-shadow: var(--shadow-sketch-lg);
+}
+
+.budget-icon {
+    font-size: 48px;
+    margin-bottom: var(--spacing-4);
+}
+
+.budget-card h3 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-3);
+}
+
+.budget-amount {
+    font-family: var(--font-display);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--ink-blue);
+    margin-bottom: var(--spacing-2);
+}
+
+.budget-detail {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+}
+
+/* 預算總計 - Hand Drawn Style */
+.budget-total {
+    background-color: var(--ink-primary);
+    border: var(--border-width-stroke) solid var(--ink-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sketch-lg);
+    overflow: hidden;
+    position: relative;
+}
+
+.budget-total::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 2px solid var(--ink-primary);
+    border-radius: var(--radius-lg);
+    opacity: 0.3;
+    transform: rotate(-0.3deg);
+}
+
+.budget-total-content {
+    padding: var(--spacing-xl);
+    color: var(--white);
+    text-align: center;
+}
+
+.budget-total-content h3 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-6);
+}
+
+.budget-total-amount {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    margin-bottom: var(--spacing-4);
+}
+
+.amount-jpy {
+    font-family: var(--font-display);
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-bold);
+}
+
+.amount-twd {
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-2xl);
+    opacity: 0.9;
+}
+
+.budget-note {
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+}
+
+@media (max-width: 767px) {
+    .budget-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .amount-jpy {
+        font-size: var(--font-size-3xl);
+    }
+
+    .amount-twd {
+        font-size: var(--font-size-xl);
+    }
+}
+
+/* ========== 交通資訊 ========== */
+
+.transport-section {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.transport-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.transport-card {
+    background-color: var(--bg-primary);
+    border: var(--border-width-stroke) solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sketch-md);
+    padding: var(--spacing-lg);
+    position: relative;
+}
+
+.transport-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    opacity: 0.15;
+    transform: rotate(0.3deg);
+}
+
+.transport-card h3 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-4);
+}
+
+.transport-card ul {
+    list-style: none;
+}
+
+.transport-card li {
+    padding: var(--spacing-2) 0;
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.transport-card li:last-child {
+    border-bottom: none;
+}
+
+.transport-card strong {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+@media (max-width: 767px) {
+    .transport-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========== 實用建議 ========== */
+
+.tips-section {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.tip-card {
+    background-color: rgba(236, 201, 75, 0.1);
+    border: var(--border-width-medium) solid var(--warning-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    position: relative;
+}
+
+.tip-card h3 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-4);
+}
+
+.tip-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.tip-card li {
+    position: relative;
+    padding-left: 32px;
+    padding-top: var(--spacing-1);
+    padding-bottom: var(--spacing-1);
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-primary);
+}
+
+.tip-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--warning-color);
+    font-size: var(--font-size-xl);
+    transform: rotate(-5deg);
+}
+
+@media (max-width: 767px) {
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========== CTA Section ========== */
+
+.cta-section {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.cta-content {
+    background-color: var(--ink-primary);
+    color: var(--white);
+    text-align: center;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+    border: var(--border-width-stroke) solid var(--ink-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sketch-lg);
+    position: relative;
+}
+
+.cta-content::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 2px solid var(--ink-primary);
+    border-radius: var(--radius-lg);
+    opacity: 0.3;
+    transform: rotate(-0.3deg);
+}
+
+.cta-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-4);
+}
+
+.cta-text {
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-8);
+    opacity: 0.95;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--spacing-4);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-btn {
+    background-color: var(--white);
+    color: var(--ink-primary);
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-lg);
+    padding: 12px 24px;
+    border: var(--border-width-medium) solid var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: 3px 3px 0 rgba(255, 255, 255, 0.3);
+    transition: var(--transition-transform);
+    position: relative;
+}
+
+.cta-btn::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 2px solid var(--white);
+    border-radius: var(--radius-md);
+    opacity: 0.2;
+    transform: rotate(-0.5deg);
+}
+
+.cta-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 767px) {
+    .cta-content {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .cta-title {
+        font-size: var(--font-size-3xl);
+    }
+
+    .cta-text {
+        font-size: var(--font-size-lg);
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+    }
+}

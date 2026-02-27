@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>風格指南 | 卡在國際通 - S51 Hand Drawn Style</title>
+
+    <!-- Google Fonts - Hand Drawn Style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Kalam:wght@300;400;700&family=Caveat:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/sketch.css">
+
+    <style>
+        body {
+            font-family: var(--font-handwritten);
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-2xl) var(--spacing-md);
+        }
+
+        .style-guide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background-color: var(--bg-primary);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .component-demo {
+            padding: var(--spacing-lg);
+            background-color: var(--bg-light);
+            border-radius: var(--radius-md);
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: var(--font-size-6xl);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: var(--font-size-4xl);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-3);
+            border-bottom: 3px solid var(--brand-accent);
+        }
+
+        h3 {
+            font-family: var(--font-display);
+            font-size: var(--font-size-2xl);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 3px solid var(--border-strong);
+            border-radius: var(--radius-md);
+            margin: var(--spacing-2);
+        }
+
+        .color-label {
+            text-align: center;
+            font-size: var(--font-size-sm);
+            margin-top: var(--spacing-2);
+        }
+
+        code {
+            background-color: var(--gray-200);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="style-guide-container">
+        <!-- Header -->
+        <header class="section">
+            <h1 class="animate-wiggle">🎨 卡在國際通 - 風格指南</h1>
+            <p style="font-size: var(--font-size-xl); color: var(--text-secondary);">
+                S51 Hand Drawn Style - 手繪風格設計系統
+            </p>
+        </header>
+
+        <!-- Colors -->
+        <section class="section">
+            <h2>🎨 色彩系統</h2>
+            <h3>品牌色</h3>
+            <div style="display: flex; gap: var(--spacing-md); flex-wrap: wrap;">
+                <div>
+                    <div class="color-swatch" style="background-color: var(--ink-primary);"></div>
+                    <div class="color-label">墨水藍<br><code>#2C3E50</code></div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background-color: var(--brand-accent);"></div>
+                    <div class="color-label">紅色強調<br><code>#E74C3C</code></div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background-color: var(--ink-blue);"></div>
+                    <div class="color-label">藍色<br><code>#3B82F6</code></div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background-color: var(--ink-green);"></div>
+                    <div class="color-label">綠色<br><code>#48BB78</code></div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background-color: var(--bg-secondary); border-color: var(--border-strong);"></div>
+                    <div class="color-label">紙張色<br><code>#FDFBF7</code></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography -->
+        <section class="section">
+            <h2>✍️ 字體系統</h2>
+            <div class="component-demo">
+                <h1 style="margin-bottom: var(--spacing-md);">標題 H1 - Kalam Display</h1>
+                <h2 style="margin-bottom: var(--spacing-md);">標題 H2 - Kalam Display</h2>
+                <h3 style="margin-bottom: var(--spacing-md);">標題 H3 - Kalam Display</h3>
+                <p style="font-size: var(--font-size-base); line-height: var(--line-height-normal);">
+                    內文使用 Patrick Hand 字體，這是一種手寫風格的字體，給人輕鬆、親切的感覺。
+                    非常適合旅遊、生活風格類型的網站使用。
+                </p>
+            </div>
+        </section>
+
+        <!-- Buttons -->
+        <section class="section">
+            <h2>🔘 按鈕組件</h2>
+            <div class="component-grid">
+                <div class="component-demo">
+                    <h3>Primary Button</h3>
+                    <button class="btn-sketch btn-sketch-primary">開始使用</button>
+                </div>
+                <div class="component-demo">
+                    <h3>Accent Button</h3>
+                    <button class="btn-sketch btn-sketch-accent">查看更多</button>
+                </div>
+                <div class="component-demo">
+                    <h3>Outline Button</h3>
+                    <button class="btn-sketch btn-sketch-outline">了解詳情</button>
+                </div>
+                <div class="component-demo">
+                    <h3>Default Button</h3>
+                    <button class="btn-sketch">預設按鈕</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cards -->
+        <section class="section">
+            <h2>🎴 卡片組件</h2>
+            <div class="component-grid">
+                <div class="card-sketch">
+                    <h3>手繪卡片標題</h3>
+                    <p style="color: var(--text-secondary); margin-top: var(--spacing-3);">
+                        這是一個手繪風格的卡片組件，具有不規則的邊框和淡淡的陰影效果，
+                        營造出手繪筆記本的感覺。
+                    </p>
+                    <button class="btn-sketch btn-sketch-primary" style="margin-top: var(--spacing-md);">
+                        查看詳情 →
+                    </button>
+                </div>
+                <div class="card-sketch">
+                    <div class="icon-sketch" style="margin-bottom: var(--spacing-md);">✈️</div>
+                    <h3>帶圖示的卡片</h3>
+                    <p style="color: var(--text-secondary); margin-top: var(--spacing-3);">
+                        可以在卡片中加入手繪風格的圖示容器，增加視覺趣味性。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Badges -->
+        <section class="section">
+            <h2>🏷️ 標籤組件</h2>
+            <div class="component-demo">
+                <span class="badge-sketch">預設標籤</span>
+                <span class="badge-sketch badge-sketch-accent">重要</span>
+                <span class="badge-sketch badge-sketch-blue">資訊</span>
+                <span class="badge-sketch badge-sketch-green">完成</span>
+            </div>
+        </section>
+
+        <!-- Form Elements -->
+        <section class="section">
+            <h2>📝 表單元素</h2>
+            <div class="component-grid">
+                <div class="component-demo">
+                    <h3>輸入框</h3>
+                    <input type="text" class="input-sketch" placeholder="輸入你的名字..." style="width: 100%;">
+                </div>
+                <div class="component-demo">
+                    <h3>Checkbox</h3>
+                    <label style="display: flex; align-items: center; gap: var(--spacing-2); cursor: pointer;">
+                        <span class="checkbox-sketch">
+                            <input type="checkbox" checked>
+                            <span class="checkbox-sketch-box"></span>
+                        </span>
+                        <span>我同意條款與細則</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lists -->
+        <section class="section">
+            <h2>📋 列表樣式</h2>
+            <div class="component-grid">
+                <div class="component-demo">
+                    <h3>箭頭列表</h3>
+                    <ul class="list-sketch">
+                        <li>第一個項目</li>
+                        <li>第二個項目</li>
+                        <li>第三個項目</li>
+                    </ul>
+                </div>
+                <div class="component-demo">
+                    <h3>勾選列表</h3>
+                    <ul class="list-sketch list-sketch-check">
+                        <li>已完成項目</li>
+                        <li>已完成項目</li>
+                        <li>已完成項目</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alerts -->
+        <section class="section">
+            <h2>⚠️ 提示框</h2>
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                <div class="alert-sketch alert-sketch-info">
+                    <strong>資訊提示：</strong> 這是一個資訊提示框
+                </div>
+                <div class="alert-sketch alert-sketch-success">
+                    <strong>成功：</strong> 操作已成功完成！
+                </div>
+                <div class="alert-sketch alert-sketch-warning">
+                    <strong>警告：</strong> 請注意這個重要訊息
+                </div>
+                <div class="alert-sketch alert-sketch-error">
+                    <strong>錯誤：</strong> 發生了一個錯誤
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Elements -->
+        <section class="section">
+            <h2>✨ 特殊元素</h2>
+
+            <h3>引用框</h3>
+            <div class="quote-sketch">
+                旅行的意義不在於目的地，而在於沿途的風景和心情。
+            </div>
+
+            <h3 style="margin-top: var(--spacing-lg);">分隔線</h3>
+            <div class="divider-sketch"></div>
+
+            <h3 style="margin-top: var(--spacing-lg);">虛線分隔線</h3>
+            <hr class="divider-sketch-dashed">
+
+            <h3 style="margin-top: var(--spacing-lg);">紙張背景</h3>
+            <div class="sketch-paper" style="padding: var(--spacing-lg); min-height: 200px;">
+                <p>這是一個模擬筆記本紙張的背景效果，帶有橫線和紅色左邊線。</p>
+            </div>
+        </section>
+
+        <!-- Icons -->
+        <section class="section">
+            <h2>🎯 圖示容器</h2>
+            <div style="display: flex; gap: var(--spacing-md); flex-wrap: wrap;">
+                <div class="icon-sketch">🏝️</div>
+                <div class="icon-sketch">✈️</div>
+                <div class="icon-sketch">🍜</div>
+                <div class="icon-sketch">🏨</div>
+                <div class="icon-sketch">🎒</div>
+                <div class="icon-sketch icon-sketch-lg">🗺️</div>
+            </div>
+        </section>
+
+        <!-- Animations -->
+        <section class="section">
+            <h2>🎬 動畫效果</h2>
+            <div class="component-grid">
+                <div class="component-demo">
+                    <h3>搖擺動畫</h3>
+                    <div class="icon-sketch icon-sketch-lg animate-wiggle">🌴</div>
+                </div>
+                <div class="component-demo">
+                    <h3>Hover 搖擺</h3>
+                    <button class="btn-sketch animate-wiggle-hover">移上來試試</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Usage Examples -->
+        <section class="section">
+            <h2>💡 使用範例</h2>
+            <div class="card-sketch">
+                <div style="display: flex; align-items: start; gap: var(--spacing-md);">
+                    <div class="icon-sketch icon-sketch-lg">📋</div>
+                    <div style="flex: 1;">
+                        <h3 class="heading-sketch">出國前確認清單</h3>
+                        <p style="color: var(--text-secondary); margin: var(--spacing-3) 0;">
+                            完整的打包清單，確保不遺漏任何重要物品
+                        </p>
+                        <ul class="list-sketch list-sketch-check">
+                            <li>護照與證件</li>
+                            <li>電子產品</li>
+                            <li>個人衣物</li>
+                        </ul>
+                        <div style="margin-top: var(--spacing-md);">
+                            <span class="badge-sketch badge-sketch-green">已完成 85%</span>
+                        </div>
+                        <button class="btn-sketch btn-sketch-primary" style="margin-top: var(--spacing-md);">
+                            查看清單 →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="section" style="text-align: center;">
+            <p style="color: var(--text-muted);">
+                這是 S51 Hand Drawn 風格指南<br>
+                使用手繪元素創造溫暖、親切的使用者體驗
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

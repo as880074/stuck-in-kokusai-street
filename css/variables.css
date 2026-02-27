@@ -1,0 +1,244 @@
+/* CSS Variables - S51 Hand Drawn Style 手繪風格 */
+
+:root {
+    /* ========== Style Meta ========== */
+    --style-id: "S51";
+    --style-name: "Hand Drawn";
+
+    /* ========== 顏色系統 (Hand Drawn Palette) ========== */
+
+    /* 背景色 - 紙質感 */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #FDFBF7;  /* 米白紙張色 */
+    --bg-light: #FAF9F6;
+
+    /* 文字色 - 墨水色 */
+    --text-primary: #2C3E50;    /* 深墨水藍 */
+    --text-secondary: #4A5568;
+    --text-muted: #718096;
+    --text-dark: #2C3E50;
+
+    /* 品牌色 - 墨水系 */
+    --brand-primary: #2C3E50;   /* 深墨藍 */
+    --brand-accent: #E74C3C;    /* 紅色強調 */
+
+    /* 墨水色系 */
+    --ink-primary: #2C3E50;
+    --ink-accent: #E74C3C;
+    --ink-blue: #3B82F6;
+    --ink-orange: #FF9F43;
+    --ink-green: #48BB78;
+
+    /* 邊框色 - 手繪線條 */
+    --border-strong: #2C3E50;
+    --border-subtle: rgba(44, 62, 80, 0.3);
+    --border-light: rgba(44, 62, 80, 0.15);
+
+    /* 功能色 - 柔和手繪感 */
+    --success-color: #48BB78;
+    --warning-color: #ECC94B;
+    --error-color: #E74C3C;
+    --info-color: #3B82F6;
+
+    /* Focus 狀態 */
+    --focus-ring: #2C3E50;
+
+    /* 中性色保留（相容性） */
+    --white: #FFFFFF;
+    --gray-100: #F7FAFC;
+    --gray-200: #EDF2F7;
+    --gray-300: #E2E8F0;
+    --gray-400: #CBD5E0;
+    --gray-500: #A0AEC0;
+    --gray-600: #718096;
+    --gray-700: #4A5568;
+
+    /* ========== 陰影系統 - 手繪交叉線陰影 ========== */
+    --shadow-none: none;
+    --shadow-sketch: 2px 2px 0 rgba(44, 62, 80, 0.1);
+    --shadow-sketch-md: 3px 3px 0 rgba(44, 62, 80, 0.15);
+    --shadow-sketch-lg: 4px 4px 0 rgba(44, 62, 80, 0.2);
+
+    /* 相容性保留 */
+    --shadow-sm: 2px 2px 0 rgba(44, 62, 80, 0.1);
+    --shadow-md: 3px 3px 0 rgba(44, 62, 80, 0.15);
+    --shadow-lg: 4px 4px 0 rgba(44, 62, 80, 0.2);
+    --shadow-xl: 5px 5px 0 rgba(44, 62, 80, 0.25);
+
+    /* ========== 字型系統 - Hand Drawn Fonts ========== */
+
+    /* 字型家族 - 手寫風格 */
+    --font-handwritten: 'Patrick Hand', 'Caveat', 'Noto Sans TC', cursive, sans-serif;
+    --font-display: 'Kalam', 'Patrick Hand', cursive;
+    --font-body: 'Patrick Hand', 'Noto Sans TC', 'PingFang TC', cursive, sans-serif;
+    --font-main: 'Patrick Hand', 'Noto Sans TC', cursive, sans-serif;
+
+    /* Fallback for CJK */
+    --font-cjk: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    --font-mono: 'Courier New', Courier, monospace;
+
+    /* 字型大小 - Hand Drawn Scale */
+    --font-size-xs: 14px;
+    --font-size-sm: 16px;
+    --font-size-base: 18px;      /* Hand drawn 稍大更易讀 */
+    --font-size-lg: 20px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 28px;
+    --font-size-3xl: 32px;
+    --font-size-4xl: 40px;
+    --font-size-5xl: 48px;
+    --font-size-6xl: 52px;       /* h1 */
+
+    /* 字重 - Hand drawn 保持輕盈 */
+    --font-weight-light: 300;
+    --font-weight-regular: 400;  /* 主要使用 */
+    --font-weight-medium: 400;   /* Hand drawn 不強調粗體 */
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* 行高 - 手寫風格需要更多空間 */
+    --line-height-tight: 1.4;
+    --line-height-normal: 1.67;  /* 30/18 */
+    --line-height-relaxed: 1.8;
+
+    /* ========== 間距系統 (8px 基準) ========== */
+
+    --spacing-0: 0;
+    --spacing-1: 4px;
+    --spacing-2: 8px;
+    --spacing-3: 12px;
+    --spacing-4: 16px;
+    --spacing-5: 20px;
+    --spacing-6: 24px;
+    --spacing-7: 28px;
+    --spacing-8: 32px;
+    --spacing-10: 40px;
+    --spacing-12: 48px;
+    --spacing-16: 64px;
+    --spacing-20: 80px;
+    --spacing-24: 96px;
+
+    /* 簡化命名 */
+    --spacing-xs: var(--spacing-2);    /* 8px */
+    --spacing-sm: var(--spacing-4);    /* 16px */
+    --spacing-md: var(--spacing-6);    /* 24px */
+    --spacing-lg: var(--spacing-8);    /* 32px */
+    --spacing-xl: var(--spacing-12);   /* 48px */
+    --spacing-2xl: var(--spacing-16);  /* 64px */
+
+    /* ========== 圓角 - Hand Drawn Wobbly Shapes ========== */
+
+    --radius-none: 0;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    /* Wobbly hand-drawn circle - 不規則圓形 */
+    --radius-sketch: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    --radius-full: 9999px;
+
+    /* ========== 邊框寬度 - Hand Drawn Strokes ========== */
+
+    --border-width-stroke: 2px;
+    --border-width-medium: 3px;
+    --border-width-strong: 4px;
+
+    /* ========== 斷點 (用於 JS) ========== */
+
+    --breakpoint-mobile: 768px;
+    --breakpoint-tablet: 1024px;
+    --breakpoint-desktop: 1440px;
+
+    /* ========== 容器寬度 ========== */
+
+    --container-sm: 640px;
+    --container-md: 768px;
+    --container-lg: 1024px;
+    --container-xl: 1200px;
+    --container-2xl: 1440px;
+
+    /* ========== Z-index 層級 ========== */
+
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+
+    /* ========== 過渡動畫 ========== */
+
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.4s ease;
+
+    --transition-all: all var(--transition-base);
+    --transition-transform: transform var(--transition-base);
+    --transition-opacity: opacity var(--transition-base);
+    --transition-color: color var(--transition-base), background-color var(--transition-base);
+}
+
+/* ========== Mobile 覆寫 ========== */
+
+@media (max-width: 767px) {
+    :root {
+        /* 字型大小 - Mobile */
+        --font-size-xs: 11px;
+        --font-size-sm: 12px;
+        --font-size-base: 14px;
+        --font-size-lg: 16px;
+        --font-size-xl: 18px;
+        --font-size-2xl: 20px;
+        --font-size-3xl: 22px;
+        --font-size-4xl: 24px;
+        --font-size-5xl: 28px;
+        --font-size-6xl: 32px;
+
+        /* 間距調整 (Mobile 稍微縮小) */
+        --spacing-xl: 40px;
+        --spacing-2xl: 56px;
+    }
+}
+
+/* ========== 深色模式 (預留) ========== */
+
+@media (prefers-color-scheme: dark) {
+    /* 如果未來要支援深色模式，可在此定義 */
+    /* 目前先不實作 */
+}
+
+/* ========== 實用工具類別 ========== */
+
+/* 文字顏色 */
+.text-primary { color: var(--primary-color); }
+.text-secondary { color: var(--secondary-color); }
+.text-accent { color: var(--accent-color); }
+.text-dark { color: var(--text-dark); }
+.text-gray { color: var(--gray-600); }
+.text-white { color: var(--white); }
+
+/* 背景顏色 */
+.bg-primary { background-color: var(--primary-color); }
+.bg-secondary { background-color: var(--secondary-color); }
+.bg-light { background-color: var(--bg-light); }
+.bg-white { background-color: var(--white); }
+
+/* 字重 */
+.font-light { font-weight: var(--font-weight-light); }
+.font-regular { font-weight: var(--font-weight-regular); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+/* 圓角 */
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* 陰影 */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }

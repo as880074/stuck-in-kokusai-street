@@ -1,0 +1,597 @@
+/* Sketch.css - S51 Hand Drawn Style 手繪風格專用樣式 */
+
+/* ========== Hand Drawn Base ========== */
+
+/* 手繪邊框 - Wobbly Lines */
+.sketch-border {
+    border: var(--border-width-stroke) solid var(--border-strong);
+    border-radius: var(--radius-md);
+    position: relative;
+}
+
+.sketch-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: var(--border-width-stroke) solid var(--border-strong);
+    border-radius: var(--radius-md);
+    opacity: 0.3;
+    transform: rotate(0.5deg);
+}
+
+/* 手繪陰影 - Hatched Shadow */
+.sketch-shadow {
+    box-shadow: var(--shadow-sketch);
+    position: relative;
+}
+
+.sketch-shadow::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    right: -3px;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 2px,
+        rgba(44, 62, 80, 0.05) 2px,
+        rgba(44, 62, 80, 0.05) 4px
+    );
+    z-index: -1;
+    border-radius: inherit;
+}
+
+/* 手繪圓形 - Wobbly Circle */
+.sketch-circle {
+    border-radius: var(--radius-sketch);
+    border: var(--border-width-stroke) solid var(--border-strong);
+}
+
+/* 手繪塗鴉背景 - Doodle Pattern */
+.sketch-doodle-bg {
+    background-image:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(44, 62, 80, 0.02) 10px,
+            rgba(44, 62, 80, 0.02) 11px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 10px,
+            rgba(44, 62, 80, 0.02) 10px,
+            rgba(44, 62, 80, 0.02) 11px
+        );
+}
+
+/* 手繪筆記紙背景 - Notebook Paper */
+.sketch-paper {
+    background-color: var(--bg-secondary);
+    background-image:
+        repeating-linear-gradient(
+            transparent,
+            transparent 29px,
+            rgba(44, 62, 80, 0.1) 29px,
+            rgba(44, 62, 80, 0.1) 30px
+        );
+    position: relative;
+}
+
+.sketch-paper::before {
+    content: '';
+    position: absolute;
+    left: 40px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: rgba(231, 76, 60, 0.3);
+}
+
+/* ========== Hand Drawn 按鈕 ========== */
+
+.btn-sketch {
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-lg);
+    padding: 12px 24px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border: var(--border-width-medium) solid var(--border-strong);
+    border-radius: var(--radius-md);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    box-shadow: 3px 3px 0 rgba(44, 62, 80, 0.2);
+}
+
+.btn-sketch::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    opacity: 0.2;
+    transform: rotate(-0.5deg);
+}
+
+.btn-sketch:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 rgba(44, 62, 80, 0.25);
+}
+
+.btn-sketch:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 rgba(44, 62, 80, 0.15);
+}
+
+/* Primary Button */
+.btn-sketch-primary {
+    background-color: var(--ink-primary);
+    color: var(--white);
+    border-color: var(--ink-primary);
+}
+
+.btn-sketch-primary::before {
+    border-color: var(--ink-primary);
+}
+
+/* Accent Button */
+.btn-sketch-accent {
+    background-color: var(--brand-accent);
+    color: var(--white);
+    border-color: var(--brand-accent);
+}
+
+.btn-sketch-accent::before {
+    border-color: var(--brand-accent);
+}
+
+/* Outline Button */
+.btn-sketch-outline {
+    background-color: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+}
+
+/* ========== Hand Drawn 卡片 ========== */
+
+.card-sketch {
+    background-color: var(--bg-primary);
+    border: var(--border-width-stroke) solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    position: relative;
+    box-shadow: var(--shadow-sketch-md);
+}
+
+.card-sketch::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    opacity: 0.15;
+    transform: rotate(0.3deg);
+}
+
+.card-sketch:hover {
+    transform: translateY(-2px) rotate(-0.2deg);
+    box-shadow: var(--shadow-sketch-lg);
+}
+
+/* ========== Hand Drawn 標籤 Badge ========== */
+
+.badge-sketch {
+    display: inline-block;
+    padding: 4px 12px;
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-sm);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-strong);
+    border-radius: 20px 18px 22px 16px;
+    position: relative;
+    transform: rotate(-1deg);
+}
+
+.badge-sketch-accent {
+    background-color: var(--brand-accent);
+    color: var(--white);
+    border-color: var(--brand-accent);
+}
+
+.badge-sketch-blue {
+    background-color: var(--ink-blue);
+    color: var(--white);
+    border-color: var(--ink-blue);
+}
+
+.badge-sketch-green {
+    background-color: var(--ink-green);
+    color: var(--white);
+    border-color: var(--ink-green);
+}
+
+/* ========== Hand Drawn 輸入框 ========== */
+
+.input-sketch {
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-base);
+    padding: 12px 16px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border: var(--border-width-stroke) solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    transition: border-color 0.2s ease;
+}
+
+.input-sketch:focus {
+    outline: none;
+    border-color: var(--border-strong);
+    box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+}
+
+.input-sketch::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+/* ========== Hand Drawn Checkbox ========== */
+
+.checkbox-sketch {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+.checkbox-sketch input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.checkbox-sketch-box {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-color: var(--bg-primary);
+    border: var(--border-width-stroke) solid var(--border-strong);
+    border-radius: 4px 6px 5px 7px;
+    position: relative;
+    cursor: pointer;
+    transform: rotate(-1deg);
+}
+
+.checkbox-sketch input[type="checkbox"]:checked + .checkbox-sketch-box {
+    background-color: var(--ink-primary);
+    border-color: var(--ink-primary);
+}
+
+.checkbox-sketch input[type="checkbox"]:checked + .checkbox-sketch-box::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(5deg);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ========== Hand Drawn 分隔線 ========== */
+
+.divider-sketch {
+    height: 2px;
+    background-color: var(--border-strong);
+    margin: var(--spacing-lg) 0;
+    position: relative;
+    transform: rotate(-0.2deg);
+}
+
+.divider-sketch::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--border-subtle);
+    transform: rotate(0.3deg);
+}
+
+/* Dashed Divider */
+.divider-sketch-dashed {
+    border: none;
+    border-top: 2px dashed var(--border-strong);
+    margin: var(--spacing-lg) 0;
+}
+
+/* ========== Hand Drawn 標題裝飾 ========== */
+
+.heading-sketch {
+    font-family: var(--font-display);
+    position: relative;
+    display: inline-block;
+}
+
+.heading-sketch::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--brand-accent);
+    transform: rotate(-0.5deg);
+    opacity: 0.3;
+}
+
+/* Underline with Wiggle */
+.heading-underline {
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.heading-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: repeating-linear-gradient(
+        to right,
+        var(--border-strong) 0px,
+        var(--border-strong) 5px,
+        transparent 5px,
+        transparent 7px
+    );
+}
+
+/* ========== Hand Drawn 圖示容器 ========== */
+
+.icon-sketch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: var(--border-width-stroke) solid var(--border-strong);
+    border-radius: 28px 24px 26px 22px;
+    background-color: var(--bg-primary);
+    font-size: 24px;
+    position: relative;
+    transform: rotate(-2deg);
+}
+
+.icon-sketch::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid var(--border-strong);
+    border-radius: 28px 24px 26px 22px;
+    opacity: 0.2;
+    transform: rotate(3deg);
+}
+
+.icon-sketch-lg {
+    width: 64px;
+    height: 64px;
+    font-size: 32px;
+}
+
+/* ========== Hand Drawn 引用框 ========== */
+
+.quote-sketch {
+    padding: var(--spacing-lg);
+    background-color: var(--bg-secondary);
+    border-left: 4px solid var(--brand-accent);
+    border-radius: var(--radius-md);
+    position: relative;
+    margin: var(--spacing-lg) 0;
+    font-family: var(--font-handwritten);
+    font-size: var(--font-size-lg);
+    font-style: italic;
+}
+
+.quote-sketch::before {
+    content: '"';
+    position: absolute;
+    top: 0;
+    left: 12px;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--brand-accent);
+    opacity: 0.2;
+}
+
+/* ========== Hand Drawn 列表 ========== */
+
+.list-sketch {
+    list-style: none;
+    padding-left: 0;
+}
+
+.list-sketch li {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: var(--spacing-3);
+    font-family: var(--font-handwritten);
+}
+
+.list-sketch li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--brand-accent);
+    font-size: var(--font-size-xl);
+    transform: rotate(-5deg);
+}
+
+/* Checkmark List */
+.list-sketch-check li::before {
+    content: '✓';
+    font-weight: bold;
+}
+
+/* Bullet List with Hand Drawn Circles */
+.list-sketch-circle li::before {
+    content: '●';
+    font-size: 8px;
+    top: 8px;
+}
+
+/* ========== Hand Drawn Alert Box ========== */
+
+.alert-sketch {
+    padding: var(--spacing-md);
+    border: var(--border-width-medium) solid var(--border-strong);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-secondary);
+    position: relative;
+    margin: var(--spacing-lg) 0;
+}
+
+.alert-sketch-info {
+    border-color: var(--ink-blue);
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+.alert-sketch-success {
+    border-color: var(--ink-green);
+    background-color: rgba(72, 187, 120, 0.05);
+}
+
+.alert-sketch-warning {
+    border-color: var(--warning-color);
+    background-color: rgba(236, 201, 75, 0.05);
+}
+
+.alert-sketch-error {
+    border-color: var(--brand-accent);
+    background-color: rgba(231, 76, 60, 0.05);
+}
+
+/* ========== Hand Drawn Table ========== */
+
+.table-sketch {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: var(--font-handwritten);
+}
+
+.table-sketch th,
+.table-sketch td {
+    padding: var(--spacing-3);
+    text-align: left;
+    border: 2px solid var(--border-strong);
+}
+
+.table-sketch th {
+    background-color: var(--bg-secondary);
+    font-weight: var(--font-weight-regular);
+    transform: rotate(-0.2deg);
+}
+
+.table-sketch tr:nth-child(even) {
+    background-color: var(--bg-secondary);
+}
+
+/* ========== Animation - Wiggle Effect ========== */
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-1deg); }
+    75% { transform: rotate(1deg); }
+}
+
+.animate-wiggle {
+    animation: wiggle 2s ease-in-out infinite;
+}
+
+.animate-wiggle-hover:hover {
+    animation: wiggle 0.5s ease-in-out;
+}
+
+/* ========== Animation - Draw Line ========== */
+
+@keyframes drawLine {
+    from {
+        stroke-dashoffset: 1000;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.animate-draw-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawLine 2s ease-in-out forwards;
+}
+
+/* ========== Reduced Motion Support ========== */
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-wiggle,
+    .animate-wiggle-hover:hover,
+    .animate-draw-line {
+        animation: none;
+    }
+
+    .btn-sketch:hover,
+    .card-sketch:hover {
+        transform: none;
+    }
+}
+
+/* ========== Utility Classes ========== */
+
+/* Rotate variations */
+.rotate-1 { transform: rotate(1deg); }
+.rotate-2 { transform: rotate(2deg); }
+.rotate--1 { transform: rotate(-1deg); }
+.rotate--2 { transform: rotate(-2deg); }
+
+/* Hand drawn text styles */
+.text-sketch {
+    font-family: var(--font-handwritten);
+}
+
+.text-sketch-display {
+    font-family: var(--font-display);
+}
+
+/* Scribble background */
+.bg-scribble {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M10 10c5-5 10-5 15 0s10 5 15 0' stroke='%232C3E50' stroke-width='1' fill='none' opacity='0.1'/%3E%3C/svg%3E");
+}
+
+/* Paper texture */
+.texture-paper {
+    background-color: var(--bg-secondary);
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(44, 62, 80, 0.02) 2px,
+            rgba(44, 62, 80, 0.02) 3px
+        );
+}

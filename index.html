@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="卡在國際通 - 沖繩四天三夜完美行程規劃，提供詳細打包清單、景點介紹、美食推薦，讓你的沖繩之旅更加輕鬆愉快！">
+    <meta name="keywords" content="沖繩旅遊, 國際通, 沖繩行程, 打包清單, 四天三夜, 沖繩自由行">
+    <meta name="author" content="卡在國際通">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stuckinkokusai.com/">
+    <meta property="og:title" content="卡在國際通 - 沖繩四天三夜完美行程">
+    <meta property="og:description" content="完整的沖繩旅遊規劃，包含打包清單、行程安排、美食推薦">
+    <meta property="og:image" content="images/hero/okinawa-hero.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://stuckinkokusai.com/">
+    <meta property="twitter:title" content="卡在國際通 - 沖繩四天三夜完美行程">
+    <meta property="twitter:description" content="完整的沖繩旅遊規劃，包含打包清單、行程安排、美食推薦">
+    <meta property="twitter:image" content="images/hero/okinawa-hero.jpg">
+
+    <title>卡在國際通 - 沖繩四天三夜完美行程 | 出國前確認清單</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Google Fonts - Hand Drawn Style (S51) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Kalam:wght@300;400;700&family=Caveat:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/sketch.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <div id="header"></div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">🧳 出國前確認清單</h1>
+                <p class="hero-subtitle">輕鬆打包，不漏帶！前往沖繩的完美準備</p>
+            </div>
+        </section>
+
+        <!-- Container -->
+        <div class="container">
+            <!-- 進度顯示區 -->
+            <section class="progress-section">
+                <h2 class="section-title">📊 打包進度</h2>
+                <div class="progress-wrapper">
+                    <div class="progress">
+                        <div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            <span id="progressText">0%</span>
+                        </div>
+                    </div>
+                    <div class="progress-stats">
+                        <span id="progressStats">已完成 0 / 總共 50 (0%)</span>
+                    </div>
+                </div>
+
+                <!-- 分類完成度一覽 -->
+                <div class="category-overview" id="categoryOverview">
+                    <!-- 動態生成 -->
+                </div>
+            </section>
+
+            <!-- 功能按鈕列 -->
+            <section class="function-buttons">
+                <div class="button-group-left">
+                    <button class="btn btn-secondary btn-sm" id="expandAllBtn">
+                        <span>▼</span> 全部展開
+                    </button>
+                    <button class="btn btn-secondary btn-sm" id="collapseAllBtn">
+                        <span>▲</span> 全部收合
+                    </button>
+                    <button class="btn btn-danger btn-sm" id="resetBtn">
+                        <span>🔄</span> 重置清單
+                    </button>
+                </div>
+                <div class="button-group-right">
+                    <button class="btn btn-secondary btn-sm" id="printBtn">
+                        <span>🖨️</span> 列印
+                    </button>
+                    <button class="btn btn-primary btn-sm" id="exportBtn">
+                        <span>📥</span> 匯出
+                    </button>
+                </div>
+            </section>
+
+            <!-- 清單內容區 -->
+            <section class="checklist-section" id="checklistSection">
+                <!-- 動態生成各分類清單 -->
+            </section>
+
+            <!-- 自訂項目區 -->
+            <section class="custom-items-section">
+                <h2 class="section-title">➕ 自訂項目</h2>
+                <div class="add-item-form">
+                    <input
+                        type="text"
+                        id="customItemInput"
+                        class="custom-item-input"
+                        placeholder="輸入項目名稱..."
+                        maxlength="50"
+                    >
+                    <button class="btn btn-primary" id="addCustomItemBtn">新增</button>
+                </div>
+                <div class="custom-items-list" id="customItemsList">
+                    <!-- 動態生成自訂項目 -->
+                </div>
+            </section>
+
+            <!-- 實用提醒區 -->
+            <section class="tips-section">
+                <h2 class="section-title">💡 實用提醒</h2>
+
+                <div class="tips-content">
+                    <div class="tip-block">
+                        <h3>🌡️ 氣候提醒</h3>
+                        <ul>
+                            <li>沖繩氣候溫暖潮濕，建議攜帶輕便衣物</li>
+                            <li>夏季（6-9月）高溫多雨，務必攜帶防曬用品</li>
+                            <li>颱風季節（7-10月）建議準備雨具</li>
+                            <li>春秋季節（3-5月、10-11月）溫差較大，建議洋蔥式穿法</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-block">
+                        <h3>🧳 行李限重資訊</h3>
+                        <ul>
+                            <li>托運行李：通常 20-30 公斤（依航空公司而異）</li>
+                            <li>隨身行李：7-10 公斤，尺寸限制 56x36x23cm</li>
+                            <li>液體限制：單瓶不超過 100ml，總量 1 公升</li>
+                            <li>建議預留 3-5 公斤空間給伴手禮</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-block">
+                        <h3>⚠️ 禁帶物品提醒</h3>
+                        <ul>
+                            <li>肉類製品（含肉鬆、肉乾）禁止入境日本</li>
+                            <li>新鮮水果、植物需檢疫，建議不攜帶</li>
+                            <li>行動電源僅限隨身攜帶，不可托運</li>
+                            <li>打火機：隨身限 1 個，托運禁止</li>
+                            <li>刀具、剪刀等尖銳物品需托運</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="cta-content">
+                    <h2 class="cta-title">✅ 打包完成了嗎？</h2>
+                    <p class="cta-text">接下來查看我們精心規劃的四天行程！</p>
+                    <a href="itinerary.html" class="btn btn-lg cta-btn">
+                        查看四天行程安排 <span>→</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- JavaScript -->
+    <script src="js/config.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/packing-list.js"></script>
+</body>
+</html>
