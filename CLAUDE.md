@@ -80,12 +80,19 @@ The packing list uses LocalStorage for persistence:
 - Save on every change in `saveStateToStorage()`
 
 #### 3. Map Integration (Leaflet.js)
-All location data lives in `js/map.js` in the `locations` object. Maps are initialized per-page:
+All location data lives in `js/map.js` in the `locations` object. Each location has:
+- `name`: Chinese display name
+- `nameJa`: Japanese name (used for Google Maps search queries)
+- `coords`: `[latitude, longitude]` array
+- `type`, `description`, `icon`, `day`
+
+Maps are initialized per-page:
 - `initItineraryMap()` - Overview map with all days
-- `initDay1Map()`, `initDay3Map()`, `initDay4Map()` - Day-specific routes
-- `initDay2Map(option)` - Special: 3 switchable route options (A/B/C)
+- `initDay1Map()`, `initDay2Map()`, `initDay3Map()`, `initDay4Map()` - Day-specific routes
 
 **Map markers use emoji icons** with colored circles matching day colors.
+
+**Google Maps Integration**: The `getGoogleMapsUrl(coords, name, nameJa)` function generates links using Japanese names for accurate location searches in Japan.
 
 ## Important Implementation Details
 
@@ -177,17 +184,23 @@ categoryKey: {
 ```
 
 ### Adding Map Locations
-Add to `js/map.js` `locations` object:
+Add to `js/map.js` `locations` object with both Chinese and Japanese names:
 ```javascript
 locationKey: {
-    name: '景點名稱',
-    coords: [latitude, longitude],
+    name: '景點名稱',                    // Chinese display name
+    nameJa: '日本語名',                  // Japanese name for Google Maps
+    coords: [latitude, longitude],      // Use official Google Maps coordinates
     type: 'attraction' | 'food' | 'transport' | 'hotel',
     description: '描述文字',
-    icon: '🎯',  // Emoji for marker
-    day: 1       // Which day (1-4)
+    icon: '🎯',                         // Emoji for marker
+    day: 1                              // Which day (1-4)
 }
 ```
+
+**Important**: Always use official Google Maps coordinates. To get accurate coordinates:
+1. Search the location on Google Maps in Japanese
+2. Use the sharing URL (maps.app.goo.gl) to get official coordinates
+3. Extract lat/lng from the redirected URL parameters
 
 ### Updating Itinerary Content
 Day content is directly in HTML files (`day1.html` - `day4.html`). Each day follows the structure:
@@ -209,19 +222,23 @@ The `_bmad/` directory contains original design specs:
 
 ## Gotchas and Important Notes
 
-1. **Day 2 is special** - Has 3 different route options (A/B/C) with interactive switching. The map reinitializes on option change.
+1. **Day 2 implementation changed** - Previously had 3 route options (A/B/C), now uses a single unified itinerary combining tour group + free time. The old option code has been removed.
 
-2. **Leaflet map initialization timing** - Maps must initialize after DOM is ready AND after the map container is visible. Use `DOMContentLoaded` event.
+2. **Japanese location names are critical** - All Google Maps links use Japanese names (`nameJa` field) for accurate search results in Japan. When adding new locations, always include both Chinese display name and official Japanese name.
+
+3. **Leaflet map initialization timing** - Maps must initialize after DOM is ready AND after the map container is visible. Use `DOMContentLoaded` event.
 
 3. **S51 Hand Drawn wavy borders** - Don't try to use standard CSS borders. Use the pre-defined `.card-sketch` or `.btn-sketch` classes which have `clip-path` for wavy edges.
 
 4. **Chinese typography** - Always use Noto Sans TC for Chinese text. Line-height should be generous (1.8-2.0) for readability.
 
-5. **No API keys needed** - OpenStreetMap and Leaflet.js are completely free. The `CONFIG` object has placeholder keys but they're unused.
+5. **Map coordinates accuracy** - When updating location coordinates, use official Google Maps sharing links (maps.app.goo.gl format) to ensure precision. The redirect URL contains exact latitude/longitude in the format `@lat,lng`.
 
-6. **LocalStorage limits** - Packing list state is small, but be aware of 5-10MB browser limits if expanding features.
+6. **No API keys needed** - OpenStreetMap and Leaflet.js are completely free. The `CONFIG` object has placeholder keys but they're unused.
 
-7. **Mobile-first responsive** - All CSS should be written mobile-first, then enhanced with `min-width` media queries.
+7. **LocalStorage limits** - Packing list state is small, but be aware of 5-10MB browser limits if expanding features.
+
+8. **Mobile-first responsive** - All CSS should be written mobile-first, then enhanced with `min-width` media queries.
 
 ## Page-Specific Notes
 
@@ -236,10 +253,11 @@ The `_bmad/` directory contains original design specs:
 - Uses day-specific color coding for markers
 - Timeline cards link to individual day pages
 
-### day2.html (Flexible Day)
-- Unique feature: 3 route options with map switching
-- Buttons toggle between Option A (美麗海水族館), B (南部文化), C (美國村)
-- Map reinitializes on option change - uses `document.getElementById('day2Map').innerHTML = ''` to clear
+### day2.html (Tour + Free Time Day)
+- Combines guided tour (morning/afternoon) with free shopping time
+- Route: RYUBO meeting point → Manzamo → Kouri Island → Churaumi Aquarium → American Village → AEON Mall Rycom → Return to hotel
+- Direct Google Maps links in timeline using Japanese location names
+- No option switching - single comprehensive itinerary
 
 ### style-guide.html
 - Living documentation of the S51 design system
