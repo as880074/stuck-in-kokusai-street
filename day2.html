@@ -30,143 +30,7 @@
           crossorigin=""/>
 
     <style>
-        /* Option Cards Specific Styles */
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: var(--spacing-xl);
-            margin-top: var(--spacing-xl);
-        }
-
-        .option-card {
-            background-color: var(--bg-primary);
-            border: var(--border-width-medium) solid var(--border-strong);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-sketch-md);
-            transition: var(--transition-transform);
-            position: relative;
-        }
-
-        .option-card::before {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            border: 2px solid var(--border-strong);
-            border-radius: var(--radius-lg);
-            opacity: 0.2;
-            transform: rotate(0.5deg);
-        }
-
-        .option-card:hover {
-            transform: translateY(-4px) rotate(-0.3deg);
-            box-shadow: var(--shadow-sketch-lg);
-        }
-
-        .option-header {
-            background-color: var(--ink-primary);
-            color: var(--white);
-            padding: var(--spacing-lg);
-            text-align: center;
-            border-bottom: var(--border-width-stroke) solid var(--border-strong);
-        }
-
-        .option-icon {
-            font-size: 64px;
-            margin-bottom: var(--spacing-3);
-        }
-
-        .option-title {
-            font-family: var(--font-display);
-            font-size: var(--font-size-3xl);
-            font-weight: var(--font-weight-bold);
-            margin-bottom: var(--spacing-2);
-        }
-
-        .option-subtitle {
-            font-family: var(--font-handwritten);
-            font-size: var(--font-size-base);
-            opacity: 0.9;
-        }
-
-        .option-content {
-            padding: var(--spacing-lg);
-        }
-
-        .option-description {
-            font-family: var(--font-handwritten);
-            font-size: var(--font-size-base);
-            line-height: var(--line-height-relaxed);
-            color: var(--text-secondary);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .option-highlights {
-            margin-bottom: var(--spacing-md);
-        }
-
-        .option-highlights h4 {
-            font-family: var(--font-display);
-            font-size: var(--font-size-lg);
-            font-weight: var(--font-weight-semibold);
-            color: var(--text-primary);
-            margin-bottom: var(--spacing-3);
-        }
-
-        .option-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .option-list li {
-            position: relative;
-            padding-left: 28px;
-            margin-bottom: var(--spacing-2);
-            font-family: var(--font-handwritten);
-            font-size: var(--font-size-base);
-            line-height: var(--line-height-relaxed);
-            color: var(--text-secondary);
-        }
-
-        .option-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--ink-green);
-            font-size: var(--font-size-lg);
-            font-weight: bold;
-        }
-
-        .option-budget {
-            background-color: var(--bg-secondary);
-            padding: var(--spacing-md);
-            border-radius: var(--radius-md);
-            border: 2px dashed var(--border-subtle);
-            margin-top: var(--spacing-md);
-        }
-
-        .option-budget-label {
-            font-family: var(--font-handwritten);
-            font-size: var(--font-size-sm);
-            color: var(--text-muted);
-            margin-bottom: var(--spacing-1);
-        }
-
-        .option-budget-amount {
-            font-family: var(--font-display);
-            font-size: var(--font-size-2xl);
-            font-weight: var(--font-weight-bold);
-            color: var(--ink-blue);
-        }
-
-        @media (max-width: 767px) {
-            .options-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        /* Day 2 Specific Styles */
     </style>
 </head>
 <body class="page-day2" data-page="day2">
@@ -296,7 +160,7 @@
                                     <p style="font-family: var(--font-handwritten); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); margin-bottom: var(--spacing-3);">
                                         欣賞標誌性的象鼻岩與壯闊斷崖，早上的光線拍海景非常漂亮
                                     </p>
-                                    <a href="https://www.google.com/maps/search/?api=1&query=26.4973,127.8502&query_place_id=萬座毛" target="_blank" rel="noopener noreferrer" class="btn-sketch" style="display: inline-flex; align-items: center; gap: var(--spacing-2); font-size: var(--font-size-sm); padding: var(--spacing-2) var(--spacing-3); background-color: #4285F4; color: white; text-decoration: none;">
+                                    <a href="https://www.google.com/maps/search/?api=1&query=26.507833,127.850389&query_place_id=萬座毛" target="_blank" rel="noopener noreferrer" class="btn-sketch" style="display: inline-flex; align-items: center; gap: var(--spacing-2); font-size: var(--font-size-sm); padding: var(--spacing-2) var(--spacing-3); background-color: #4285F4; color: white; text-decoration: none;">
                                         📍 在 Google Maps 中打開
                                     </a>
                                 </div>
@@ -313,7 +177,7 @@
                                     <p style="font-family: var(--font-handwritten); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); margin-bottom: var(--spacing-3);">
                                         巴士會經過壯觀的古宇利大橋。可以到古宇利海灘踏踏海水，或是買支當地的紅芋冰淇淋
                                     </p>
-                                    <a href="https://www.google.com/maps/search/?api=1&query=26.7067,127.9667&query_place_id=古宇利島" target="_blank" rel="noopener noreferrer" class="btn-sketch" style="display: inline-flex; align-items: center; gap: var(--spacing-2); font-size: var(--font-size-sm); padding: var(--spacing-2) var(--spacing-3); background-color: #4285F4; color: white; text-decoration: none;">
+                                    <a href="https://www.google.com/maps/search/?api=1&query=26.68706,128.01756&query_place_id=古宇利島" target="_blank" rel="noopener noreferrer" class="btn-sketch" style="display: inline-flex; align-items: center; gap: var(--spacing-2); font-size: var(--font-size-sm); padding: var(--spacing-2) var(--spacing-3); background-color: #4285F4; color: white; text-decoration: none;">
                                         📍 在 Google Maps 中打開
                                     </a>
                                 </div>
@@ -332,7 +196,7 @@
                                         <li><strong>午餐時光</strong>：表演結束後，可於水族館內餐廳用餐</li>
                                         <li><strong>悠閒參觀</strong>：黑潮之海的鯨鯊、海龜館等精彩展區</li>
                                     </ul>
-                                    <a href="https://www.google.com/maps/search/?api=1&query=26.6943,127.8772&query_place_id=美麗海水族館" target="_blank" rel="noopener noreferrer" class="btn-sketch" style="display: inline-flex; align-items: center; gap: var(--spacing-2); font-size: var(--font-size-sm); padding: var(--spacing-2) var(--spacing-3); background-color: #4285F4; color: white; text-decoration: none;">
+                                    <a href="https://www.google.com/maps/search/?api=1&query=26.694338,127.8780131&query_place_id=美麗海水族館" target="_blank" rel="noopener noreferrer" class="btn-sketch" style="display: inline-flex; align-items: center; gap: var(--spacing-2); font-size: var(--font-size-sm); padding: var(--spacing-2) var(--spacing-3); background-color: #4285F4; color: white; text-decoration: none;">
                                         📍 在 Google Maps 中打開
                                     </a>
                                 </div>
@@ -349,7 +213,7 @@
                                     <p style="font-family: var(--font-handwritten); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); margin-bottom: var(--spacing-3);">
                                         在此站下車向導遊告別，正式開啟晚上的自由行時光！
                                     </p>
-                                    <a href="https://www.google.com/maps/search/?api=1&query=26.3158,127.7597&query_place_id=美國村" target="_blank" rel="noopener noreferrer" class="btn-sketch" style="display: inline-flex; align-items: center; gap: var(--spacing-2); font-size: var(--font-size-sm); padding: var(--spacing-2) var(--spacing-3); background-color: #4285F4; color: white; text-decoration: none;">
+                                    <a href="https://www.google.com/maps/search/?api=1&query=26.315851,127.757669&query_place_id=美國村" target="_blank" rel="noopener noreferrer" class="btn-sketch" style="display: inline-flex; align-items: center; gap: var(--spacing-2); font-size: var(--font-size-sm); padding: var(--spacing-2) var(--spacing-3); background-color: #4285F4; color: white; text-decoration: none;">
                                         📍 在 Google Maps 中打開
                                     </a>
                                 </div>
@@ -412,7 +276,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <a href="https://www.google.com/maps/search/?api=1&query=26.3235,127.8006&query_place_id=永旺夢樂城" target="_blank" rel="noopener noreferrer" class="btn-sketch" style="display: inline-flex; align-items: center; gap: var(--spacing-2); font-size: var(--font-size-sm); padding: var(--spacing-2) var(--spacing-3); background-color: #4285F4; color: white; text-decoration: none;">
+                                    <a href="https://www.google.com/maps/search/?api=1&query=26.31404,127.79585&query_place_id=永旺夢樂城" target="_blank" rel="noopener noreferrer" class="btn-sketch" style="display: inline-flex; align-items: center; gap: var(--spacing-2); font-size: var(--font-size-sm); padding: var(--spacing-2) var(--spacing-3); background-color: #4285F4; color: white; text-decoration: none;">
                                         📍 在 Google Maps 中打開
                                     </a>
                                 </div>
@@ -492,129 +356,6 @@
                 </div>
             </section>
 
-            <!-- Old Options Grid (Removed) -->
-            <section class="spots-section" style="display: none;">
-                <h2 class="section-title">🎯 行程選項</h2>
-
-                <div class="options-grid">
-                    <!-- Option A: 美麗海水族館 -->
-                    <div class="option-card">
-                        <div class="option-header">
-                            <div class="option-icon">🐠</div>
-                            <h3 class="option-title">選項 A</h3>
-                            <p class="option-subtitle">美麗海水族館 + 北部海岸線</p>
-                        </div>
-                        <div class="option-content">
-                            <p class="option-description">
-                                適合喜歡海洋生物、想要遠離都市喧囂的旅客。沖繩美麗海水族館是世界級的水族館，擁有巨大的黑潮之海水槽，可以近距離觀賞鯨鯊！
-                            </p>
-
-                            <div class="option-highlights">
-                                <h4>⭐ 行程亮點</h4>
-                                <ul class="option-list">
-                                    <li>08:00 飯店出發</li>
-                                    <li>搭乘高速巴士 117 或 120 號（約 2 小時）</li>
-                                    <li>美麗海水族館（3-4 小時）</li>
-                                    <li>海洋博公園散步</li>
-                                    <li>備瀨福木林道拍照</li>
-                                    <li>傍晚返回那霸</li>
-                                </ul>
-                            </div>
-
-                            <div class="option-highlights">
-                                <h4>🎫 門票資訊</h4>
-                                <ul class="option-list">
-                                    <li>美麗海水族館：¥2,180</li>
-                                    <li>海洋博公園：免費</li>
-                                </ul>
-                            </div>
-
-                            <div class="option-budget">
-                                <div class="option-budget-label">💰 預估預算</div>
-                                <div class="option-budget-amount">¥9,000 - ¥12,000</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Option B: 南部文化巡禮 -->
-                    <div class="option-card">
-                        <div class="option-header" style="background-color: var(--ink-blue);">
-                            <div class="option-icon">⛩️</div>
-                            <h3 class="option-title">選項 B</h3>
-                            <p class="option-subtitle">南部文化巡禮</p>
-                        </div>
-                        <div class="option-content">
-                            <p class="option-description">
-                                適合喜歡歷史文化、想要深度了解琉球王國的旅客。探訪世界文化遺產，感受沖繩獨特的文化底蘊。
-                            </p>
-
-                            <div class="option-highlights">
-                                <h4>⭐ 行程亮點</h4>
-                                <ul class="option-list">
-                                    <li>首里城公園（世界文化遺產）</li>
-                                    <li>識名園（琉球王家別苑）</li>
-                                    <li>齋場御嶽（神聖祈禱場所）</li>
-                                    <li>知念岬公園（絕美海景）</li>
-                                    <li>瀨長島 Umikaji Terrace（夕陽）</li>
-                                </ul>
-                            </div>
-
-                            <div class="option-highlights">
-                                <h4>🎫 門票資訊</h4>
-                                <ul class="option-list">
-                                    <li>首里城：¥400</li>
-                                    <li>識名園：¥400</li>
-                                    <li>齋場御嶽：¥300</li>
-                                </ul>
-                            </div>
-
-                            <div class="option-budget">
-                                <div class="option-budget-label">💰 預估預算</div>
-                                <div class="option-budget-amount">¥7,000 - ¥10,000</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Option C: 美國村購物 -->
-                    <div class="option-card">
-                        <div class="option-header" style="background-color: var(--ink-orange);">
-                            <div class="option-icon">🎡</div>
-                            <h3 class="option-title">選項 C</h3>
-                            <p class="option-subtitle">美國村 + 購物天堂</p>
-                        </div>
-                        <div class="option-content">
-                            <p class="option-description">
-                                適合喜歡購物、美式風情、想要輕鬆度過一天的旅客。美國村充滿異國風情，是拍照打卡的好地方！
-                            </p>
-
-                            <div class="option-highlights">
-                                <h4>⭐ 行程亮點</h4>
-                                <ul class="option-list">
-                                    <li>美國村（北谷町）逛街拍照</li>
-                                    <li>AEON Mall 永旺夢樂城購物</li>
-                                    <li>日落海灘散步</li>
-                                    <li>美式餐廳享用晚餐</li>
-                                    <li>Depot Island 摩天輪</li>
-                                </ul>
-                            </div>
-
-                            <div class="option-highlights">
-                                <h4>🛍️ 購物推薦</h4>
-                                <ul class="option-list">
-                                    <li>AEON Mall：各大品牌齊全</li>
-                                    <li>美國村小店：特色雜貨</li>
-                                    <li>American Depot：美式服飾</li>
-                                </ul>
-                            </div>
-
-                            <div class="option-budget">
-                                <div class="option-budget-label">💰 預估預算</div>
-                                <div class="option-budget-amount">¥8,000 - ¥12,000</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             <!-- Tips Section -->
             <section class="tips-section">

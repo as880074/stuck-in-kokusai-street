@@ -29,7 +29,7 @@ const locations = {
     },
     parcoCity: {
         name: 'San-A Urasoe West Coast PARCO CITY',
-        coords: [26.2454, 127.7202],
+        coords: [26.26259, 127.69878],
         type: 'shopping',
         description: '沖繩最新最大購物商場，面向大海景觀極佳',
         icon: '🏬',
@@ -63,7 +63,7 @@ const locations = {
     },
     manzaMou: {
         name: '萬座毛',
-        coords: [26.4973, 127.8502],
+        coords: [26.507833, 127.850389],
         type: 'attraction',
         description: '標誌性的象鼻岩與壯闊斷崖',
         icon: '🐘',
@@ -71,7 +71,7 @@ const locations = {
     },
     kouriIsland: {
         name: '古宇利島',
-        coords: [26.7067, 127.9667],
+        coords: [26.68706, 128.01756],
         type: 'island',
         description: '壯觀的古宇利大橋與美麗海灘',
         icon: '🌉',
@@ -79,7 +79,7 @@ const locations = {
     },
     chumiOquarium: {
         name: '美麗海水族館',
-        coords: [26.6943, 127.8772],
+        coords: [26.694338, 127.8780131],
         type: 'attraction',
         description: '世界級水族館，黑潮之海與鯨鯊',
         icon: '🐠',
@@ -87,7 +87,7 @@ const locations = {
     },
     americanVillage: {
         name: '美國村（北谷）',
-        coords: [26.3158, 127.7597],
+        coords: [26.315851, 127.757669],
         type: 'shopping',
         description: '美式風情購物區，導遊團解散點',
         icon: '🎡',
@@ -95,7 +95,7 @@ const locations = {
     },
     aeonRycom: {
         name: 'AEON MALL 永旺夢樂城',
-        coords: [26.3235, 127.8006],
+        coords: [26.31404, 127.79585],
         type: 'shopping',
         description: '沖繩最大購物中心，寶可夢中心在此',
         icon: '🛍️',
@@ -105,7 +105,7 @@ const locations = {
     // Day 3 景點
     naminoueShrine: {
         name: '波上宮',
-        coords: [26.2145, 127.6628],
+        coords: [26.2145, 127.6693],
         type: 'shrine',
         description: '琉球八社之一',
         icon: '⛩️',
