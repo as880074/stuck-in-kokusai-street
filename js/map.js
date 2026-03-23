@@ -15,7 +15,7 @@ const locations = {
     hotelLantama: {
         name: 'Hotel Lantana 那霸國際通',
         nameJa: 'ホテルランタナ那覇国際通り',
-        coords: [26.2144, 127.6809],
+        coords: [26.2165, 127.6802],
         type: 'hotel',
         description: '位於國際通中心，下樓即達熱鬧街區',
         icon: '🏨'
@@ -34,7 +34,7 @@ const locations = {
     parcoCity: {
         name: 'San-A Urasoe West Coast PARCO CITY',
         nameJa: 'サンエー浦添西海岸パルコシティ',
-        coords: [26.26259, 127.69878],
+        coords: [26.2456, 127.7072],
         type: 'shopping',
         description: '沖繩最新最大購物商場，面向大海景觀極佳',
         icon: '🏬',
@@ -72,7 +72,7 @@ const locations = {
     manzaMou: {
         name: '萬座毛',
         nameJa: '万座毛',
-        coords: [26.5052353, 127.8504781],
+        coords: [26.507833, 127.850389],
         type: 'attraction',
         description: '標誌性的象鼻岩與壯闊斷崖',
         icon: '🐘',
@@ -81,7 +81,7 @@ const locations = {
     kouriIsland: {
         name: '古宇利島',
         nameJa: '古宇利島',
-        coords: [26.68706, 128.01756],
+        coords: [26.7070, 127.9598],
         type: 'island',
         description: '壯觀的古宇利大橋與美麗海灘',
         icon: '🌉',
@@ -99,7 +99,7 @@ const locations = {
     americanVillage: {
         name: '美國村（北谷）',
         nameJa: '美浜アメリカンビレッジ',
-        coords: [26.315851, 127.757669],
+        coords: [26.3159, 127.7577],
         type: 'shopping',
         description: '美式風情購物區，導遊團解散點',
         icon: '🎡',
@@ -119,7 +119,7 @@ const locations = {
     naminoueShrine: {
         name: '波上宮',
         nameJa: '波上宮',
-        coords: [26.2145, 127.6693],
+        coords: [26.2146, 127.6691],
         type: 'shrine',
         description: '琉球八社之一',
         icon: '⛩️',
@@ -128,7 +128,7 @@ const locations = {
     naminoueBeach: {
         name: '波之上海灘',
         nameJa: '波の上ビーチ',
-        coords: [26.2138, 127.6625],
+        coords: [26.2141, 127.6628],
         type: 'beach',
         description: '那霸市內唯一海灘',
         icon: '🏖️',
@@ -157,7 +157,7 @@ const locations = {
     senagajima: {
         name: '瀨長島',
         nameJa: '瀬長島',
-        coords: [26.1850, 127.6487],
+        coords: [26.1746, 127.6427],
         type: 'island',
         description: '離機場最近的離島',
         icon: '🏝️',
@@ -166,7 +166,7 @@ const locations = {
     umikajiTerrace: {
         name: 'Umikaji Terrace',
         nameJa: '瀬長島ウミカジテラス',
-        coords: [26.1845, 127.6490],
+        coords: [26.1760, 127.6406],
         type: 'shopping',
         description: '白色地中海風建築',
         icon: '☕',
@@ -175,7 +175,7 @@ const locations = {
     iiasToyosaki: {
         name: 'iias 豐崎',
         nameJa: 'iias沖縄豊崎',
-        coords: [26.1755, 127.6542],
+        coords: [26.1578, 127.6510],
         type: 'shopping',
         description: '大型購物中心',
         icon: '🛍️',
