@@ -72,7 +72,7 @@ const locations = {
     manzaMou: {
         name: '萬座毛',
         nameJa: '万座毛',
-        coords: [26.507833, 127.850389],
+        coords: [26.5052353, 127.8504781],
         type: 'attraction',
         description: '標誌性的象鼻岩與壯闊斷崖',
         icon: '🐘',
