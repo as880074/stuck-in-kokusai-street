@@ -1,10 +1,12 @@
 // Map.js - Leaflet.js 地圖整合（使用免費 OpenStreetMap）
 
 // 生成 Google Maps 連結
-function getGoogleMapsUrl(coords, name) {
+function getGoogleMapsUrl(coords, name, nameJa) {
     const lat = coords[0];
     const lng = coords[1];
-    return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}&query_place_id=${encodeURIComponent(name)}`;
+    // 優先使用日文名稱，若無則使用中文名稱
+    const searchName = nameJa || name;
+    return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}&query_place_id=${encodeURIComponent(searchName)}`;
 }
 
 // 沖繩景點座標資料
@@ -12,6 +14,7 @@ const locations = {
     // 住宿
     hotelLantama: {
         name: 'Hotel Lantana 那霸國際通',
+        nameJa: 'ホテルランタナ那覇国際通り',
         coords: [26.2144, 127.6809],
         type: 'hotel',
         description: '位於國際通中心，下樓即達熱鬧街區',
@@ -21,6 +24,7 @@ const locations = {
     // Day 1 景點
     nahaAirport: {
         name: '那霸機場',
+        nameJa: '那覇空港',
         coords: [26.1958, 127.6462],
         type: 'transport',
         description: '沖繩那霸機場',
@@ -29,6 +33,7 @@ const locations = {
     },
     parcoCity: {
         name: 'San-A Urasoe West Coast PARCO CITY',
+        nameJa: 'サンエー浦添西海岸パルコシティ',
         coords: [26.26259, 127.69878],
         type: 'shopping',
         description: '沖繩最新最大購物商場，面向大海景觀極佳',
@@ -37,6 +42,7 @@ const locations = {
     },
     kokusaiStreet: {
         name: '國際通',
+        nameJa: '国際通り',
         coords: [26.2175, 127.6789],
         type: 'shopping',
         description: '沖繩最熱鬧的商店街',
@@ -45,6 +51,7 @@ const locations = {
     },
     donkiKokusai: {
         name: '唐吉訶德 國際通店',
+        nameJa: 'ドン・キホーテ国際通り店',
         coords: [26.2168, 127.6795],
         type: 'shopping',
         description: '深夜營業藥妝店',
@@ -55,6 +62,7 @@ const locations = {
     // Day 2 - 北部一日遊路線
     ryuboDepStore: {
         name: 'RYUBO 百貨集合點',
+        nameJa: 'リウボウ',
         coords: [26.2133, 127.6790],
         type: 'meeting',
         description: 'Easy Go 導遊團集合點（BLUE SEAL 店鋪前）',
@@ -63,6 +71,7 @@ const locations = {
     },
     manzaMou: {
         name: '萬座毛',
+        nameJa: '万座毛',
         coords: [26.507833, 127.850389],
         type: 'attraction',
         description: '標誌性的象鼻岩與壯闊斷崖',
@@ -71,6 +80,7 @@ const locations = {
     },
     kouriIsland: {
         name: '古宇利島',
+        nameJa: '古宇利島',
         coords: [26.68706, 128.01756],
         type: 'island',
         description: '壯觀的古宇利大橋與美麗海灘',
@@ -79,6 +89,7 @@ const locations = {
     },
     chumiOquarium: {
         name: '美麗海水族館',
+        nameJa: '沖縄美ら海水族館',
         coords: [26.694338, 127.8780131],
         type: 'attraction',
         description: '世界級水族館，黑潮之海與鯨鯊',
@@ -87,6 +98,7 @@ const locations = {
     },
     americanVillage: {
         name: '美國村（北谷）',
+        nameJa: '美浜アメリカンビレッジ',
         coords: [26.315851, 127.757669],
         type: 'shopping',
         description: '美式風情購物區，導遊團解散點',
@@ -95,6 +107,7 @@ const locations = {
     },
     aeonRycom: {
         name: 'AEON MALL 永旺夢樂城',
+        nameJa: 'イオンモール沖縄ライカム',
         coords: [26.31404, 127.79585],
         type: 'shopping',
         description: '沖繩最大購物中心，寶可夢中心在此',
@@ -105,6 +118,7 @@ const locations = {
     // Day 3 景點
     naminoueShrine: {
         name: '波上宮',
+        nameJa: '波上宮',
         coords: [26.2145, 127.6693],
         type: 'shrine',
         description: '琉球八社之一',
@@ -113,6 +127,7 @@ const locations = {
     },
     naminoueBeach: {
         name: '波之上海灘',
+        nameJa: '波の上ビーチ',
         coords: [26.2138, 127.6625],
         type: 'beach',
         description: '那霸市內唯一海灘',
@@ -121,6 +136,7 @@ const locations = {
     },
     tomariPort: {
         name: '泊港漁市場',
+        nameJa: '泊いゆまち',
         coords: [26.2245, 127.6710],
         type: 'market',
         description: '在地漁市場',
@@ -131,6 +147,7 @@ const locations = {
     // Day 4 景點
     makishiMarket: {
         name: '第一牧志公設市場',
+        nameJa: '第一牧志公設市場',
         coords: [26.2165, 127.6802],
         type: 'market',
         description: '沖繩的市民廚房',
@@ -139,6 +156,7 @@ const locations = {
     },
     senagajima: {
         name: '瀨長島',
+        nameJa: '瀬長島',
         coords: [26.1850, 127.6487],
         type: 'island',
         description: '離機場最近的離島',
@@ -147,6 +165,7 @@ const locations = {
     },
     umikajiTerrace: {
         name: 'Umikaji Terrace',
+        nameJa: '瀬長島ウミカジテラス',
         coords: [26.1845, 127.6490],
         type: 'shopping',
         description: '白色地中海風建築',
@@ -155,6 +174,7 @@ const locations = {
     },
     iiasToyosaki: {
         name: 'iias 豐崎',
+        nameJa: 'iias沖縄豊崎',
         coords: [26.1755, 127.6542],
         type: 'shopping',
         description: '大型購物中心',
@@ -218,7 +238,7 @@ function initItineraryMap() {
         }).addTo(map);
 
         // Popup 內容
-        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name);
+        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name, loc.nameJa);
         let popupContent = `
             <div style="font-family: 'Patrick Hand', cursive; min-width: 200px;">
                 <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #2C3E50;">
@@ -314,7 +334,7 @@ function initDay1Map() {
             icon: createCustomIcon(loc.icon, dayColors[1])
         }).addTo(map);
 
-        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name);
+        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name, loc.nameJa);
         marker.bindPopup(`
             <div style="font-family: 'Patrick Hand', cursive;">
                 <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #2C3E50;">
@@ -387,7 +407,7 @@ function initDay2Map() {
             icon: createCustomIcon(loc.icon, color)
         }).addTo(map);
 
-        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name);
+        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name, loc.nameJa);
         let popupContent = `
             <div style="font-family: 'Patrick Hand', cursive;">
                 <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #2C3E50;">
@@ -466,7 +486,7 @@ function initDay3Map() {
             icon: createCustomIcon(loc.icon, color)
         }).addTo(map);
 
-        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name);
+        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name, loc.nameJa);
         marker.bindPopup(`
             <div style="font-family: 'Patrick Hand', cursive;">
                 <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #2C3E50;">
@@ -520,7 +540,7 @@ function initDay4Map() {
             icon: createCustomIcon(loc.icon, color)
         }).addTo(map);
 
-        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name);
+        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name, loc.nameJa);
         marker.bindPopup(`
             <div style="font-family: 'Patrick Hand', cursive;">
                 <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #2C3E50;">
