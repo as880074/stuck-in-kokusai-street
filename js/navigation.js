@@ -67,6 +67,15 @@ class NavigationMode {
             throw new Error(`Map element #${this.config.mapElement} not found`);
         }
 
+        // 顯示載入指示器
+        const loadingHTML = `
+            <div class="nav-map-loading" id="mapLoading">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">載入地圖中...</p>
+            </div>
+        `;
+        this.mapElement.insertAdjacentHTML('beforebegin', loadingHTML);
+
         // 創建地圖實例
         const firstSpot = this.spots[0];
         this.map = L.map(this.mapElement, {
@@ -75,15 +84,22 @@ class NavigationMode {
         }).setView(firstSpot.coords, this.config.initialZoom);
 
         // 添加 OpenStreetMap 圖層
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors',
             maxZoom: 18,
             minZoom: 10
         }).addTo(this.map);
 
-        // 添加縮放控制（右下角）
+        // 等待圖磚載入完成
+        await new Promise(resolve => {
+            tileLayer.on('load', resolve);
+            // 備用超時機制
+            setTimeout(resolve, 3000);
+        });
+
+        // 添加縮放控制（右上角避免被抽屜遮擋）
         L.control.zoom({
-            position: 'bottomright'
+            position: 'topright'
         }).addTo(this.map);
 
         // 創建標記和路徑
@@ -93,6 +109,13 @@ class NavigationMode {
         // 等待地圖渲染完成
         await new Promise(resolve => setTimeout(resolve, 100));
         this.map.invalidateSize();
+
+        // 隱藏載入指示器
+        const loadingEl = document.getElementById('mapLoading');
+        if (loadingEl) {
+            loadingEl.classList.add('hidden');
+            setTimeout(() => loadingEl.remove(), 300);
+        }
     }
 
     /**
