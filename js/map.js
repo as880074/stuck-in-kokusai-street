@@ -4,10 +4,10 @@
 const locations = {
     // 住宿
     hotelLantama: {
-        name: 'Hotel Lantama',
+        name: 'Hotel Lantana 那霸國際通',
         coords: [26.2144, 127.6809],
         type: 'hotel',
-        description: '那霸飯店，鄰近國際通',
+        description: '位於國際通中心，下樓即達熱鬧街區',
         icon: '🏨'
     },
 
@@ -21,10 +21,10 @@ const locations = {
         day: 1
     },
     parcoCity: {
-        name: 'PARCO CITY',
+        name: 'San-A Urasoe West Coast PARCO CITY',
         coords: [26.2454, 127.7202],
         type: 'shopping',
-        description: '大型購物中心，靠海景觀絕佳',
+        description: '沖繩最新最大購物商場，面向大海景觀極佳',
         icon: '🏬',
         day: 1
     },
