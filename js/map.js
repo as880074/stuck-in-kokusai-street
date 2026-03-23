@@ -1,5 +1,12 @@
 // Map.js - Leaflet.js 地圖整合（使用免費 OpenStreetMap）
 
+// 生成 Google Maps 連結
+function getGoogleMapsUrl(coords, name) {
+    const lat = coords[0];
+    const lng = coords[1];
+    return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}&query_place_id=${encodeURIComponent(name)}`;
+}
+
 // 沖繩景點座標資料
 const locations = {
     // 住宿
@@ -211,6 +218,7 @@ function initItineraryMap() {
         }).addTo(map);
 
         // Popup 內容
+        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name);
         let popupContent = `
             <div style="font-family: 'Patrick Hand', cursive; min-width: 200px;">
                 <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #2C3E50;">
@@ -222,13 +230,19 @@ function initItineraryMap() {
         `;
 
         if (loc.day) {
-            popupContent += `<p style="margin: 0; font-size: 12px; color: #718096;">📅 Day ${loc.day}</p>`;
+            popupContent += `<p style="margin: 0 0 4px 0; font-size: 12px; color: #718096;">📅 Day ${loc.day}</p>`;
         }
         if (loc.option) {
-            popupContent += `<p style="margin: 0; font-size: 12px; color: #718096;">🎯 選項 ${loc.option}</p>`;
+            popupContent += `<p style="margin: 0 0 4px 0; font-size: 12px; color: #718096;">🎯 選項 ${loc.option}</p>`;
         }
 
-        popupContent += '</div>';
+        popupContent += `
+                <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer"
+                   style="display: inline-block; margin-top: 8px; padding: 6px 12px; background-color: #4285F4; color: white; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: bold;">
+                    📍 在 Google Maps 中打開
+                </a>
+            </div>
+        `;
 
         marker.bindPopup(popupContent);
     });
@@ -300,14 +314,19 @@ function initDay1Map() {
             icon: createCustomIcon(loc.icon, dayColors[1])
         }).addTo(map);
 
+        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name);
         marker.bindPopup(`
             <div style="font-family: 'Patrick Hand', cursive;">
                 <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #2C3E50;">
                     ${loc.icon} ${loc.name}
                 </h3>
-                <p style="margin: 0; font-size: 14px; color: #4A5568;">
+                <p style="margin: 0 0 8px 0; font-size: 14px; color: #4A5568;">
                     ${loc.description}
                 </p>
+                <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer"
+                   style="display: inline-block; margin-top: 8px; padding: 6px 12px; background-color: #4285F4; color: white; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: bold;">
+                    📍 在 Google Maps 中打開
+                </a>
             </div>
         `);
     });
@@ -368,6 +387,7 @@ function initDay2Map() {
             icon: createCustomIcon(loc.icon, color)
         }).addTo(map);
 
+        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name);
         let popupContent = `
             <div style="font-family: 'Patrick Hand', cursive;">
                 <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #2C3E50;">
@@ -380,10 +400,16 @@ function initDay2Map() {
 
         // 添加順序標記
         if (index > 0 && index < day2Locations.length - 1) {
-            popupContent += `<p style="margin: 0; font-size: 12px; color: #718096;">📍 第 ${index} 站</p>`;
+            popupContent += `<p style="margin: 0 0 4px 0; font-size: 12px; color: #718096;">📍 第 ${index} 站</p>`;
         }
 
-        popupContent += '</div>';
+        popupContent += `
+                <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer"
+                   style="display: inline-block; margin-top: 8px; padding: 6px 12px; background-color: #4285F4; color: white; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: bold;">
+                    📍 在 Google Maps 中打開
+                </a>
+            </div>
+        `;
         marker.bindPopup(popupContent);
     });
 
@@ -440,14 +466,19 @@ function initDay3Map() {
             icon: createCustomIcon(loc.icon, color)
         }).addTo(map);
 
+        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name);
         marker.bindPopup(`
             <div style="font-family: 'Patrick Hand', cursive;">
                 <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #2C3E50;">
                     ${loc.icon} ${loc.name}
                 </h3>
-                <p style="margin: 0; font-size: 14px; color: #4A5568;">
+                <p style="margin: 0 0 8px 0; font-size: 14px; color: #4A5568;">
                     ${loc.description}
                 </p>
+                <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer"
+                   style="display: inline-block; margin-top: 8px; padding: 6px 12px; background-color: #4285F4; color: white; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: bold;">
+                    📍 在 Google Maps 中打開
+                </a>
             </div>
         `);
     });
@@ -489,14 +520,19 @@ function initDay4Map() {
             icon: createCustomIcon(loc.icon, color)
         }).addTo(map);
 
+        const googleMapsUrl = getGoogleMapsUrl(loc.coords, loc.name);
         marker.bindPopup(`
             <div style="font-family: 'Patrick Hand', cursive;">
                 <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #2C3E50;">
                     ${loc.icon} ${loc.name}
                 </h3>
-                <p style="margin: 0; font-size: 14px; color: #4A5568;">
+                <p style="margin: 0 0 8px 0; font-size: 14px; color: #4A5568;">
                     ${loc.description}
                 </p>
+                <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer"
+                   style="display: inline-block; margin-top: 8px; padding: 6px 12px; background-color: #4285F4; color: white; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: bold;">
+                    📍 在 Google Maps 中打開
+                </a>
             </div>
         `);
     });

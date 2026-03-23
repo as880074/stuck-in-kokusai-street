@@ -459,6 +459,34 @@ function scrollToElement(selector, offset = 80) {
     }
 }
 
+// ========== Google Maps 工具函數 ==========
+
+/**
+ * 生成 Google Maps URL
+ * @param {number} lat - 緯度
+ * @param {number} lng - 經度
+ * @param {string} name - 地點名稱
+ * @returns {string} Google Maps URL
+ */
+function getGoogleMapsUrl(lat, lng, name = '') {
+    return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}&query_place_id=${encodeURIComponent(name)}`;
+}
+
+/**
+ * 創建 Google Maps 連結按鈕 HTML
+ * @param {number} lat - 緯度
+ * @param {number} lng - 經度
+ * @param {string} name - 地點名稱
+ * @param {string} buttonText - 按鈕文字（預設：「在 Google Maps 中打開」）
+ * @returns {string} 按鈕 HTML
+ */
+function createGoogleMapsButton(lat, lng, name = '', buttonText = '📍 在 Google Maps 中打開') {
+    const url = getGoogleMapsUrl(lat, lng, name);
+    return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="btn-sketch" style="display: inline-flex; align-items: center; gap: var(--spacing-2); font-size: var(--font-size-sm); padding: var(--spacing-2) var(--spacing-3); background-color: #4285F4; color: white; text-decoration: none;">
+        ${buttonText}
+    </a>`;
+}
+
 // ========== 匯出函數 ==========
 
 if (typeof window !== 'undefined') {
@@ -469,4 +497,6 @@ if (typeof window !== 'undefined') {
     window.setQueryParam = setQueryParam;
     window.copyToClipboard = copyToClipboard;
     window.scrollToElement = scrollToElement;
+    window.getGoogleMapsUrl = getGoogleMapsUrl;
+    window.createGoogleMapsButton = createGoogleMapsButton;
 }
