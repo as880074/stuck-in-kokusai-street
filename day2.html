@@ -180,8 +180,8 @@
             <div class="day-hero-overlay"></div>
             <div class="day-hero-content">
                 <div class="day-number">DAY 2 · 3/31（日）</div>
-                <h1 class="day-hero-title">🌊 一日彈性行程</h1>
-                <p class="day-hero-subtitle">依天氣、體力、興趣選擇你的專屬路線</p>
+                <h1 class="day-hero-title">🌊 北部海岸線與水族館巡禮</h1>
+                <p class="day-hero-subtitle">導遊一日遊 + 永旺夢樂城購物之旅</p>
             </div>
         </section>
 
@@ -191,24 +191,24 @@
             <section class="day-info-section">
                 <div class="day-info-grid">
                     <div class="day-info-card">
-                        <div class="day-info-icon">🎯</div>
-                        <div class="day-info-label">行程特色</div>
-                        <div class="day-info-value">彈性安排</div>
+                        <div class="day-info-icon">🚌</div>
+                        <div class="day-info-label">交通方式</div>
+                        <div class="day-info-value">導遊巴士+計程車</div>
                     </div>
                     <div class="day-info-card">
                         <div class="day-info-icon">💰</div>
-                        <div class="day-info-label">預算範圍</div>
-                        <div class="day-info-value">¥7K-12K</div>
+                        <div class="day-info-label">預估預算</div>
+                        <div class="day-info-value">¥10K-15K</div>
                     </div>
                     <div class="day-info-card">
-                        <div class="day-info-icon">📍</div>
-                        <div class="day-info-label">行程選項</div>
-                        <div class="day-info-value">3 種</div>
+                        <div class="day-info-icon">⏰</div>
+                        <div class="day-info-label">行程時間</div>
+                        <div class="day-info-value">07:45-21:30</div>
                     </div>
                     <div class="day-info-card">
-                        <div class="day-info-icon">🚌</div>
-                        <div class="day-info-label">建議交通</div>
-                        <div class="day-info-value">依選擇而定</div>
+                        <div class="day-info-icon">🎯</div>
+                        <div class="day-info-label">行程特色</div>
+                        <div class="day-info-value">跟團+自由行</div>
                     </div>
                 </div>
             </section>
@@ -219,41 +219,266 @@
 
                 <div class="card-sketch" style="padding: var(--spacing-xl);">
                     <p style="font-family: var(--font-handwritten); font-size: var(--font-size-lg); line-height: var(--line-height-relaxed); color: var(--text-secondary); margin-bottom: var(--spacing-md);">
-                        Day 2 是完全彈性的一天！你可以根據當天的<strong style="color: var(--text-primary);">天氣狀況</strong>、<strong style="color: var(--text-primary);">體力狀態</strong>、<strong style="color: var(--text-primary);">興趣偏好</strong>來選擇最適合的行程。
+                        Day 2 完美結合了<strong style="color: var(--text-primary);">跟團的省力</strong>與<strong style="color: var(--text-primary);">自由行的彈性</strong>！上半天跟隨中文導遊輕鬆遊覽北部海岸線精華景點，下午在美國村脫隊後轉往沖繩最大購物中心血拼。
                     </p>
                     <p style="font-family: var(--font-handwritten); font-size: var(--font-size-lg); line-height: var(--line-height-relaxed); color: var(--text-secondary);">
-                        我們為你準備了 <strong style="color: var(--ink-blue);">三種精選路線</strong>，從北部海岸線、南部文化遺產，到中部美式風情，每種路線都有獨特的魅力，讓你的沖繩之旅更加豐富多彩！
+                        <strong style="color: var(--ink-blue);">上半天</strong>由 Easy Go 導遊帶領遊覽萬座毛、古宇利島、美麗海水族館；<strong style="color: var(--ink-orange);">下半天</strong>自由前往永旺夢樂城盡情購物，最後搭計程車舒適返回飯店！
                     </p>
                 </div>
             </section>
 
-            <!-- Map Section with Option Selector -->
+            <!-- Map Section -->
             <section class="map-section" style="margin-top: var(--spacing-xl); margin-bottom: var(--spacing-xl);">
                 <h2 class="section-title">🗺️ Day 2 路線地圖</h2>
 
-                <!-- Map Option Buttons -->
-                <div style="display: flex; gap: var(--spacing-3); justify-content: center; margin-bottom: var(--spacing-md); flex-wrap: wrap;">
-                    <button class="btn-sketch btn-sketch-primary day2-option-btn active" data-option="A" style="font-size: var(--font-size-base);">
-                        🐠 選項 A - 美麗海水族館
-                    </button>
-                    <button class="btn-sketch day2-option-btn" data-option="B" style="font-size: var(--font-size-base);">
-                        ⛩️ 選項 B - 南部文化巡禮
-                    </button>
-                    <button class="btn-sketch day2-option-btn" data-option="C" style="font-size: var(--font-size-base);">
-                        🎡 選項 C - 美國村購物
-                    </button>
-                </div>
-
                 <div class="card-sketch" style="padding: 0; overflow: hidden;">
-                    <div id="day2Map" style="height: 400px; width: 100%;"></div>
+                    <div id="day2Map" style="height: 450px; width: 100%;"></div>
                 </div>
                 <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); color: var(--text-muted); text-align: center; margin-top: var(--spacing-3);">
-                    點擊上方按鈕切換行程選項 · 點擊地圖標記查看景點詳情
+                    點擊地圖標記查看景點詳情 · 路線：那霸 → 萬座毛 → 古宇利島 → 美麗海水族館 → 美國村 → 永旺夢樂城
                 </p>
             </section>
 
-            <!-- Options Section -->
+            <!-- Timeline Section -->
             <section class="spots-section">
+                <h2 class="section-title">⏰ 詳細時間表</h2>
+
+                <!-- Morning: Tour Group -->
+                <div style="margin-bottom: var(--spacing-xl);">
+                    <h3 style="font-family: var(--font-display); font-size: var(--font-size-2xl); color: var(--ink-blue); margin-bottom: var(--spacing-md); display: flex; align-items: center; gap: var(--spacing-2);">
+                        🌅 上半天：導遊一日遊行程（跟團輕鬆看海景）
+                    </h3>
+
+                    <div class="timeline" style="display: grid; gap: var(--spacing-md);">
+                        <div class="card-sketch" style="padding: var(--spacing-lg);">
+                            <div style="display: flex; align-items: start; gap: var(--spacing-md);">
+                                <div style="font-size: 48px;">🚶</div>
+                                <div style="flex: 1;">
+                                    <div style="font-family: var(--font-display); font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--text-primary); margin-bottom: var(--spacing-2);">
+                                        07:45 - 08:00 | 步行前往集合點
+                                    </div>
+                                    <p style="font-family: var(--font-handwritten); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary);">
+                                        從 Hotel Lantana 步行到「那霸縣廳前 RYUBO 百貨」（沿著國際通走約 10-15 分鐘）
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-sketch" style="padding: var(--spacing-lg); border-left: 4px solid var(--ink-blue);">
+                            <div style="display: flex; align-items: start; gap: var(--spacing-md);">
+                                <div style="font-size: 48px;">🚌</div>
+                                <div style="flex: 1;">
+                                    <div style="font-family: var(--font-display); font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--text-primary); margin-bottom: var(--spacing-2);">
+                                        08:20 | RYUBO 百貨 BLUE SEAL 店鋪前集合
+                                    </div>
+                                    <p style="font-family: var(--font-handwritten); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); margin-bottom: var(--spacing-2);">
+                                        尋找舉著「Easy Go」牌子的中文導遊
+                                    </p>
+                                    <div style="background-color: var(--bg-warning); padding: var(--spacing-3); border-radius: var(--radius-md); border-left: 3px solid var(--ink-orange);">
+                                        <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); color: var(--text-primary); margin: 0;">
+                                            💡 小提醒：報到時請先跟導遊說明「我們傍晚會在美國村自行脫隊解散」
+                                        </p>
+                                    </div>
+                                    <p style="font-family: var(--font-handwritten); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); margin-top: var(--spacing-2);">
+                                        ⏰ <strong>08:30 準時出發</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-sketch" style="padding: var(--spacing-lg);">
+                            <div style="display: flex; align-items: start; gap: var(--spacing-md);">
+                                <div style="font-size: 48px;">🐘</div>
+                                <div style="flex: 1;">
+                                    <div style="font-family: var(--font-display); font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--text-primary); margin-bottom: var(--spacing-2);">
+                                        09:30 - 10:00 | 萬座毛（停留 30 分鐘）
+                                    </div>
+                                    <p style="font-family: var(--font-handwritten); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary);">
+                                        欣賞標誌性的象鼻岩與壯闊斷崖，早上的光線拍海景非常漂亮
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-sketch" style="padding: var(--spacing-lg);">
+                            <div style="display: flex; align-items: start; gap: var(--spacing-md);">
+                                <div style="font-size: 48px;">🌉</div>
+                                <div style="flex: 1;">
+                                    <div style="font-family: var(--font-display); font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--text-primary); margin-bottom: var(--spacing-2);">
+                                        11:05 - 11:55 | 古宇利島（停留 50 分鐘）
+                                    </div>
+                                    <p style="font-family: var(--font-handwritten); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary);">
+                                        巴士會經過壯觀的古宇利大橋。可以到古宇利海灘踏踏海水，或是買支當地的紅芋冰淇淋
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-sketch" style="padding: var(--spacing-lg); border-left: 4px solid var(--ink-blue);">
+                            <div style="display: flex; align-items: start; gap: var(--spacing-md);">
+                                <div style="font-size: 48px;">🐠</div>
+                                <div style="flex: 1;">
+                                    <div style="font-family: var(--font-display); font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--text-primary); margin-bottom: var(--spacing-2);">
+                                        12:30 - 15:30 | 美麗海水族館（停留 3 小時）
+                                    </div>
+                                    <ul style="font-family: var(--font-handwritten); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); margin: var(--spacing-2) 0; padding-left: var(--spacing-lg);">
+                                        <li><strong>13:00 海豚表演</strong>：抵達後建議先往海豚劇場移動，觀賞免費表演（約 10 分鐘）</li>
+                                        <li><strong>午餐時光</strong>：表演結束後，可於水族館內餐廳用餐</li>
+                                        <li><strong>悠閒參觀</strong>：黑潮之海的鯨鯊、海龜館等精彩展區</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-sketch" style="padding: var(--spacing-lg); background-color: var(--bg-success); border: 2px solid var(--ink-green);">
+                            <div style="display: flex; align-items: start; gap: var(--spacing-md);">
+                                <div style="font-size: 48px;">🎡</div>
+                                <div style="flex: 1;">
+                                    <div style="font-family: var(--font-display); font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--text-primary); margin-bottom: var(--spacing-2);">
+                                        17:00 | 抵達北谷美國村 ★ 一日遊行程結束
+                                    </div>
+                                    <p style="font-family: var(--font-handwritten); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary);">
+                                        在此站下車向導遊告別，正式開啟晚上的自由行時光！
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Afternoon: Free Time -->
+                <div>
+                    <h3 style="font-family: var(--font-display); font-size: var(--font-size-2xl); color: var(--ink-orange); margin-bottom: var(--spacing-md); display: flex; align-items: center; gap: var(--spacing-2);">
+                        🌆 下半天：自由行程（永旺夢樂城血拼與美食）
+                    </h3>
+
+                    <div class="timeline" style="display: grid; gap: var(--spacing-md);">
+                        <div class="card-sketch" style="padding: var(--spacing-lg);">
+                            <div style="display: flex; align-items: start; gap: var(--spacing-md);">
+                                <div style="font-size: 48px;">🚕</div>
+                                <div style="flex: 1;">
+                                    <div style="font-family: var(--font-display); font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--text-primary); margin-bottom: var(--spacing-2);">
+                                        17:00 - 17:30 | 轉乘計程車出發
+                                    </div>
+                                    <p style="font-family: var(--font-handwritten); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); margin-bottom: var(--spacing-2);">
+                                        在美國村稍微感受一下加州海岸風情後，直接在附近攔計程車（或使用 Uber/GO App 叫車）
+                                    </p>
+                                    <div style="background-color: var(--bg-secondary); padding: var(--spacing-3); border-radius: var(--radius-md);">
+                                        <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); color: var(--text-secondary); margin: 0;">
+                                            🚗 前往：永旺夢樂城 沖繩來客夢 (AEON MALL Okinawa Rycom)<br>
+                                            ⏱️ 車程：約 15-20 分鐘
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-sketch" style="padding: var(--spacing-lg); border-left: 4px solid var(--ink-orange);">
+                            <div style="display: flex; align-items: start; gap: var(--spacing-md);">
+                                <div style="font-size: 48px;">🛍️</div>
+                                <div style="flex: 1;">
+                                    <div style="font-family: var(--font-display); font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--text-primary); margin-bottom: var(--spacing-2);">
+                                        17:30 - 21:00 | 永旺夢樂城 (AEON MALL Okinawa Rycom)
+                                    </div>
+                                    <p style="font-family: var(--font-handwritten); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); margin-bottom: var(--spacing-2);">
+                                        沖繩最大的旗艦購物中心，品牌極度齊全
+                                    </p>
+                                    <div style="display: grid; gap: var(--spacing-2); margin-bottom: var(--spacing-3);">
+                                        <div style="background-color: var(--bg-secondary); padding: var(--spacing-2); border-radius: var(--radius-sm);">
+                                            <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); margin: 0;">
+                                                🎮 寶可夢中心、橡子共和國
+                                            </p>
+                                        </div>
+                                        <div style="background-color: var(--bg-secondary); padding: var(--spacing-2); border-radius: var(--radius-sm);">
+                                            <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); margin: 0;">
+                                                👔 各類日系服飾品牌
+                                            </p>
+                                        </div>
+                                        <div style="background-color: var(--bg-secondary); padding: var(--spacing-2); border-radius: var(--radius-sm);">
+                                            <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); margin: 0;">
+                                                🍽️ 晚餐安排：3-4 樓美食街與特色餐廳
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-sketch" style="padding: var(--spacing-lg);">
+                            <div style="display: flex; align-items: start; gap: var(--spacing-md);">
+                                <div style="font-size: 48px;">🏨</div>
+                                <div style="flex: 1;">
+                                    <div style="font-family: var(--font-display); font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--text-primary); margin-bottom: var(--spacing-2);">
+                                        21:00 之後 | 搭乘計程車返回飯店
+                                    </div>
+                                    <p style="font-family: var(--font-handwritten); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); margin-bottom: var(--spacing-2);">
+                                        採買完畢後，雙手提著滿滿的戰利品不用去擠公車！直接在商場的計程車招呼站搭車
+                                    </p>
+                                    <div style="background-color: var(--bg-secondary); padding: var(--spacing-3); border-radius: var(--radius-md);">
+                                        <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); color: var(--text-secondary); margin: 0;">
+                                            🏨 返回：Hotel Lantana 那霸國際通<br>
+                                            ⏱️ 車程：約 40 分鐘，一路睡回市區飯店
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Budget Section -->
+            <section class="spots-section">
+                <h2 class="section-title">💰 預算明細</h2>
+
+                <div class="card-sketch" style="padding: var(--spacing-xl);">
+                    <table style="width: 100%; border-collapse: collapse; font-family: var(--font-handwritten);">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--border-strong);">
+                                <th style="padding: var(--spacing-3); text-align: left; font-family: var(--font-display); color: var(--text-primary);">項目</th>
+                                <th style="padding: var(--spacing-3); text-align: right; font-family: var(--font-display); color: var(--text-primary);">費用</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <td style="padding: var(--spacing-3);">🚌 Easy Go 一日遊行程</td>
+                                <td style="padding: var(--spacing-3); text-align: right;">¥5,500</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <td style="padding: var(--spacing-3);">🎫 美麗海水族館門票</td>
+                                <td style="padding: var(--spacing-3); text-align: right;">¥2,180</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <td style="padding: var(--spacing-3);">🍦 午餐 + 小吃</td>
+                                <td style="padding: var(--spacing-3); text-align: right;">¥1,500</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <td style="padding: var(--spacing-3);">🚕 計程車（美國村 → 永旺）</td>
+                                <td style="padding: var(--spacing-3); text-align: right;">¥2,000</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <td style="padding: var(--spacing-3);">🍽️ 永旺夢樂城晚餐</td>
+                                <td style="padding: var(--spacing-3); text-align: right;">¥2,000</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <td style="padding: var(--spacing-3);">🚕 計程車（永旺 → 飯店）</td>
+                                <td style="padding: var(--spacing-3); text-align: right;">¥4,000</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <td style="padding: var(--spacing-3);">🛍️ 購物預算</td>
+                                <td style="padding: var(--spacing-3); text-align: right;">¥3,000+</td>
+                            </tr>
+                            <tr style="background-color: var(--bg-secondary); font-weight: var(--font-weight-bold);">
+                                <td style="padding: var(--spacing-3);">總計（不含購物）</td>
+                                <td style="padding: var(--spacing-3); text-align: right; color: var(--ink-blue); font-size: var(--font-size-xl);">約 ¥17,180</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Old Options Grid (Removed) -->
+            <section class="spots-section" style="display: none;">
                 <h2 class="section-title">🎯 行程選項</h2>
 
                 <div class="options-grid">
@@ -378,37 +603,52 @@
 
             <!-- Tips Section -->
             <section class="tips-section">
-                <h2 class="section-title">💡 選擇建議</h2>
+                <h2 class="section-title">💡 行程小提醒</h2>
 
                 <div class="tips-content">
                     <ul class="tips-list">
-                        <li><strong>天氣晴朗</strong>：推薦選項 A（美麗海水族館）或選項 B（南部文化巡禮），可以欣賞美景</li>
-                        <li><strong>下雨天</strong>：推薦選項 C（美國村購物），大部分時間都在室內</li>
-                        <li><strong>體力充沛</strong>：推薦選項 A（美麗海水族館），車程較長但很值得</li>
-                        <li><strong>想要輕鬆</strong>：推薦選項 C（美國村），距離那霸較近，節省車程時間</li>
-                        <li><strong>喜歡文化</strong>：推薦選項 B（南部文化巡禮），深度了解琉球歷史</li>
-                        <li><strong>帶小孩</strong>：推薦選項 A（美麗海水族館）或選項 C（美國村），適合親子同遊</li>
-                        <li>預留購物時間，三個選項都可以安排購物行程</li>
-                        <li>建議提前查詢各景點營業時間和公休日</li>
+                        <li><strong>集合時間嚴格</strong>：08:20 必須抵達 RYUBO 百貨集合點，建議提前 10-15 分鐘出發</li>
+                        <li><strong>提前告知導遊</strong>：報到時務必說明會在美國村脫隊，避免傍晚造成導遊困擾</li>
+                        <li><strong>水族館優先事項</strong>：抵達後先看 13:00 海豚表演，再用午餐，最後慢慢參觀展區</li>
+                        <li><strong>美國村可快速瀏覽</strong>：僅停留 30 分鐘左右感受氛圍即可，重點放在永旺購物</li>
+                        <li><strong>計程車叫車方式</strong>：可使用 Uber、GO（日本叫車 App）或直接在路邊招手</li>
+                        <li><strong>永旺必逛清單</strong>：寶可夢中心、橡子共和國、無印良品、Uniqlo、GU</li>
+                        <li><strong>晚餐時段</strong>：建議 18:30-19:30 用餐，避開尖峰人潮</li>
+                        <li><strong>回程計程車</strong>：商場設有計程車招呼站，不用擔心叫不到車</li>
+                        <li><strong>行李寄放</strong>：水族館和永旺都有投幣式置物櫃可使用</li>
                     </ul>
                 </div>
             </section>
 
-            <!-- Transportation Tips -->
+            <!-- Transportation Details -->
             <section class="spots-section">
-                <h2 class="section-title">🚌 交通資訊</h2>
+                <h2 class="section-title">🚌 交通詳情</h2>
 
                 <div class="spots-grid">
                     <div class="spot-card">
+                        <div class="spot-image">🚶</div>
+                        <div class="spot-content">
+                            <h3 class="spot-title">飯店 → 集合點</h3>
+                            <ul class="spot-info-list">
+                                <li>步行前往 RYUBO 百貨</li>
+                                <li>距離：約 900 公尺</li>
+                                <li>時間：10-15 分鐘</li>
+                                <li>路線：沿著國際通直走</li>
+                                <li>費用：免費</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="spot-card">
                         <div class="spot-image">🚌</div>
                         <div class="spot-content">
-                            <h3 class="spot-title">選項 A - 美麗海水族館</h3>
+                            <h3 class="spot-title">導遊巴士行程</h3>
                             <ul class="spot-info-list">
-                                <li>高速巴士 117 或 120 號</li>
-                                <li>從那霸巴士總站出發</li>
-                                <li>車程約 2 小時</li>
-                                <li>單程約 ¥2,000</li>
-                                <li>建議購買一日券</li>
+                                <li>Easy Go 中文導遊團</li>
+                                <li>08:30 - 17:00</li>
+                                <li>含萬座毛、古宇利島、水族館</li>
+                                <li>美國村下車解散</li>
+                                <li>費用：¥5,500（不含門票）</li>
                             </ul>
                         </div>
                     </div>
@@ -416,25 +656,13 @@
                     <div class="spot-card">
                         <div class="spot-image">🚕</div>
                         <div class="spot-content">
-                            <h3 class="spot-title">選項 B - 南部巡禮</h3>
+                            <h3 class="spot-title">計程車接駁</h3>
                             <ul class="spot-info-list">
-                                <li>建議租車或包車</li>
-                                <li>景點較分散</li>
-                                <li>也可搭計程車分段移動</li>
-                                <li>預算較高但方便</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="spot-card">
-                        <div class="spot-image">🚇</div>
-                        <div class="spot-content">
-                            <h3 class="spot-title">選項 C - 美國村</h3>
-                            <ul class="spot-info-list">
-                                <li>搭乘路線巴士 20、28、29 號</li>
-                                <li>從那霸出發約 40-50 分鐘</li>
-                                <li>單程約 ¥700</li>
-                                <li>交通最方便的選項</li>
+                                <li>美國村 → 永旺：¥2,000（15-20 分）</li>
+                                <li>永旺 → 飯店：¥4,000（40 分）</li>
+                                <li>可使用 Uber 或 GO App</li>
+                                <li>也可直接招手攔車</li>
+                                <li>總計程車費：約 ¥6,000</li>
                             </ul>
                         </div>
                     </div>
@@ -485,33 +713,5 @@
 
     <!-- Map -->
     <script src="js/map.js"></script>
-
-    <!-- Day 2 Option Switcher -->
-    <script>
-        // Day 2 地圖選項切換
-        document.addEventListener('DOMContentLoaded', function() {
-            const optionBtns = document.querySelectorAll('.day2-option-btn');
-            let currentMap = null;
-
-            optionBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const option = this.dataset.option;
-
-                    // 更新按鈕樣式
-                    optionBtns.forEach(b => {
-                        b.classList.remove('btn-sketch-primary', 'active');
-                    });
-                    this.classList.add('btn-sketch-primary', 'active');
-
-                    // 移除舊地圖
-                    const mapContainer = document.getElementById('day2Map');
-                    mapContainer.innerHTML = '';
-
-                    // 重新初始化地圖
-                    currentMap = initDay2Map(option);
-                });
-            });
-        });
-    </script>
 </body>
 </html>

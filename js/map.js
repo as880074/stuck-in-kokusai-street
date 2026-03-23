@@ -45,100 +45,54 @@ const locations = {
         day: 1
     },
 
-    // Day 2 選項 A - 北部
+    // Day 2 - 北部一日遊路線
+    ryuboDepStore: {
+        name: 'RYUBO 百貨集合點',
+        coords: [26.2133, 127.6790],
+        type: 'meeting',
+        description: 'Easy Go 導遊團集合點（BLUE SEAL 店鋪前）',
+        icon: '🚩',
+        day: 2
+    },
+    manzaMou: {
+        name: '萬座毛',
+        coords: [26.4973, 127.8502],
+        type: 'attraction',
+        description: '標誌性的象鼻岩與壯闊斷崖',
+        icon: '🐘',
+        day: 2
+    },
+    kouriIsland: {
+        name: '古宇利島',
+        coords: [26.7067, 127.9667],
+        type: 'island',
+        description: '壯觀的古宇利大橋與美麗海灘',
+        icon: '🌉',
+        day: 2
+    },
     chumiOquarium: {
         name: '美麗海水族館',
         coords: [26.6943, 127.8772],
         type: 'attraction',
-        description: '世界級水族館，黑潮之海',
+        description: '世界級水族館，黑潮之海與鯨鯊',
         icon: '🐠',
-        day: 2,
-        option: 'A'
+        day: 2
     },
-    oceanExpoPark: {
-        name: '海洋博公園',
-        coords: [26.6950, 127.8780],
-        type: 'park',
-        description: '大型海洋主題公園',
-        icon: '🌊',
-        day: 2,
-        option: 'A'
-    },
-    biseFukugi: {
-        name: '備瀨福木林道',
-        coords: [26.7015, 127.8825],
-        type: 'nature',
-        description: '美麗的福木林道',
-        icon: '🌳',
-        day: 2,
-        option: 'A'
-    },
-
-    // Day 2 選項 B - 南部
-    shuriCastle: {
-        name: '首里城',
-        coords: [26.2172, 127.7195],
-        type: 'culture',
-        description: '琉球王國世界文化遺產',
-        icon: '🏯',
-        day: 2,
-        option: 'B'
-    },
-    shikinaen: {
-        name: '識名園',
-        coords: [26.1977, 127.7158],
-        type: 'garden',
-        description: '琉球王家別苑',
-        icon: '🏞️',
-        day: 2,
-        option: 'B'
-    },
-    seifaUtaki: {
-        name: '齋場御嶽',
-        coords: [26.1682, 127.8289],
-        type: 'culture',
-        description: '神聖祈禱場所',
-        icon: '⛩️',
-        day: 2,
-        option: 'B'
-    },
-    chinenCape: {
-        name: '知念岬公園',
-        coords: [26.1657, 127.8341],
-        type: 'viewpoint',
-        description: '絕美海景',
-        icon: '🌅',
-        day: 2,
-        option: 'B'
-    },
-
-    // Day 2 選項 C - 中部
     americanVillage: {
-        name: '美國村',
+        name: '美國村（北谷）',
         coords: [26.3158, 127.7597],
         type: 'shopping',
-        description: '美式風情購物區',
+        description: '美式風情購物區，導遊團解散點',
         icon: '🎡',
-        day: 2,
-        option: 'C'
+        day: 2
     },
-    aeonMall: {
-        name: 'AEON Mall',
-        coords: [26.3350, 127.8050],
+    aeonRycom: {
+        name: 'AEON MALL 永旺夢樂城',
+        coords: [26.3235, 127.8006],
         type: 'shopping',
-        description: '永旺夢樂城',
-        icon: '🏬',
-        day: 2,
-        option: 'C'
-    },
-    sunsetBeach: {
-        name: '日落海灘',
-        coords: [26.3130, 127.7570],
-        type: 'beach',
-        description: '美麗的夕陽海灘',
-        icon: '🏖️',
-        day: 2,
-        option: 'C'
+        description: '沖繩最大購物中心，寶可夢中心在此',
+        icon: '🛍️',
+        day: 2
     },
 
     // Day 3 景點
@@ -369,44 +323,52 @@ function initDay1Map() {
     return map;
 }
 
-// 初始化 Day 2 地圖（三個選項）
-function initDay2Map(option = 'A') {
+// 初始化 Day 2 地圖（北部一日遊 + 永旺購物）
+function initDay2Map() {
     const mapElement = document.getElementById('day2Map');
     if (!mapElement) return;
 
-    let centerCoords, zoomLevel;
-
-    // 根據選項設定地圖中心和縮放
-    if (option === 'A') {
-        centerCoords = [26.6943, 127.8772];  // 美麗海水族館
-        zoomLevel = 10;
-    } else if (option === 'B') {
-        centerCoords = [26.2000, 127.7500];  // 南部
-        zoomLevel = 11;
-    } else {
-        centerCoords = [26.3158, 127.7597];  // 美國村
-        zoomLevel = 12;
-    }
-
-    const map = L.map('day2Map').setView(centerCoords, zoomLevel);
+    // 地圖中心設在沖繩中北部
+    const map = L.map('day2Map').setView([26.4500, 127.8300], 9);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 18
     }).addTo(map);
 
-    // 找出對應選項的景點
-    const optionLocations = Object.keys(locations).filter(key =>
-        locations[key].day === 2 && locations[key].option === option
-    );
+    // Day 2 行程景點
+    const day2Locations = [
+        'hotelLantama',      // 起點
+        'ryuboDepStore',     // 集合點
+        'manzaMou',          // 萬座毛
+        'kouriIsland',       // 古宇利島
+        'chumiOquarium',     // 美麗海水族館
+        'americanVillage',   // 美國村（脫隊點）
+        'aeonRycom',         // 永旺夢樂城
+        'hotelLantama'       // 返回飯店
+    ];
 
-    optionLocations.forEach(key => {
+    day2Locations.forEach((key, index) => {
         const loc = locations[key];
+        if (!loc) return;
+
+        // 根據不同景點類型使用不同顏色
+        let color;
+        if (key === 'hotelLantama') {
+            color = dayColors.hotel;
+        } else if (key === 'ryuboDepStore') {
+            color = '#E74C3C';  // 紅色標記集合點
+        } else if (key === 'aeonRycom') {
+            color = '#F39C12';  // 橘色標記購物中心
+        } else {
+            color = dayColors[2];
+        }
+
         const marker = L.marker(loc.coords, {
-            icon: createCustomIcon(loc.icon, dayColors[2])
+            icon: createCustomIcon(loc.icon, color)
         }).addTo(map);
 
-        marker.bindPopup(`
+        let popupContent = `
             <div style="font-family: 'Patrick Hand', cursive;">
                 <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #2C3E50;">
                     ${loc.icon} ${loc.name}
@@ -414,22 +376,44 @@ function initDay2Map(option = 'A') {
                 <p style="margin: 0 0 8px 0; font-size: 14px; color: #4A5568;">
                     ${loc.description}
                 </p>
-                <p style="margin: 0; font-size: 12px; color: #718096;">
-                    🎯 選項 ${option}
-                </p>
-            </div>
-        `);
+        `;
+
+        // 添加順序標記
+        if (index > 0 && index < day2Locations.length - 1) {
+            popupContent += `<p style="margin: 0; font-size: 12px; color: #718096;">📍 第 ${index} 站</p>`;
+        }
+
+        popupContent += '</div>';
+        marker.bindPopup(popupContent);
     });
 
-    // 繪製路線（如果有多個景點）
-    if (optionLocations.length > 1) {
-        const route = optionLocations.map(key => locations[key].coords);
-        L.polyline(route, {
-            color: dayColors[2],
-            weight: 4,
-            opacity: 0.7
-        }).addTo(map);
-    }
+    // 繪製路線 - 分成兩段
+    // 第一段：導遊團路線（那霸 → 美國村）
+    const tourRoute = [
+        locations.hotelLantama.coords,
+        locations.manzaMou.coords,
+        locations.kouriIsland.coords,
+        locations.chumiOquarium.coords,
+        locations.americanVillage.coords
+    ];
+    L.polyline(tourRoute, {
+        color: dayColors[2],
+        weight: 4,
+        opacity: 0.8,
+        dashArray: '10, 5'
+    }).addTo(map);
+
+    // 第二段：自由行路線（美國村 → 永旺 → 飯店）
+    const freeRoute = [
+        locations.americanVillage.coords,
+        locations.aeonRycom.coords,
+        locations.hotelLantama.coords
+    ];
+    L.polyline(freeRoute, {
+        color: '#F39C12',  // 橘色代表自由行
+        weight: 4,
+        opacity: 0.8
+    }).addTo(map);
 
     return map;
 }
@@ -538,22 +522,8 @@ document.addEventListener('DOMContentLoaded', function() {
         initDay1Map();
     }
     if (document.getElementById('day2Map')) {
-        // 預設顯示選項 A
-        initDay2Map('A');
-
-        // 如果有選項切換按鈕
-        const optionBtns = document.querySelectorAll('.day2-option-btn');
-        if (optionBtns.length > 0) {
-            optionBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const option = this.dataset.option;
-                    // 移除舊地圖
-                    document.getElementById('day2Map').innerHTML = '';
-                    // 重新初始化
-                    initDay2Map(option);
-                });
-            });
-        }
+        // 初始化 Day 2 地圖（不再需要選項切換）
+        initDay2Map();
     }
     if (document.getElementById('day3Map')) {
         initDay3Map();
