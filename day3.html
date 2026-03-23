@@ -28,6 +28,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin=""/>
+
+    <!-- Funliday Navigation CSS -->
+    <link rel="stylesheet" href="css/funliday-theme.css">
+    <link rel="stylesheet" href="css/navigation.css">
 </head>
 <body class="page-day3" data-page="day3">
     <!-- Header / Navigation -->
@@ -73,16 +77,182 @@
                 </div>
             </section>
 
-            <!-- Map Section -->
+            <!-- Navigation Mode Toggle Button -->
             <section class="map-section" style="margin-top: var(--spacing-xl); margin-bottom: var(--spacing-xl);">
-                <h2 class="section-title">🗺️ Day 3 路線地圖</h2>
-                <div class="card-sketch" style="padding: 0; overflow: hidden;">
-                    <div id="day3Map" style="height: 400px; width: 100%;"></div>
+                <h2 class="section-title">🗺️ 互動導覽模式</h2>
+                <div class="card-sketch" style="padding: var(--spacing-4); text-align: center;">
+                    <button id="toggleNavMode" class="btn-sketch btn-sketch-primary" style="font-size: var(--font-size-base); padding: var(--spacing-3) var(--spacing-5);">
+                        🧭 開啟互動地圖導覽
+                    </button>
+                    <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); color: var(--text-muted); margin-top: var(--spacing-3);">
+                        全新互動導覽體驗 · 手勢操作 · 路線指引
+                    </p>
                 </div>
-                <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); color: var(--text-muted); text-align: center; margin-top: var(--spacing-3);">
-                    點擊地圖標記查看景點詳情 · 使用 OpenStreetMap 提供地圖服務
-                </p>
             </section>
+
+            <!-- Navigation Mode Container (Hidden by default) -->
+            <div id="navigationModeContainer" class="navigation-mode" style="display: none;">
+                <!-- Top Toolbar -->
+                <div class="nav-toolbar">
+                    <h1 class="nav-toolbar-title">Day 3 導覽</h1>
+                    <button class="nav-toolbar-close" id="closeNavMode" aria-label="關閉導覽">×</button>
+                </div>
+
+                <!-- View Toggle -->
+                <div class="view-toggle">
+                    <button class="view-toggle-btn active" data-view="map">
+                        🗺️ 地圖
+                    </button>
+                    <button class="view-toggle-btn" data-view="list">
+                        📋 清單
+                    </button>
+                </div>
+
+                <!-- Map Container -->
+                <div class="nav-map-container">
+                    <div id="navMap" class="nav-map-canvas"></div>
+                </div>
+
+                <!-- Bottom Sheet -->
+                <div class="bottom-sheet transitioning">
+                    <div class="sheet-handle-container">
+                        <div class="sheet-handle"></div>
+                    </div>
+
+                    <div class="sheet-header">
+                        <h2 class="sheet-title">景點列表</h2>
+                        <div class="spot-progress">
+                            <span class="spot-progress-current">1</span>
+                            <span> / 3</span>
+                        </div>
+                    </div>
+
+                    <div class="spot-cards-container">
+                        <!-- 波上宮 -->
+                        <div class="spot-card active" data-spot-index="0">
+                            <div class="spot-header">
+                                <div class="spot-number">1</div>
+                                <div class="spot-info">
+                                    <h3 class="spot-name">
+                                        ⛩️ 波上宮
+                                    </h3>
+                                    <div class="spot-meta">
+                                        <span class="spot-time">09:00</span>
+                                        <span class="spot-duration">1 小時</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="spot-description">
+                                琉球八社之一，建在珊瑚礁懸崖上，景觀壯麗。可以祈求旅行平安、姻緣、學業。
+                            </p>
+                            <div class="spot-transport">
+                                <div class="transport-icon">🚕</div>
+                                <div class="transport-info">
+                                    <div class="transport-type">從飯店搭計程車</div>
+                                    <div class="transport-detail">車程約 15 分鐘 · ¥1,500</div>
+                                </div>
+                            </div>
+                            <div class="nav-actions">
+                                <button class="btn-navigate" onclick="window.navigationMode.openNavigation('google')">
+                                    📍 Google 地圖導航
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 波之上海灘 -->
+                        <div class="spot-card" data-spot-index="1">
+                            <div class="spot-header">
+                                <div class="spot-number">2</div>
+                                <div class="spot-info">
+                                    <h3 class="spot-name">
+                                        🏖️ 波之上海灘
+                                    </h3>
+                                    <div class="spot-meta">
+                                        <span class="spot-time">10:30</span>
+                                        <span class="spot-duration">1.5 小時</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="spot-description">
+                                那霸市內唯一的海灘，可以踏踏水、拍照，夏季開放游泳。從沙灘可以仰望波上宮。
+                            </p>
+                            <div class="spot-transport">
+                                <div class="transport-icon">🚶</div>
+                                <div class="transport-info">
+                                    <div class="transport-type">從波上宮步行</div>
+                                    <div class="transport-detail">步行 5 分鐘 · 就在波上宮下方</div>
+                                </div>
+                            </div>
+                            <div class="nav-actions">
+                                <button class="btn-navigate" onclick="window.navigationMode.openNavigation('google')">
+                                    📍 Google 地圖導航
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 泊港漁市場 -->
+                        <div class="spot-card" data-spot-index="2">
+                            <div class="spot-header">
+                                <div class="spot-number">3</div>
+                                <div class="spot-info">
+                                    <h3 class="spot-name">
+                                        🐟 泊港漁市場
+                                    </h3>
+                                    <div class="spot-meta">
+                                        <span class="spot-time">14:00</span>
+                                        <span class="spot-duration">2 小時</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="spot-description">
+                                在地漁市場，價格實惠！一樓販售新鮮魚貨，二樓有食堂可以用餐。
+                            </p>
+                            <div class="spot-transport">
+                                <div class="transport-icon">🚕</div>
+                                <div class="transport-info">
+                                    <div class="transport-type">搭計程車前往</div>
+                                    <div class="transport-detail">車程約 10 分鐘 · ¥1,000</div>
+                                </div>
+                            </div>
+                            <div class="nav-actions">
+                                <button class="btn-navigate" onclick="window.navigationMode.openNavigation('google')">
+                                    📍 Google 地圖導航
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- List View (Timeline) -->
+                <div class="timeline-list-view">
+                    <div class="container" style="padding-top: 80px;">
+                        <h2 class="section-title">📋 景點清單</h2>
+                        <div class="spots-grid">
+                            <div class="spot-card">
+                                <div class="spot-image">⛩️</div>
+                                <div class="spot-content">
+                                    <h3 class="spot-title">波上宮</h3>
+                                    <p class="spot-description">琉球八社之一，建在珊瑚礁懸崖上，景觀壯麗。</p>
+                                </div>
+                            </div>
+                            <div class="spot-card">
+                                <div class="spot-image">🏖️</div>
+                                <div class="spot-content">
+                                    <h3 class="spot-title">波之上海灘</h3>
+                                    <p class="spot-description">那霸市內唯一海灘，可以踏踏水、拍照。</p>
+                                </div>
+                            </div>
+                            <div class="spot-card">
+                                <div class="spot-image">🐟</div>
+                                <div class="spot-content">
+                                    <h3 class="spot-title">泊港漁市場</h3>
+                                    <p class="spot-description">在地漁市場，價格實惠！品嚐新鮮海鮮丼飯。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Timeline Section -->
             <section class="timeline-section">
@@ -454,7 +624,86 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
 
-    <!-- Map -->
-    <script src="js/map.js"></script>
+    <!-- Navigation Mode -->
+    <script src="js/navigation.js"></script>
+
+    <!-- Day 3 Initialization -->
+    <script>
+        // Day 3 景點資料
+        const day3Spots = [
+            {
+                name: '波上宮',
+                nameJa: '波上宮',
+                coords: [26.2145, 127.6693],
+                icon: '⛩️',
+                time: '09:00',
+                duration: '1 小時',
+                description: '琉球八社之一，建在珊瑚礁懸崖上，景觀壯麗。可以祈求旅行平安、姻緣、學業。'
+            },
+            {
+                name: '波之上海灘',
+                nameJa: '波の上ビーチ',
+                coords: [26.2138, 127.6625],
+                icon: '🏖️',
+                time: '10:30',
+                duration: '1.5 小時',
+                description: '那霸市內唯一的海灘，可以踏踏水、拍照，夏季開放游泳。從沙灘可以仰望波上宮。'
+            },
+            {
+                name: '泊港漁市場',
+                nameJa: '泊いゆまち',
+                coords: [26.2245, 127.6710],
+                icon: '🐟',
+                time: '14:00',
+                duration: '2 小時',
+                description: '在地漁市場，價格實惠！一樓販售新鮮魚貨，二樓有食堂可以用餐。'
+            }
+        ];
+
+        // 導覽模式實例
+        let navigationMode = null;
+
+        // 開啟導覽模式
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('toggleNavMode');
+            const closeBtn = document.getElementById('closeNavMode');
+            const navContainer = document.getElementById('navigationModeContainer');
+
+            toggleBtn.addEventListener('click', async () => {
+                // 顯示導覽模式容器
+                navContainer.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+
+                // 初始化導覽模式（如果尚未初始化）
+                if (!navigationMode) {
+                    navigationMode = new NavigationMode(day3Spots, {
+                        mapElement: 'navMap',
+                        initialZoom: 14,
+                        routeColor: '#FFD93D'
+                    });
+
+                    try {
+                        await navigationMode.init();
+                        window.navigationMode = navigationMode; // 讓按鈕可以存取
+                        console.log('✅ Day 3 Navigation Mode initialized');
+                    } catch (error) {
+                        console.error('❌ Navigation Mode initialization failed:', error);
+                        alert('地圖初始化失敗，請重新整理頁面');
+                    }
+                } else {
+                    // 已存在則重新調整地圖大小
+                    setTimeout(() => {
+                        navigationMode.map.invalidateSize();
+                    }, 100);
+                }
+            });
+
+            // 關閉導覽模式
+            closeBtn.addEventListener('click', () => {
+                navContainer.style.display = 'none';
+                document.body.style.overflow = '';
+            });
+        });
+    </script>
 </body>
 </html>

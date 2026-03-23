@@ -17,6 +17,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Kalam:wght@300;400;700&family=Caveat:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Leaflet.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+
     <!-- CSS -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/variables.css">
@@ -24,10 +29,9 @@
     <link rel="stylesheet" href="css/sketch.css">
     <link rel="stylesheet" href="css/day.css">
 
-    <!-- Leaflet.js CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-          crossorigin=""/>
+    <!-- Navigation Mode CSS -->
+    <link rel="stylesheet" href="css/funliday-theme.css">
+    <link rel="stylesheet" href="css/navigation.css">
 
     <style>
         /* Day 2 Specific Styles */
@@ -91,17 +95,258 @@
                 </div>
             </section>
 
-            <!-- Map Section -->
+            <!-- Navigation Mode Toggle Button -->
             <section class="map-section" style="margin-top: var(--spacing-xl); margin-bottom: var(--spacing-xl);">
-                <h2 class="section-title">🗺️ Day 2 路線地圖</h2>
-
-                <div class="card-sketch" style="padding: 0; overflow: hidden;">
-                    <div id="day2Map" style="height: 450px; width: 100%;"></div>
+                <h2 class="section-title">🗺️ 互動導覽模式</h2>
+                <div class="card-sketch" style="padding: var(--spacing-4); text-align: center;">
+                    <button id="toggleNavMode" class="btn-sketch btn-sketch-primary" style="font-size: var(--font-size-base); padding: var(--spacing-3) var(--spacing-5);">
+                        🧭 開啟互動地圖導覽
+                    </button>
+                    <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); color: var(--text-muted); margin-top: var(--spacing-3);">
+                        導遊巴士路線 · 萬座毛 → 古宇利島 → 美麗海水族館 → 美國村 → 永旺夢樂城
+                    </p>
                 </div>
-                <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); color: var(--text-muted); text-align: center; margin-top: var(--spacing-3);">
-                    點擊地圖標記查看景點詳情 · 路線：那霸 → 萬座毛 → 古宇利島 → 美麗海水族館 → 美國村 → 永旺夢樂城
-                </p>
             </section>
+
+            <!-- Navigation Mode Container (Hidden by default) -->
+            <div id="navigationModeContainer" class="navigation-mode" style="display: none;">
+                <!-- Top Toolbar -->
+                <div class="nav-toolbar">
+                    <h1 class="nav-toolbar-title">Day 2 北部巡禮</h1>
+                    <button class="nav-toolbar-close" id="closeNavMode" aria-label="關閉導覽">×</button>
+                </div>
+
+                <!-- View Toggle -->
+                <div class="view-toggle">
+                    <button class="view-toggle-btn active" data-view="map">
+                        🗺️ 地圖
+                    </button>
+                    <button class="view-toggle-btn" data-view="list">
+                        📋 清單
+                    </button>
+                </div>
+
+                <!-- Map Container -->
+                <div class="nav-map-container">
+                    <div id="navMap" class="nav-map-canvas"></div>
+                </div>
+
+                <!-- Bottom Sheet -->
+                <div class="bottom-sheet transitioning">
+                    <div class="sheet-handle-container">
+                        <div class="sheet-handle"></div>
+                    </div>
+
+                    <div class="sheet-header">
+                        <h2 class="sheet-title">景點列表</h2>
+                        <div class="spot-progress">
+                            <span class="spot-progress-current">1</span>
+                            <span> / 5</span>
+                        </div>
+                    </div>
+
+                    <div class="spot-cards-container">
+                        <!-- 萬座毛 -->
+                        <div class="spot-card active" data-spot-index="0">
+                            <div class="spot-header">
+                                <div class="spot-number">1</div>
+                                <div class="spot-info">
+                                    <h3 class="spot-name">
+                                        🐘 萬座毛
+                                    </h3>
+                                    <div class="spot-meta">
+                                        <span class="spot-time">09:30</span>
+                                        <span class="spot-duration">30 分鐘</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="spot-description">
+                                標誌性的象鼻岩與壯闊斷崖，遼闊草原與湛藍海景的完美結合。
+                            </p>
+                            <div class="spot-transport">
+                                <div class="transport-icon">🚌</div>
+                                <div class="transport-info">
+                                    <div class="transport-type">導遊巴士</div>
+                                    <div class="transport-detail">第一站 · 停留約 30 分鐘</div>
+                                </div>
+                            </div>
+                            <div class="nav-actions">
+                                <button class="btn-navigate" onclick="window.navigationMode.openNavigation('google')">
+                                    📍 Google 地圖導航
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 古宇利島 -->
+                        <div class="spot-card" data-spot-index="1">
+                            <div class="spot-header">
+                                <div class="spot-number">2</div>
+                                <div class="spot-info">
+                                    <h3 class="spot-name">
+                                        🌉 古宇利島
+                                    </h3>
+                                    <div class="spot-meta">
+                                        <span class="spot-time">10:30</span>
+                                        <span class="spot-duration">1 小時</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="spot-description">
+                                壯觀的古宇利大橋與美麗海灘，沖繩版的亞當與夏娃傳說起源地。
+                            </p>
+                            <div class="spot-transport">
+                                <div class="transport-icon">🚌</div>
+                                <div class="transport-info">
+                                    <div class="transport-type">導遊巴士</div>
+                                    <div class="transport-detail">第二站 · 停留約 1 小時</div>
+                                </div>
+                            </div>
+                            <div class="nav-actions">
+                                <button class="btn-navigate" onclick="window.navigationMode.openNavigation('google')">
+                                    📍 Google 地圖導航
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 美麗海水族館 -->
+                        <div class="spot-card" data-spot-index="2">
+                            <div class="spot-header">
+                                <div class="spot-number">3</div>
+                                <div class="spot-info">
+                                    <h3 class="spot-name">
+                                        🐠 美麗海水族館
+                                    </h3>
+                                    <div class="spot-meta">
+                                        <span class="spot-time">12:00</span>
+                                        <span class="spot-duration">2.5 小時</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="spot-description">
+                                世界級水族館，壯觀的黑潮之海與鯨鯊，絕對不能錯過的沖繩必訪景點！
+                            </p>
+                            <div class="spot-transport">
+                                <div class="transport-icon">🚌</div>
+                                <div class="transport-info">
+                                    <div class="transport-type">導遊巴士</div>
+                                    <div class="transport-detail">第三站 · 停留約 2.5 小時（含午餐）</div>
+                                </div>
+                            </div>
+                            <div class="nav-actions">
+                                <button class="btn-navigate" onclick="window.navigationMode.openNavigation('google')">
+                                    📍 Google 地圖導航
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 美國村 -->
+                        <div class="spot-card" data-spot-index="3">
+                            <div class="spot-header">
+                                <div class="spot-number">4</div>
+                                <div class="spot-info">
+                                    <h3 class="spot-name">
+                                        🎡 美國村
+                                    </h3>
+                                    <div class="spot-meta">
+                                        <span class="spot-time">15:30</span>
+                                        <span class="spot-duration">自由活動</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="spot-description">
+                                美式風情購物區，導遊團在此解散，可自行前往永旺夢樂城繼續購物。
+                            </p>
+                            <div class="spot-transport">
+                                <div class="transport-icon">🚌</div>
+                                <div class="transport-info">
+                                    <div class="transport-type">導遊巴士終點</div>
+                                    <div class="transport-detail">15:30 抵達後解散</div>
+                                </div>
+                            </div>
+                            <div class="nav-actions">
+                                <button class="btn-navigate" onclick="window.navigationMode.openNavigation('google')">
+                                    📍 Google 地圖導航
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 永旺夢樂城 -->
+                        <div class="spot-card" data-spot-index="4">
+                            <div class="spot-header">
+                                <div class="spot-number">5</div>
+                                <div class="spot-info">
+                                    <h3 class="spot-name">
+                                        🛍️ 永旺夢樂城
+                                    </h3>
+                                    <div class="spot-meta">
+                                        <span class="spot-time">16:30</span>
+                                        <span class="spot-duration">3-4 小時</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="spot-description">
+                                沖繩最大購物中心，寶可夢中心在此！血拼聖地，記得留時間逛。
+                            </p>
+                            <div class="spot-transport">
+                                <div class="transport-icon">🚕</div>
+                                <div class="transport-info">
+                                    <div class="transport-type">從美國村搭計程車</div>
+                                    <div class="transport-detail">車程約 10 分鐘 · ¥1,500</div>
+                                </div>
+                            </div>
+                            <div class="nav-actions">
+                                <button class="btn-navigate" onclick="window.navigationMode.openNavigation('google')">
+                                    📍 Google 地圖導航
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- List View (Timeline) -->
+                <div class="timeline-list-view">
+                    <div class="container" style="padding-top: 80px;">
+                        <h2 class="section-title">📋 景點清單</h2>
+                        <div class="spots-grid">
+                            <div class="spot-card">
+                                <div class="spot-image">🐘</div>
+                                <div class="spot-content">
+                                    <h3 class="spot-title">萬座毛</h3>
+                                    <p class="spot-description">標誌性的象鼻岩與壯闊斷崖</p>
+                                </div>
+                            </div>
+                            <div class="spot-card">
+                                <div class="spot-image">🌉</div>
+                                <div class="spot-content">
+                                    <h3 class="spot-title">古宇利島</h3>
+                                    <p class="spot-description">壯觀的古宇利大橋與美麗海灘</p>
+                                </div>
+                            </div>
+                            <div class="spot-card">
+                                <div class="spot-image">🐠</div>
+                                <div class="spot-content">
+                                    <h3 class="spot-title">美麗海水族館</h3>
+                                    <p class="spot-description">世界級水族館，黑潮之海與鯨鯊</p>
+                                </div>
+                            </div>
+                            <div class="spot-card">
+                                <div class="spot-image">🎡</div>
+                                <div class="spot-content">
+                                    <h3 class="spot-title">美國村</h3>
+                                    <p class="spot-description">美式風情購物區</p>
+                                </div>
+                            </div>
+                            <div class="spot-card">
+                                <div class="spot-image">🛍️</div>
+                                <div class="spot-content">
+                                    <h3 class="spot-title">永旺夢樂城</h3>
+                                    <p class="spot-description">沖繩最大購物中心，寶可夢中心在此！</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Timeline Section -->
             <section class="spots-section">
@@ -467,7 +712,104 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
 
-    <!-- Map -->
-    <script src="js/map.js"></script>
+    <!-- Navigation Mode -->
+    <script src="js/navigation.js"></script>
+
+    <!-- Day 2 Initialization -->
+    <script>
+        // Day 2 景點資料
+        const day2Spots = [
+            {
+                name: '萬座毛',
+                nameJa: '万座毛',
+                coords: [26.5052353, 127.8504781],
+                icon: '🐘',
+                time: '09:30',
+                duration: '30 分鐘',
+                description: '標誌性的象鼻岩與壯闊斷崖，遼闊草原與湛藍海景的完美結合。'
+            },
+            {
+                name: '古宇利島',
+                nameJa: '古宇利島',
+                coords: [26.68706, 128.01756],
+                icon: '🌉',
+                time: '10:30',
+                duration: '1 小時',
+                description: '壯觀的古宇利大橋與美麗海灘，沖繩版的亞當與夏娃傳說起源地。'
+            },
+            {
+                name: '美麗海水族館',
+                nameJa: '沖縄美ら海水族館',
+                coords: [26.694338, 127.8780131],
+                icon: '🐠',
+                time: '12:00',
+                duration: '2.5 小時',
+                description: '世界級水族館，壯觀的黑潮之海與鯨鯊，絕對不能錯過的沖繩必訪景點！'
+            },
+            {
+                name: '美國村',
+                nameJa: '美浜アメリカンビレッジ',
+                coords: [26.315851, 127.757669],
+                icon: '🎡',
+                time: '15:30',
+                duration: '自由活動',
+                description: '美式風情購物區，導遊團在此解散，可自行前往永旺夢樂城繼續購物。'
+            },
+            {
+                name: '永旺夢樂城',
+                nameJa: 'イオンモール沖縄ライカム',
+                coords: [26.31404, 127.79585],
+                icon: '🛍️',
+                time: '16:30',
+                duration: '3-4 小時',
+                description: '沖繩最大購物中心，寶可夢中心在此！血拼聖地，記得留時間逛。'
+            }
+        ];
+
+        // 導覽模式實例
+        let navigationMode = null;
+
+        // 開啟導覽模式
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('toggleNavMode');
+            const closeBtn = document.getElementById('closeNavMode');
+            const navContainer = document.getElementById('navigationModeContainer');
+
+            toggleBtn.addEventListener('click', async () => {
+                // 顯示導覽模式容器
+                navContainer.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+
+                // 初始化導覽模式（如果尚未初始化）
+                if (!navigationMode) {
+                    navigationMode = new NavigationMode(day2Spots, {
+                        mapElement: 'navMap',
+                        initialZoom: 10,
+                        routeColor: '#FF8C00'
+                    });
+
+                    try {
+                        await navigationMode.init();
+                        window.navigationMode = navigationMode; // 讓按鈕可以存取
+                        console.log('✅ Day 2 Navigation Mode initialized');
+                    } catch (error) {
+                        console.error('❌ Navigation Mode initialization failed:', error);
+                        alert('地圖初始化失敗，請重新整理頁面');
+                    }
+                } else {
+                    // 已存在則重新調整地圖大小
+                    setTimeout(() => {
+                        navigationMode.map.invalidateSize();
+                    }, 100);
+                }
+            });
+
+            // 關閉導覽模式
+            closeBtn.addEventListener('click', () => {
+                navContainer.style.display = 'none';
+                document.body.style.overflow = '';
+            });
+        });
+    </script>
 </body>
 </html>

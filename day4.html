@@ -28,6 +28,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin=""/>
+
+    <!-- Funliday Navigation Mode CSS -->
+    <link rel="stylesheet" href="css/funliday-theme.css">
+    <link rel="stylesheet" href="css/navigation.css">
 </head>
 <body class="page-day4" data-page="day4">
     <!-- Header / Navigation -->
@@ -73,16 +77,220 @@
                 </div>
             </section>
 
-            <!-- Map Section -->
+            <!-- Navigation Mode Toggle Button -->
             <section class="map-section" style="margin-top: var(--spacing-xl); margin-bottom: var(--spacing-xl);">
-                <h2 class="section-title">🗺️ Day 4 路線地圖</h2>
-                <div class="card-sketch" style="padding: 0; overflow: hidden;">
-                    <div id="day4Map" style="height: 400px; width: 100%;"></div>
+                <h2 class="section-title">🗺️ 互動導覽模式</h2>
+                <div class="card-sketch" style="padding: var(--spacing-4); text-align: center;">
+                    <button id="toggleNavMode" class="btn-sketch btn-sketch-primary" style="font-size: var(--font-size-base); padding: var(--spacing-3) var(--spacing-5);">
+                        🧭 開啟互動地圖導覽
+                    </button>
+                    <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); color: var(--text-muted); margin-top: var(--spacing-3);">
+                        全新互動導覽體驗 · 手勢操作 · 路線指引
+                    </p>
                 </div>
-                <p style="font-family: var(--font-handwritten); font-size: var(--font-size-sm); color: var(--text-muted); text-align: center; margin-top: var(--spacing-3);">
-                    點擊地圖標記查看景點詳情 · 使用 OpenStreetMap 提供地圖服務
-                </p>
             </section>
+
+            <!-- Navigation Mode Container (Hidden by default) -->
+            <div id="navigationModeContainer" class="navigation-mode" style="display: none;">
+                <!-- Top Toolbar -->
+                <div class="nav-toolbar">
+                    <h1 class="nav-toolbar-title">Day 4 導覽</h1>
+                    <button class="nav-toolbar-close" id="closeNavMode" aria-label="關閉導覽">×</button>
+                </div>
+
+                <!-- View Toggle -->
+                <div class="view-toggle">
+                    <button class="view-toggle-btn active" data-view="map">
+                        🗺️ 地圖
+                    </button>
+                    <button class="view-toggle-btn" data-view="list">
+                        📋 清單
+                    </button>
+                </div>
+
+                <!-- Map Container -->
+                <div class="nav-map-container">
+                    <div id="navMap" class="nav-map-canvas"></div>
+                </div>
+
+                <!-- Bottom Sheet -->
+                <div class="bottom-sheet transitioning">
+                    <div class="sheet-handle-container">
+                        <div class="sheet-handle"></div>
+                    </div>
+
+                    <div class="sheet-header">
+                        <h2 class="sheet-title">景點列表</h2>
+                        <div class="spot-progress">
+                            <span class="spot-progress-current">1</span>
+                            <span> / 4</span>
+                        </div>
+                    </div>
+
+                    <div class="spot-cards-container">
+                        <!-- 第一牧志公設市場 -->
+                        <div class="spot-card active" data-spot-index="0">
+                            <div class="spot-header">
+                                <div class="spot-number">1</div>
+                                <div class="spot-info">
+                                    <h3 class="spot-name">
+                                        🦐 第一牧志公設市場
+                                    </h3>
+                                    <div class="spot-meta">
+                                        <span class="spot-time">09:00</span>
+                                        <span class="spot-duration">1.5 小時</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="spot-description">
+                                沖繩的市民廚房！一樓販售新鮮食材、海鮮、肉品，二樓為食堂可代煮。享用豐盛的早午餐。
+                            </p>
+                            <div class="spot-transport">
+                                <div class="transport-icon">🚶</div>
+                                <div class="transport-info">
+                                    <div class="transport-type">從飯店步行</div>
+                                    <div class="transport-detail">步行約 5-10 分鐘</div>
+                                </div>
+                            </div>
+                            <div class="nav-actions">
+                                <button class="btn-navigate" onclick="window.navigationMode.openNavigation('google')">
+                                    📍 Google 地圖導航
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 瀨長島 -->
+                        <div class="spot-card" data-spot-index="1">
+                            <div class="spot-header">
+                                <div class="spot-number">2</div>
+                                <div class="spot-info">
+                                    <h3 class="spot-name">
+                                        🏝️ 瀨長島
+                                    </h3>
+                                    <div class="spot-meta">
+                                        <span class="spot-time">11:00</span>
+                                        <span class="spot-duration">2 小時</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="spot-description">
+                                離機場最近的離島！白色地中海風建築群，絕美海景，可以近距離看飛機起降。
+                            </p>
+                            <div class="spot-transport">
+                                <div class="transport-icon">🚕</div>
+                                <div class="transport-info">
+                                    <div class="transport-type">搭乘計程車</div>
+                                    <div class="transport-detail">車程約 30 分鐘 · ¥3,500</div>
+                                </div>
+                            </div>
+                            <div class="nav-actions">
+                                <button class="btn-navigate" onclick="window.navigationMode.openNavigation('google')">
+                                    📍 Google 地圖導航
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Umikaji Terrace -->
+                        <div class="spot-card" data-spot-index="2">
+                            <div class="spot-header">
+                                <div class="spot-number">3</div>
+                                <div class="spot-info">
+                                    <h3 class="spot-name">
+                                        ☕ Umikaji Terrace
+                                    </h3>
+                                    <div class="spot-meta">
+                                        <span class="spot-time">11:30</span>
+                                        <span class="spot-duration">1.5 小時</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="spot-description">
+                                白色地中海風建築，絕美海景，可以近距離看飛機起降。享用午茶、拍照打卡。
+                            </p>
+                            <div class="spot-transport">
+                                <div class="transport-icon">🚶</div>
+                                <div class="transport-info">
+                                    <div class="transport-type">瀨長島內</div>
+                                    <div class="transport-detail">步行可達</div>
+                                </div>
+                            </div>
+                            <div class="nav-actions">
+                                <button class="btn-navigate" onclick="window.navigationMode.openNavigation('google')">
+                                    📍 Google 地圖導航
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- iias 豐崎 -->
+                        <div class="spot-card" data-spot-index="3">
+                            <div class="spot-header">
+                                <div class="spot-number">4</div>
+                                <div class="spot-info">
+                                    <h3 class="spot-name">
+                                        🛍️ iias 豐崎
+                                    </h3>
+                                    <div class="spot-meta">
+                                        <span class="spot-time">14:00</span>
+                                        <span class="spot-duration">3 小時</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="spot-description">
+                                2020 年開幕的大型購物中心，靠近機場。最後採購藥妝、零食、泡盛、伴手禮。
+                            </p>
+                            <div class="spot-transport">
+                                <div class="transport-icon">🚕</div>
+                                <div class="transport-info">
+                                    <div class="transport-type">搭乘計程車</div>
+                                    <div class="transport-detail">車程約 10 分鐘 · ¥1,000</div>
+                                </div>
+                            </div>
+                            <div class="nav-actions">
+                                <button class="btn-navigate" onclick="window.navigationMode.openNavigation('google')">
+                                    📍 Google 地圖導航
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- List View (Timeline) -->
+                <div class="timeline-list-view">
+                    <div class="container" style="padding-top: 80px;">
+                        <h2 class="section-title">📋 景點清單</h2>
+                        <div class="spots-grid">
+                            <div class="spot-card">
+                                <div class="spot-image">🦐</div>
+                                <div class="spot-content">
+                                    <h3 class="spot-title">第一牧志公設市場</h3>
+                                    <p class="spot-description">沖繩的市民廚房，充滿當地生活氣息。</p>
+                                </div>
+                            </div>
+                            <div class="spot-card">
+                                <div class="spot-image">🏝️</div>
+                                <div class="spot-content">
+                                    <h3 class="spot-title">瀨長島</h3>
+                                    <p class="spot-description">離機場最近的離島，可以近距離看飛機起降。</p>
+                                </div>
+                            </div>
+                            <div class="spot-card">
+                                <div class="spot-image">☕</div>
+                                <div class="spot-content">
+                                    <h3 class="spot-title">Umikaji Terrace</h3>
+                                    <p class="spot-description">白色地中海風建築，絕美海景咖啡廳。</p>
+                                </div>
+                            </div>
+                            <div class="spot-card">
+                                <div class="spot-image">🛍️</div>
+                                <div class="spot-content">
+                                    <h3 class="spot-title">iias 豐崎</h3>
+                                    <p class="spot-description">大型購物中心，最後採購的好地方。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Timeline Section -->
             <section class="timeline-section">
@@ -515,7 +723,95 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
 
-    <!-- Map -->
-    <script src="js/map.js"></script>
+    <!-- Navigation Mode -->
+    <script src="js/navigation.js"></script>
+
+    <!-- Day 4 Initialization -->
+    <script>
+        // Day 4 景點資料
+        const day4Spots = [
+            {
+                name: '第一牧志公設市場',
+                nameJa: '第一牧志公設市場',
+                coords: [26.2165, 127.6802],
+                icon: '🦐',
+                time: '09:00',
+                duration: '1.5 小時',
+                description: '沖繩的市民廚房！一樓販售新鮮食材、海鮮、肉品，二樓為食堂可代煮。享用豐盛的早午餐。'
+            },
+            {
+                name: '瀨長島',
+                nameJa: '瀬長島',
+                coords: [26.1850, 127.6487],
+                icon: '🏝️',
+                time: '11:00',
+                duration: '2 小時',
+                description: '離機場最近的離島！白色地中海風建築群，絕美海景，可以近距離看飛機起降。'
+            },
+            {
+                name: 'Umikaji Terrace',
+                nameJa: '瀬長島ウミカジテラス',
+                coords: [26.1845, 127.6490],
+                icon: '☕',
+                time: '11:30',
+                duration: '1.5 小時',
+                description: '白色地中海風建築，絕美海景，可以近距離看飛機起降。享用午茶、拍照打卡。'
+            },
+            {
+                name: 'iias 豐崎',
+                nameJa: 'iias沖縄豊崎',
+                coords: [26.1755, 127.6542],
+                icon: '🛍️',
+                time: '14:00',
+                duration: '3 小時',
+                description: '2020 年開幕的大型購物中心，靠近機場。最後採購藥妝、零食、泡盛、伴手禮。'
+            }
+        ];
+
+        // 導覽模式實例
+        let navigationMode = null;
+
+        // 開啟導覽模式
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('toggleNavMode');
+            const closeBtn = document.getElementById('closeNavMode');
+            const navContainer = document.getElementById('navigationModeContainer');
+
+            toggleBtn.addEventListener('click', async () => {
+                // 顯示導覽模式容器
+                navContainer.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+
+                // 初始化導覽模式（如果尚未初始化）
+                if (!navigationMode) {
+                    navigationMode = new NavigationMode(day4Spots, {
+                        mapElement: 'navMap',
+                        initialZoom: 13,
+                        routeColor: '#6BCF7F'
+                    });
+
+                    try {
+                        await navigationMode.init();
+                        window.navigationMode = navigationMode; // 讓按鈕可以存取
+                        console.log('✅ Day 4 Navigation Mode initialized');
+                    } catch (error) {
+                        console.error('❌ Navigation Mode initialization failed:', error);
+                        alert('地圖初始化失敗，請重新整理頁面');
+                    }
+                } else {
+                    // 已存在則重新調整地圖大小
+                    setTimeout(() => {
+                        navigationMode.map.invalidateSize();
+                    }, 100);
+                }
+            });
+
+            // 關閉導覽模式
+            closeBtn.addEventListener('click', () => {
+                navContainer.style.display = 'none';
+                document.body.style.overflow = '';
+            });
+        });
+    </script>
 </body>
 </html>

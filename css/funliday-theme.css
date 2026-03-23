@@ -1,0 +1,182 @@
+/*
+ * Funliday Theme - 互動導覽配色系統
+ * 基於 Funliday 品牌色彩規範
+ */
+
+:root {
+    /* ===== Funliday Brand Colors ===== */
+    --funliday-orange: #FF8C00;
+    --funliday-orange-dark: #E67E00;
+    --funliday-orange-light: #FFA533;
+    --funliday-orange-pale: #FFF5E6;
+
+    /* ===== Primary Colors ===== */
+    --color-primary: var(--funliday-orange);
+    --color-primary-dark: var(--funliday-orange-dark);
+    --color-primary-light: var(--funliday-orange-light);
+    --color-primary-pale: var(--funliday-orange-pale);
+
+    /* ===== Text Colors ===== */
+    --color-text-primary: #333333;
+    --color-text-secondary: #666666;
+    --color-text-tertiary: #999999;
+    --color-text-inverse: #FFFFFF;
+
+    /* ===== Background Colors ===== */
+    --color-background: #FFFFFF;
+    --color-surface: #F5F5F5;
+    --color-surface-raised: #FAFAFA;
+    --color-overlay: rgba(0, 0, 0, 0.5);
+
+    /* ===== Border & Divider ===== */
+    --color-border: #E0E0E0;
+    --color-border-light: #F0F0F0;
+    --color-divider: #EEEEEE;
+
+    /* ===== Navigation UI ===== */
+    --color-nav-active: var(--color-primary);
+    --color-nav-inactive: var(--color-text-tertiary);
+    --color-nav-bg: var(--color-background);
+
+    /* ===== Status Colors ===== */
+    --color-success: #4CAF50;
+    --color-warning: #FFC107;
+    --color-error: #F44336;
+    --color-info: #2196F3;
+
+    /* ===== Shadow ===== */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+    --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.20);
+
+    /* ===== Border Radius ===== */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 20px;
+    --radius-full: 9999px;
+
+    /* ===== Spacing Scale ===== */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 12px;
+    --space-lg: 16px;
+    --space-xl: 20px;
+    --space-2xl: 24px;
+    --space-3xl: 32px;
+    --space-4xl: 40px;
+
+    /* ===== Typography ===== */
+    --font-family-base: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-family-display: 'Patrick Hand', 'Kalam', cursive;
+
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-base: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 20px;
+    --font-size-2xl: 24px;
+    --font-size-3xl: 30px;
+    --font-size-4xl: 36px;
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.8;
+
+    /* ===== Z-Index Scale ===== */
+    --z-base: 1;
+    --z-dropdown: 10;
+    --z-sticky: 20;
+    --z-fixed: 30;
+    --z-modal-backdrop: 40;
+    --z-modal: 50;
+    --z-popover: 60;
+    --z-tooltip: 70;
+
+    /* ===== Transitions ===== */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 350ms ease;
+    --transition-bounce: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ===== High Contrast Mode (陽光模式) ===== */
+@media (prefers-contrast: high) {
+    :root {
+        --color-text-primary: #000000;
+        --color-background: #FFFFFF;
+        --color-border: #000000;
+    }
+}
+
+/* ===== Dark Mode Support (未來擴展) ===== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-background: #1A1A1A;
+        --color-surface: #2A2A2A;
+        --color-text-primary: #FFFFFF;
+        --color-text-secondary: #CCCCCC;
+        --color-border: #404040;
+    }
+}
+
+/* ===== Utility Classes ===== */
+
+/* Colors */
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-tertiary { color: var(--color-text-tertiary); }
+.text-inverse { color: var(--color-text-inverse); }
+.text-orange { color: var(--color-primary); }
+
+.bg-white { background-color: var(--color-background); }
+.bg-surface { background-color: var(--color-surface); }
+.bg-orange { background-color: var(--color-primary); }
+.bg-orange-pale { background-color: var(--color-primary-pale); }
+
+/* Shadows */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+
+/* Border Radius */
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-2xl { border-radius: var(--radius-2xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* Typography */
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+.text-xs { font-size: var(--font-size-xs); }
+.text-sm { font-size: var(--font-size-sm); }
+.text-base { font-size: var(--font-size-base); }
+.text-lg { font-size: var(--font-size-lg); }
+.text-xl { font-size: var(--font-size-xl); }
+.text-2xl { font-size: var(--font-size-2xl); }
+
+/* Spacing */
+.p-xs { padding: var(--space-xs); }
+.p-sm { padding: var(--space-sm); }
+.p-md { padding: var(--space-md); }
+.p-lg { padding: var(--space-lg); }
+.p-xl { padding: var(--space-xl); }
+
+.m-xs { margin: var(--space-xs); }
+.m-sm { margin: var(--space-sm); }
+.m-md { margin: var(--space-md); }
+.m-lg { margin: var(--space-lg); }
+.m-xl { margin: var(--space-xl); }

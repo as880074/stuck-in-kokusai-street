@@ -1,0 +1,507 @@
+/*
+ * Navigation Mode Styles - 互動導覽模式專用樣式
+ * 基於 Funliday 設計規範
+ */
+
+/* ===== 導覽模式容器 ===== */
+.navigation-mode {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--color-background);
+    z-index: var(--z-fixed);
+}
+
+/* ===== 頂部工具列 ===== */
+.nav-toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    background: var(--color-background);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--space-lg);
+    z-index: var(--z-sticky);
+}
+
+.nav-toolbar-title {
+    flex: 1;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+.nav-toolbar-close {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.nav-toolbar-close:hover {
+    background: var(--color-surface);
+}
+
+.nav-toolbar-close:active {
+    background: var(--color-border);
+}
+
+/* ===== 地圖容器 (佔 2/3 螢幕) ===== */
+.nav-map-container {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    height: calc(67vh - 56px);
+    z-index: var(--z-base);
+}
+
+.nav-map-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+/* ===== 自訂地圖標記 ===== */
+.numbered-marker {
+    position: relative;
+}
+
+.custom-marker {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marker-number {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 22px;
+    height: 22px;
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    border: 3px solid var(--color-background);
+    box-shadow: var(--shadow-md);
+    z-index: 2;
+}
+
+.marker-icon {
+    font-size: 28px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    z-index: 1;
+}
+
+/* ===== 視圖切換按鈕 ===== */
+.view-toggle {
+    position: absolute;
+    top: 72px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    background: var(--color-background);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-md);
+    padding: 4px;
+    z-index: var(--z-dropdown);
+}
+
+.view-toggle-btn {
+    padding: 8px 20px;
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.view-toggle-btn.active {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+}
+
+.view-toggle-btn:not(.active):hover {
+    background: var(--color-surface);
+}
+
+/* ===== 底部抽屜 (佔 1/3 螢幕) ===== */
+.bottom-sheet {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 33vh;
+    background: var(--color-background);
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+    transition: height var(--transition-base) cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: var(--z-dropdown);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.bottom-sheet.expanded {
+    height: 90vh;
+}
+
+.bottom-sheet.transitioning {
+    transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 抽屜把手 */
+.sheet-handle-container {
+    padding: var(--space-md) 0 var(--space-sm) 0;
+    display: flex;
+    justify-content: center;
+    cursor: grab;
+    touch-action: none;
+}
+
+.sheet-handle-container:active {
+    cursor: grabbing;
+}
+
+.sheet-handle {
+    width: 40px;
+    height: 4px;
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+    transition: background var(--transition-fast);
+}
+
+.sheet-handle-container:hover .sheet-handle {
+    background: var(--color-text-tertiary);
+}
+
+/* 抽屜標題 */
+.sheet-header {
+    padding: 0 var(--space-xl) var(--space-md) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.sheet-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.spot-progress {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+}
+
+.spot-progress-current {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+}
+
+/* ===== 景點卡片容器 ===== */
+.spot-cards-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 景點卡片 */
+.spot-card {
+    padding: var(--space-xl);
+    border-bottom: 1px solid var(--color-border-light);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.spot-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: transparent;
+    transition: background var(--transition-fast);
+}
+
+.spot-card.active {
+    background: var(--color-primary-pale);
+}
+
+.spot-card.active::before {
+    background: var(--color-primary);
+}
+
+.spot-card:hover:not(.active) {
+    background: var(--color-surface);
+}
+
+/* 景點標題區 */
+.spot-header {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.spot-number {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    box-shadow: var(--shadow-sm);
+}
+
+.spot-card.active .spot-number {
+    box-shadow: 0 0 0 4px var(--color-primary-light);
+}
+
+.spot-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.spot-name {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-xs) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.spot-meta {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.spot-time,
+.spot-duration {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.spot-time::before {
+    content: '🕐';
+}
+
+.spot-duration::before {
+    content: '⏱️';
+}
+
+/* 景點描述 */
+.spot-description {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-md);
+}
+
+/* 交通資訊 */
+.spot-transport {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+    padding: var(--space-md);
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+}
+
+.transport-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.transport-info {
+    flex: 1;
+}
+
+.transport-type {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.transport-detail {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+}
+
+/* ===== 導航按鈕組 ===== */
+.nav-actions {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.btn-navigate {
+    flex: 1;
+    padding: var(--space-md) var(--space-lg);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-navigate:hover {
+    background: var(--color-primary-dark);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.btn-navigate:active {
+    background: var(--color-primary-dark);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(0);
+}
+
+.btn-navigate.btn-secondary {
+    background: var(--color-background);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.btn-navigate.btn-secondary:hover {
+    background: var(--color-primary-pale);
+}
+
+.btn-navigate.btn-secondary:active {
+    background: var(--color-primary-pale);
+}
+
+/* ===== 清單視圖模式 ===== */
+.timeline-list-view {
+    display: none;
+    height: 100%;
+    overflow-y: auto;
+    padding: var(--space-xl);
+}
+
+.timeline-list-view.active {
+    display: block;
+}
+
+/* ===== 響應式設計 ===== */
+
+/* 小螢幕 (< 375px) */
+@media (max-width: 374px) {
+    .nav-actions {
+        flex-direction: column;
+    }
+
+    .btn-navigate {
+        width: 100%;
+    }
+
+    .spot-meta {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+}
+
+/* 大螢幕 (> 768px) - 平板/桌面 */
+@media (min-width: 768px) {
+    .navigation-mode {
+        max-width: 480px;
+        margin: 0 auto;
+        box-shadow: var(--shadow-xl);
+    }
+
+    .bottom-sheet {
+        height: 40vh;
+    }
+
+    .nav-map-container {
+        height: calc(60vh - 56px);
+    }
+}
+
+/* ===== 無障礙支援 ===== */
+
+/* 鍵盤聚焦樣式 */
+.btn-navigate:focus-visible,
+.spot-card:focus-visible,
+.view-toggle-btn:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* 減少動畫偏好設定 */
+@media (prefers-reduced-motion: reduce) {
+    .bottom-sheet,
+    .spot-card,
+    .btn-navigate,
+    .view-toggle-btn {
+        transition: none;
+    }
+}
+
+/* ===== 高對比模式（陽光下使用）===== */
+.sunlight-mode .navigation-mode {
+    filter: contrast(1.2) brightness(1.1);
+}
+
+.sunlight-mode .btn-navigate {
+    border: 2px solid rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.sunlight-mode .spot-card.active {
+    background: #FFE0B2;
+    box-shadow: inset 0 0 0 2px var(--color-primary);
+}
