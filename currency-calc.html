@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匯率平均計算 - 卡在國際通</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Kalam:wght@300;400;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/sketch.css">
+    
+    <style>
+        .calc-container {
+            max-width: 800px;
+            margin: var(--spacing-xl) auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .calc-card {
+            background-color: var(--bg-secondary);
+            border: var(--border-width-stroke) solid var(--border-strong);
+            border-radius: var(--radius-sketch);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sketch-md);
+        }
+        
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .input-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .input-item label {
+            display: block;
+            margin-bottom: var(--spacing-1);
+            font-family: var(--font-display);
+            font-weight: bold;
+        }
+        
+        .input-item input {
+            width: 100%;
+            padding: var(--spacing-2);
+            border: 2px solid var(--border-strong);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-handwritten);
+            font-size: var(--font-size-lg);
+        }
+        
+        .btn-calc {
+            width: 100%;
+            margin-top: var(--spacing-md);
+        }
+        
+        .results-section {
+            margin-top: var(--spacing-xl);
+            display: none;
+        }
+        
+        .process-box {
+            background: white;
+            border: 1px dashed var(--border-strong);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            font-family: var(--font-mono);
+            font-size: var(--font-size-sm);
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+        
+        .average-display {
+            text-align: center;
+            padding: var(--spacing-lg);
+            border: 3px double var(--border-strong);
+            border-radius: var(--radius-sketch);
+            background-color: #fff9e6;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .average-value {
+            font-size: var(--font-size-4xl);
+            color: var(--ink-accent);
+            font-weight: bold;
+            display: block;
+            margin: var(--spacing-2) 0;
+        }
+        
+        .quick-calc {
+            background-color: var(--bg-light);
+            padding: var(--spacing-md);
+            border: 2px solid var(--border-strong);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .quick-calc h3 {
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: var(--spacing-md);
+        }
+        
+        .history-table th, .history-table td {
+            padding: var(--spacing-2);
+            border-bottom: 1px solid var(--border-light);
+            text-align: left;
+        }
+
+        .split-result {
+            font-size: var(--font-size-2xl);
+            color: var(--ink-blue);
+            font-weight: bold;
+            text-align: center;
+            display: block;
+            margin-top: var(--spacing-2);
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+
+    <main class="calc-container">
+        <section class="calc-card">
+            <h1 class="text-center mb-md" data-t="currencyCalc.title">🧮 匯率平均值計算器</h1>
+            <p class="text-gray mb-lg text-center" data-t="currencyCalc.desc"></p>
+            
+            <div class="input-group">
+                <div class="input-item">
+                    <label for="startDate" data-t="currencyCalc.startDate">開始日期</label>
+                    <input type="date" id="startDate">
+                </div>
+                <div class="input-item">
+                    <label for="endDate" data-t="currencyCalc.endDate">結束日期</label>
+                    <input type="date" id="endDate">
+                </div>
+            </div>
+            
+            <button id="btnFetch" class="btn-sketch btn-calc" data-t="currencyCalc.btnFetch">抓取匯率並計算</button>
+        </section>
+
+        <section id="resultsSection" class="results-section">
+            <div class="average-display">
+                <h3 data-t="currencyCalc.avgTitle">平均匯率 (TWD ➔ JPY)</h3>
+                <span id="averageRateDisplay" class="average-value">---</span>
+                <p id="averageInfoText" class="text-gray"></p>
+            </div>
+
+            <!-- 快速試算 -->
+            <div class="quick-calc">
+                <h3 data-t="currencyCalc.quickCalc">⚡ 快速試算</h3>
+                <div class="input-group">
+                    <div class="input-item">
+                        <label data-t="currencyCalc.twd">台幣 (TWD)</label>
+                        <input type="number" id="inputTWD" placeholder="TWD">
+                    </div>
+                    <div class="input-item">
+                        <label data-t="currencyCalc.jpy">日幣 (JPY)</label>
+                        <input type="number" id="inputJPY" placeholder="JPY">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 好友分帳 -->
+            <div class="quick-calc">
+                <h3 data-t="currencyCalc.splitTitle">👥 好友分帳</h3>
+                <div class="input-group">
+                    <div class="input-item">
+                        <label data-t="currencyCalc.splitTotal">總金額 (JPY)</label>
+                        <input type="number" id="splitJPY" placeholder="例如：5000">
+                    </div>
+                    <div class="input-item">
+                        <label data-t="currencyCalc.peopleCount">分攤人數</label>
+                        <input type="number" id="peopleCount" value="1" min="1">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <span data-t="currencyCalc.perPerson">每人應付 (TWD)</span>
+                    <span id="splitResult" class="split-result">NT$ 0</span>
+                </div>
+            </div>
+
+            <div class="sketch-card">
+                <h3 data-t="currencyCalc.process">📝 計算過程</h3>
+                <div id="calcProcess" class="process-box"></div>
+                
+                <h3 data-t="currencyCalc.details">📅 每日匯率明細</h3>
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th data-t="currencyCalc.startDate">日期</th>
+                            <th>1 TWD ➔ JPY</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <!-- JS -->
+    <script src="js/config.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/currency-calc.js"></script>
+    <script>
+        // 頁面動態翻譯處理
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-t]').forEach(el => {
+                const key = el.getAttribute('data-t');
+                el.innerText = t(key);
+            });
+        });
+    </script>
+</body>
+</html>

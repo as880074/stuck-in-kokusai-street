@@ -38,6 +38,7 @@ const CONFIG = {
 
     // ExchangeRate API
     CURRENCY_API_URL: 'https://api.exchangerate-api.com/v4/latest/TWD',
+    HISTORICAL_CURRENCY_API_URL: 'https://api.frankfurter.app', // 用於抓取歷史區間
 
     // ========== LocalStorage Keys ==========
 
@@ -117,6 +118,23 @@ const CONFIG = {
             progress: '進度',
             weather: '天氣',
             currency: '匯率換算',
+            currencyCalc: {
+                title: '🧮 匯率平均值計算器',
+                desc: '輸入旅遊區間，自動抓取歷史匯率並計算平均值，方便與朋友分攤帳款。',
+                startDate: '開始日期',
+                endDate: '結束日期',
+                btnFetch: '抓取匯率並計算',
+                avgTitle: '平均匯率 (TWD ➔ JPY)',
+                quickCalc: '⚡ 快速試算 (按平均值)',
+                twd: '台幣 (TWD)',
+                jpy: '日幣 (JPY)',
+                process: '📝 計算過程',
+                details: '📅 每日匯率明細',
+                splitTitle: '👥 好友分帳',
+                splitTotal: '總金額 (JPY)',
+                peopleCount: '分攤人數',
+                perPerson: '每人應付 (TWD)'
+            },
             tips: '旅遊小貼士',
             viewItinerary: '查看四天行程安排',
             footer: {

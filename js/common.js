@@ -37,6 +37,7 @@ function generateHeader() {
                         <a href="day2.html" class="nav-link ${currentPage === 'day2' ? 'active' : ''}">${t('day2')}</a>
                         <a href="day3.html" class="nav-link ${currentPage === 'day3' ? 'active' : ''}">${t('day3')}</a>
                         <a href="day4.html" class="nav-link ${currentPage === 'day4' ? 'active' : ''}">${t('day4')}</a>
+                        <a href="currency-calc.html" class="nav-link ${currentPage === 'currency-calc' ? 'active' : ''}">匯率平均</a>
 
                         <!-- Language Switcher -->
                         <div class="language-switcher">
