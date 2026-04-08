@@ -36,9 +36,9 @@ const CONFIG = {
     // OpenWeather API (5 Day Forecast)
     WEATHER_API_URL: 'https://api.openweathermap.org/data/2.5/forecast',
 
-    // ExchangeRate API (免費且支援 CORS)
-    CURRENCY_API_URL: 'https://open.er-api.com/v6/latest/TWD',
-    CURRENCY_API_FALLBACK_URL: 'https://api.exchangerate-api.com/v4/latest/TWD', // 備用 API
+    // fawazahmed0 Currency API (免費、支援 CORS、支援歷史匯率)
+    CURRENCY_API_BASE: 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api',
+    CURRENCY_API_FALLBACK: 'https://latest.currency-api.pages.dev' // 備用 CDN
 
     // ========== LocalStorage Keys ==========
 
