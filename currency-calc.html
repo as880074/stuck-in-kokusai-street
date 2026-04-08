@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/sketch.css">
     
+    <!-- html2canvas for screenshot -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    
     <style>
         .calc-container {
             max-width: 800px;
@@ -155,24 +158,68 @@
         </section>
 
         <section id="resultsSection" class="results-section">
-            <div class="average-display">
-                <h3>💱 平均匯率計算</h3>
+            <!-- 截圖按鈕 -->
+            <div style="text-align: right; margin-bottom: 12px;">
+                <button id="btnScreenshot" class="btn-sketch" style="padding: 8px 16px; font-size: 0.9em;">
+                    📸 截圖儲存
+                </button>
+            </div>
+            
+            <!-- 截圖區域（包含匯率計算 + 試算結果） -->
+            <div id="screenshotArea" style="background: linear-gradient(135deg, #fff9e6 0%, #ffffff 100%); padding: 24px; border-radius: 16px; border: 3px solid #f0c040; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                
+                <!-- 標題區 -->
+                <div style="text-align: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px dashed #e0c060;">
+                    <h2 style="font-size: 1.5em; color: #333; margin: 0;">🏝️ 卡在國際通</h2>
+                    <p style="color: #666; font-size: 0.9em; margin-top: 4px;">沖繩旅遊匯率計算結果</p>
+                </div>
+                
+                <!-- 查詢區間 -->
+                <div id="dateRangeDisplay" style="text-align: center; background: #fff; padding: 10px; border-radius: 8px; margin-bottom: 16px; font-size: 0.95em;"></div>
                 
                 <!-- 每日匯率列表 -->
-                <div id="dailyRatesList" style="text-align: left; margin: 16px auto; max-width: 400px; font-family: var(--font-mono); font-size: 0.95em; line-height: 1.8;"></div>
+                <div id="dailyRatesList" style="background: #fff; padding: 16px; border-radius: 10px; margin-bottom: 16px; font-family: var(--font-mono); font-size: 0.9em; line-height: 2;"></div>
                 
                 <!-- 計算公式 -->
-                <div id="calcFormula" style="background: #f9f9f9; border: 1px dashed #ccc; border-radius: 8px; padding: 12px; margin: 16px auto; max-width: 500px; font-family: var(--font-mono); font-size: 0.9em; text-align: left;"></div>
+                <div id="calcFormula" style="background: #f5f5f5; border: 2px solid #e0e0e0; border-radius: 10px; padding: 16px; margin-bottom: 16px; font-family: var(--font-mono); font-size: 0.9em;"></div>
                 
-                <!-- 最終結果 -->
-                <div style="margin-top: 16px; padding-top: 16px; border-top: 2px solid #e0e0e0;">
-                    <span style="font-size: 1.1em;">✅ 平均匯率結果</span>
-                    <span id="averageRateDisplay" class="average-value">---</span>
-                    <p class="text-gray" style="font-size: 1.2em; margin-top: 8px; font-weight: bold;">1 日幣 (JPY) = <strong id="rateText" style="color: var(--ink-accent);">---</strong> 台幣 (TWD)</p>
+                <!-- 平均匯率結果（大字顯示） -->
+                <div style="background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); color: white; padding: 20px; border-radius: 12px; text-align: center; margin-bottom: 16px;">
+                    <p style="margin: 0; font-size: 1em; opacity: 0.9;">✅ 平均匯率</p>
+                    <p style="margin: 8px 0; font-size: 2.5em; font-weight: bold;">
+                        1 JPY = <span id="rateText">---</span> TWD
+                    </p>
+                    <p id="averageRateDisplay" style="display: none;">---</p>
                 </div>
+                
+                <!-- 快速試算結果區（截圖用） -->
+                <div id="quickCalcResult" style="display: none; background: #e3f2fd; padding: 16px; border-radius: 10px; margin-bottom: 16px; border: 2px solid #2196F3;">
+                    <h4 style="margin: 0 0 12px 0; color: #1976D2; font-size: 1em;">⚡ 快速試算結果</h4>
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 16px; font-size: 1.3em;">
+                        <span>💴 <strong id="screenshotJPY">0</strong> 日幣</span>
+                        <span style="font-size: 1.5em;">➔</span>
+                        <span>💰 <strong id="screenshotTWD" style="color: #d32f2f;">0</strong> 台幣</span>
+                    </div>
+                </div>
+                
+                <!-- 好友分帳結果區（截圖用） -->
+                <div id="splitCalcResult" style="display: none; background: #fff3e0; padding: 16px; border-radius: 10px; border: 2px solid #FF9800;">
+                    <h4 style="margin: 0 0 12px 0; color: #E65100; font-size: 1em;">👥 好友分帳結果</h4>
+                    <div style="text-align: center;">
+                        <p style="margin: 0; font-size: 0.95em; color: #666;">
+                            總金額 💴 <strong id="screenshotSplitJPY">0</strong> 日幣 ÷ <strong id="screenshotPeople">1</strong> 人
+                        </p>
+                        <p style="margin: 8px 0 0 0; font-size: 1.5em; color: #E65100; font-weight: bold;">
+                            每人 💰 <span id="screenshotSplitTWD">NT$ 0</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 截圖時間戳 -->
+                <p id="screenshotTimestamp" style="text-align: center; font-size: 0.75em; color: #999; margin-top: 16px; margin-bottom: 0;"></p>
             </div>
 
-            <!-- 快速試算 -->
+            <!-- 快速試算（用戶互動區） -->
             <div class="quick-calc">
                 <h3>⚡ 快速試算 (日幣 ➔ 台幣)</h3>
                 <div class="input-group">
@@ -187,7 +234,7 @@
                 </div>
             </div>
 
-            <!-- 好友分帳 -->
+            <!-- 好友分帳（用戶互動區） -->
             <div class="quick-calc">
                 <h3>👥 好友分帳 (日幣 ➔ 台幣)</h3>
                 <div class="input-group">

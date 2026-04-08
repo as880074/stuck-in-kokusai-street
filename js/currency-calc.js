@@ -23,9 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
     inputJPY.addEventListener('input', () => {
         const rate = parseFloat(document.getElementById('averageRateDisplay').innerText);
         if (rate && inputJPY.value) {
-            inputTWD.value = (parseFloat(inputJPY.value) * rate).toFixed(2);
+            const twdValue = (parseFloat(inputJPY.value) * rate).toFixed(2);
+            inputTWD.value = twdValue;
+            
+            // 同步更新截圖區域的快速試算結果
+            updateQuickCalcScreenshot(inputJPY.value, twdValue);
         } else {
             inputTWD.value = '';
+            hideQuickCalcScreenshot();
         }
     });
 
@@ -43,14 +48,128 @@ document.addEventListener('DOMContentLoaded', () => {
             const totalTWD = jpy * rate; // JPY × rate = TWD
             const perPerson = Math.ceil(totalTWD / people);
             splitResult.innerText = `NT$ ${perPerson.toLocaleString()}`;
+            
+            // 同步更新截圖區域的分帳結果
+            updateSplitCalcScreenshot(jpy, people, perPerson);
         } else {
             splitResult.innerText = 'NT$ 0';
+            hideSplitCalcScreenshot();
         }
     };
 
     splitJPY.addEventListener('input', updateSplit);
     peopleCount.addEventListener('input', updateSplit);
+
+    // 截圖按鈕監聽
+    const btnScreenshot = document.getElementById('btnScreenshot');
+    if (btnScreenshot) {
+        btnScreenshot.addEventListener('click', takeScreenshot);
+    }
 });
+
+/**
+ * 截圖功能 - 截取計算結果區域
+ */
+async function takeScreenshot() {
+    const screenshotArea = document.getElementById('screenshotArea');
+    const timestampEl = document.getElementById('screenshotTimestamp');
+    
+    if (!screenshotArea) {
+        showToast('找不到截圖區域', 'error');
+        return;
+    }
+
+    // 顯示時間戳記
+    const now = new Date();
+    const timestamp = now.toLocaleString('zh-TW', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+    timestampEl.innerText = `截圖時間: ${timestamp}`;
+    timestampEl.style.display = 'block';
+
+    try {
+        showLoading('正在生成截圖...');
+        
+        // 使用 html2canvas 截圖
+        const canvas = await html2canvas(screenshotArea, {
+            backgroundColor: null,
+            scale: 2, // 高解析度
+            useCORS: true,
+            logging: false
+        });
+
+        // 轉換為圖片並下載
+        const link = document.createElement('a');
+        const fileName = `沖繩匯率計算_${now.getFullYear()}${(now.getMonth()+1).toString().padStart(2,'0')}${now.getDate().toString().padStart(2,'0')}_${now.getHours().toString().padStart(2,'0')}${now.getMinutes().toString().padStart(2,'0')}.png`;
+        
+        link.download = fileName;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+
+        showToast('截圖已儲存！', 'success');
+    } catch (error) {
+        console.error('Screenshot error:', error);
+        showToast('截圖失敗，請重試', 'error');
+    } finally {
+        hideLoading();
+    }
+}
+
+/**
+ * 更新截圖區域的快速試算結果
+ */
+function updateQuickCalcScreenshot(jpy, twd) {
+    const container = document.getElementById('quickCalcResult');
+    const jpyEl = document.getElementById('screenshotJPY');
+    const twdEl = document.getElementById('screenshotTWD');
+    
+    if (container && jpyEl && twdEl) {
+        jpyEl.innerText = Number(jpy).toLocaleString();
+        twdEl.innerText = Number(twd).toLocaleString();
+        container.style.display = 'block';
+    }
+}
+
+/**
+ * 隱藏截圖區域的快速試算結果
+ */
+function hideQuickCalcScreenshot() {
+    const container = document.getElementById('quickCalcResult');
+    if (container) {
+        container.style.display = 'none';
+    }
+}
+
+/**
+ * 更新截圖區域的分帳結果
+ */
+function updateSplitCalcScreenshot(jpy, people, perPerson) {
+    const container = document.getElementById('splitCalcResult');
+    const jpyEl = document.getElementById('screenshotSplitJPY');
+    const peopleEl = document.getElementById('screenshotPeople');
+    const twdEl = document.getElementById('screenshotSplitTWD');
+    
+    if (container && jpyEl && peopleEl && twdEl) {
+        jpyEl.innerText = Number(jpy).toLocaleString();
+        peopleEl.innerText = people;
+        twdEl.innerText = `NT$ ${perPerson.toLocaleString()}`;
+        container.style.display = 'block';
+    }
+}
+
+/**
+ * 隱藏截圖區域的分帳結果
+ */
+function hideSplitCalcScreenshot() {
+    const container = document.getElementById('splitCalcResult');
+    if (container) {
+        container.style.display = 'none';
+    }
+}
 
 /**
  * 抓取歷史匯率並計算平均值（使用 fawazahmed0 currency-api）
@@ -169,6 +288,7 @@ function processRates(rates, start, end) {
     const averageRateDisplay = document.getElementById('averageRateDisplay');
     const dailyRatesList = document.getElementById('dailyRatesList');
     const calcFormula = document.getElementById('calcFormula');
+    const dateRangeDisplay = document.getElementById('dateRangeDisplay');
 
     historyTableBody.innerHTML = '';
     
@@ -178,6 +298,11 @@ function processRates(rates, start, end) {
 
     // 取得所有日期並排序
     const sortedDates = Object.keys(rates).sort();
+    
+    // 更新日期範圍顯示（截圖區域）
+    if (dateRangeDisplay) {
+        dateRangeDisplay.innerText = `${start} ~ ${end}`;
+    }
     
     // 建立每日匯率 HTML
     let dailyHtml = '<strong>📅 每日匯率 (1 JPY = ? TWD)</strong><br><br>';
