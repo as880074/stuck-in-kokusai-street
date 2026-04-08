@@ -15,23 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnFetch = document.getElementById('btnFetch');
     btnFetch.addEventListener('click', fetchAndCalculate);
 
-    // 試算器監聽
+    // 試算器監聽 (rate = 1 JPY = X TWD)
     const inputTWD = document.getElementById('inputTWD');
     const inputJPY = document.getElementById('inputJPY');
 
-    inputTWD.addEventListener('input', () => {
-        const rate = parseFloat(document.getElementById('averageRateDisplay').innerText);
-        if (rate && inputTWD.value) {
-            inputJPY.value = (parseFloat(inputTWD.value) * rate).toFixed(0);
-        } else {
-            inputJPY.value = '';
-        }
-    });
-
+    // 輸入日幣 → 自動計算台幣
     inputJPY.addEventListener('input', () => {
         const rate = parseFloat(document.getElementById('averageRateDisplay').innerText);
         if (rate && inputJPY.value) {
-            inputTWD.value = (parseFloat(inputJPY.value) / rate).toFixed(2);
+            inputTWD.value = (parseFloat(inputJPY.value) * rate).toFixed(2);
         } else {
             inputTWD.value = '';
         }
@@ -48,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const people = parseInt(peopleCount.value);
 
         if (rate && jpy && people > 0) {
-            const totalTWD = jpy / rate;
+            const totalTWD = jpy * rate; // JPY × rate = TWD
             const perPerson = Math.ceil(totalTWD / people);
             splitResult.innerText = `NT$ ${perPerson.toLocaleString()}`;
         } else {
@@ -155,8 +147,8 @@ async function fetchRateForDate(date, today) {
             if (response.ok) {
                 const data = await response.json();
                 if (data.jpy && data.jpy.twd) {
-                    // API 返回 1 JPY = X TWD，我們需要 1 TWD = Y JPY
-                    const rate = 1 / data.jpy.twd;
+                    // API 返回 1 JPY = X TWD
+                    const rate = data.jpy.twd;
                     return { date: dateStr, rate };
                 }
             }
@@ -175,21 +167,26 @@ function processRates(rates, start, end) {
     const historyTableBody = document.getElementById('historyTableBody');
     const calcProcess = document.getElementById('calcProcess');
     const averageRateDisplay = document.getElementById('averageRateDisplay');
-    const averageInfoText = document.getElementById('averageInfoText');
+    const dailyRatesList = document.getElementById('dailyRatesList');
+    const calcFormula = document.getElementById('calcFormula');
 
     historyTableBody.innerHTML = '';
     
     let sum = 0;
     let count = 0;
-    let processText = '計算公式：\n';
+    const rateValues = [];
 
     // 取得所有日期並排序
     const sortedDates = Object.keys(rates).sort();
     
-    sortedDates.forEach(date => {
+    // 建立每日匯率 HTML
+    let dailyHtml = '<strong>📅 每日匯率 (1 JPY = ? TWD)</strong><br><br>';
+    
+    sortedDates.forEach((date, index) => {
         const rate = rates[date].JPY;
         sum += rate;
         count++;
+        rateValues.push(rate.toFixed(4));
 
         // 填充表格
         const row = `<tr>
@@ -198,19 +195,39 @@ function processRates(rates, start, end) {
         </tr>`;
         historyTableBody.innerHTML += row;
 
-        processText += `[${date}] 匯率: ${rate.toFixed(4)}\n`;
+        dailyHtml += `&nbsp;&nbsp;📆 第 ${index + 1} 天 <span style="color:#666">(${date})</span>: <strong style="color:#e74c3c">${rate.toFixed(4)}</strong> TWD<br>`;
     });
+    
+    dailyRatesList.innerHTML = dailyHtml;
 
     const average = sum / count;
     
-    // 顯示過程
-    processText += `--------------------\n`;
-    processText += `總和 (${sum.toFixed(4)}) / 天數 (${count}) = ${average.toFixed(4)}\n`;
-    calcProcess.innerText = processText;
+    // 建立計算公式 HTML
+    let formulaHtml = '<strong>🧮 計算公式</strong><br><br>';
+    formulaHtml += `<strong>步驟 1：加總所有匯率</strong><br>`;
+    formulaHtml += `&nbsp;&nbsp;${rateValues.join(' + ')}<br>`;
+    formulaHtml += `&nbsp;&nbsp;= <strong>${sum.toFixed(4)}</strong><br><br>`;
+    formulaHtml += `<strong>步驟 2：除以天數</strong><br>`;
+    formulaHtml += `&nbsp;&nbsp;${sum.toFixed(4)} ÷ ${count} 天<br>`;
+    formulaHtml += `&nbsp;&nbsp;= <strong style="color:#27ae60; font-size:1.1em">${average.toFixed(4)}</strong>`;
+    
+    calcFormula.innerHTML = formulaHtml;
 
     // 顯示最終平均值
     averageRateDisplay.innerText = average.toFixed(4);
-    averageInfoText.innerText = `根據 ${start} 至 ${end} 共 ${count} 筆真實歷史匯率計算`;
+    const rateText = document.getElementById('rateText');
+    if (rateText) rateText.innerText = average.toFixed(4);
+    
+    // 更新下方詳細計算過程
+    let processText = `📊 完整計算記錄\n`;
+    processText += `━━━━━━━━━━━━━━━━━━━━\n`;
+    processText += `查詢區間: ${start} 至 ${end}\n`;
+    processText += `有效天數: ${count} 天\n`;
+    processText += `匯率總和: ${sum.toFixed(4)}\n`;
+    processText += `平均匯率: ${average.toFixed(4)}\n`;
+    processText += `━━━━━━━━━━━━━━━━━━━━`;
+    
+    if (calcProcess) calcProcess.innerText = processText;
     
     // 清空試算器與分帳
     document.getElementById('inputTWD').value = '';

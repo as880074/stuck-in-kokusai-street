@@ -38,7 +38,7 @@ const CONFIG = {
 
     // fawazahmed0 Currency API (免費、支援 CORS、支援歷史匯率)
     CURRENCY_API_BASE: 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api',
-    CURRENCY_API_FALLBACK: 'https://latest.currency-api.pages.dev' // 備用 CDN
+    CURRENCY_API_FALLBACK: 'https://latest.currency-api.pages.dev', // 備用 CDN
 
     // ========== LocalStorage Keys ==========
 
@@ -61,8 +61,8 @@ const CONFIG = {
     // ========== 日期設定 ==========
 
     TRIP_DATES: {
-        START: '2025-03-30',
-        END: '2025-04-02',
+        START: '2026-03-30',
+        END: '2026-04-02',
         DAYS: 4,
         NIGHTS: 3
     },
@@ -124,7 +124,7 @@ const CONFIG = {
                 startDate: '開始日期',
                 endDate: '結束日期',
                 btnFetch: '抓取匯率並計算',
-                avgTitle: '平均匯率 (TWD ➔ JPY)',
+                avgTitle: '平均匯率 (JPY ➔ TWD)',
                 quickCalc: '⚡ 快速試算 (按平均值)',
                 twd: '台幣 (TWD)',
                 jpy: '日幣 (JPY)',

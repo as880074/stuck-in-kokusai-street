@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>匯率平均計算 - 卡在國際通</title>
+    <title>日幣轉台幣 匯率計算器 - 卡在國際通</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -137,74 +137,85 @@
 
     <main class="calc-container">
         <section class="calc-card">
-            <h1 class="text-center mb-md" data-t="currencyCalc.title">🧮 匯率平均值計算器</h1>
-            <p class="text-gray mb-lg text-center" data-t="currencyCalc.desc"></p>
+            <h1 class="text-center mb-md">🧮 日幣轉台幣 匯率計算器</h1>
+            <p class="text-gray mb-lg text-center">輸入旅遊日期區間，自動抓取每日歷史匯率並計算平均值，方便分攤帳款！</p>
             
             <div class="input-group">
                 <div class="input-item">
-                    <label for="startDate" data-t="currencyCalc.startDate">開始日期</label>
+                    <label for="startDate">📅 開始日期</label>
                     <input type="date" id="startDate">
                 </div>
                 <div class="input-item">
-                    <label for="endDate" data-t="currencyCalc.endDate">結束日期</label>
+                    <label for="endDate">📅 結束日期</label>
                     <input type="date" id="endDate">
                 </div>
             </div>
             
-            <button id="btnFetch" class="btn-sketch btn-calc" data-t="currencyCalc.btnFetch">抓取匯率並計算</button>
+            <button id="btnFetch" class="btn-sketch btn-calc">🔍 抓取匯率並計算</button>
         </section>
 
         <section id="resultsSection" class="results-section">
             <div class="average-display">
-                <h3 data-t="currencyCalc.avgTitle">平均匯率 (TWD ➔ JPY)</h3>
-                <span id="averageRateDisplay" class="average-value">---</span>
-                <p id="averageInfoText" class="text-gray"></p>
+                <h3>💱 平均匯率計算</h3>
+                
+                <!-- 每日匯率列表 -->
+                <div id="dailyRatesList" style="text-align: left; margin: 16px auto; max-width: 400px; font-family: var(--font-mono); font-size: 0.95em; line-height: 1.8;"></div>
+                
+                <!-- 計算公式 -->
+                <div id="calcFormula" style="background: #f9f9f9; border: 1px dashed #ccc; border-radius: 8px; padding: 12px; margin: 16px auto; max-width: 500px; font-family: var(--font-mono); font-size: 0.9em; text-align: left;"></div>
+                
+                <!-- 最終結果 -->
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 2px solid #e0e0e0;">
+                    <span style="font-size: 1.1em;">✅ 平均匯率結果</span>
+                    <span id="averageRateDisplay" class="average-value">---</span>
+                    <p class="text-gray" style="font-size: 1.2em; margin-top: 8px; font-weight: bold;">1 日幣 (JPY) = <strong id="rateText" style="color: var(--ink-accent);">---</strong> 台幣 (TWD)</p>
+                </div>
             </div>
 
             <!-- 快速試算 -->
             <div class="quick-calc">
-                <h3 data-t="currencyCalc.quickCalc">⚡ 快速試算</h3>
+                <h3>⚡ 快速試算 (日幣 ➔ 台幣)</h3>
                 <div class="input-group">
                     <div class="input-item">
-                        <label data-t="currencyCalc.twd">台幣 (TWD)</label>
-                        <input type="number" id="inputTWD" placeholder="TWD">
+                        <label>💴 日幣 (JPY)</label>
+                        <input type="number" id="inputJPY" placeholder="輸入日幣金額">
                     </div>
                     <div class="input-item">
-                        <label data-t="currencyCalc.jpy">日幣 (JPY)</label>
-                        <input type="number" id="inputJPY" placeholder="JPY">
+                        <label>💰 台幣 (TWD)</label>
+                        <input type="number" id="inputTWD" placeholder="換算台幣金額" readonly style="background: #f0f8ff;">
                     </div>
                 </div>
             </div>
 
             <!-- 好友分帳 -->
             <div class="quick-calc">
-                <h3 data-t="currencyCalc.splitTitle">👥 好友分帳</h3>
+                <h3>👥 好友分帳 (日幣 ➔ 台幣)</h3>
                 <div class="input-group">
                     <div class="input-item">
-                        <label data-t="currencyCalc.splitTotal">總金額 (JPY)</label>
+                        <label>💴 總金額 (JPY)</label>
                         <input type="number" id="splitJPY" placeholder="例如：5000">
                     </div>
                     <div class="input-item">
-                        <label data-t="currencyCalc.peopleCount">分攤人數</label>
+                        <label>👤 分攤人數</label>
                         <input type="number" id="peopleCount" value="1" min="1">
                     </div>
                 </div>
                 <div class="text-center">
-                    <span data-t="currencyCalc.perPerson">每人應付 (TWD)</span>
+                    <span>每人應付</span>
                     <span id="splitResult" class="split-result">NT$ 0</span>
                 </div>
             </div>
 
             <div class="sketch-card">
-                <h3 data-t="currencyCalc.process">📝 計算過程</h3>
+                <h3>📝 計算過程</h3>
                 <div id="calcProcess" class="process-box"></div>
                 
-                <h3 data-t="currencyCalc.details">📅 每日匯率明細</h3>
+                <h3>📅 每日匯率明細</h3>
                 <table class="history-table">
                     <thead>
                         <tr>
-                            <th data-t="currencyCalc.startDate">日期</th>
-                            <th>1 TWD ➔ JPY</th>
+                            <th>日期</th>
+                            <th>1 JPY = ? TWD</th>
                         </tr>
                     </thead>
                     <tbody id="historyTableBody"></tbody>
@@ -219,14 +230,5 @@
     <script src="js/config.js"></script>
     <script src="js/common.js"></script>
     <script src="js/currency-calc.js"></script>
-    <script>
-        // 頁面動態翻譯處理
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('[data-t]').forEach(el => {
-                const key = el.getAttribute('data-t');
-                el.innerText = t(key);
-            });
-        });
-    </script>
 </body>
 </html>
